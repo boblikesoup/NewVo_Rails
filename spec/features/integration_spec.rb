@@ -46,9 +46,6 @@ describe "When user is logged in", :type => :feature do
   it "should allow user to create a post with a picture" do
   end
 
-  it "should allow user to set post as private to specific fb group" do
-  end
-
   it "should allow user to set post as public for anyone to see" do
   end
 
