@@ -7,9 +7,10 @@ gem 'rails', '4.0.0'
 
 group :production do
   gem 'pg'
-  gem 'omniauth-facebook'
 end
 
+gem 'omniauth-facebook'
+gem 'dotenv-rails', :groups => [:development, :test]
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
