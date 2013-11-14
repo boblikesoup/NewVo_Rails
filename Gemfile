@@ -4,7 +4,11 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 # Use pg as the database for production
-gem 'pg'
+
+group :production do
+  gem 'pg'
+  gem 'omniauth-facebook'
+end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
