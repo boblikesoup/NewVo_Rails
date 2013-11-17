@@ -2,6 +2,22 @@
   <p>Welcome! <%= current_user.first_name %>
     <%= link_to "Sign out", signout_path %>
   </p>
+
+
+  <%= form_for @post do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <%= f.file_field :picture1 %>
+    <%= f.submit %>
+  <% end %>
+
 <% else %>
   <p> Please sign in to get better results and to be able to post </p>
+<% end %>
+
+<% if @posts %>
+  <% @posts.each do |post| %>
+    <h2> <%= post.title %> </h2>
+    <%= image_tag post.picture1.url :medium %>
+  <% end %>
 <% end %>
