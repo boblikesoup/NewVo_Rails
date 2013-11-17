@@ -1,0 +1,7 @@
+<% if signed_in? %>
+  <p>Welcome! <%= current_user.first_name %>
+    <%= link_to "Sign out", signout_path %>
+  </p>
+<% else %>
+  <p> Please sign in to get better results and to be able to post </p>
+<% end %>
