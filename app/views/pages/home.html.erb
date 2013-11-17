@@ -1,11 +1,4 @@
 This is the homepage
 
-<% if signed_in? %>
-  Welcome!
-  <%= link_to "Log out", signout_path %>
-<% else %>
-
-
-
   <%= link_to "Log in", '/auth/facebook' %>
-<% end %>
+  <%= link_to "Browse", posts_path %>
