@@ -9,15 +9,12 @@ class PostsController < ApplicationController
   def create
     post = Post.new( post_params )
     current_user.posts << post 
-    if post.save
-      redirect_to posts_path
-    else 
+    post.save
+    redirect_to posts_path
       # TODO 
       # display errors and prevent cookie overflow when content type is not an image
-      post.picture1.destroy
-      flash[:error] = post.errors
-      redirect_to posts_path
-    end
+      # handle error when save is not successful
+
   end
 
   def show
