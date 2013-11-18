@@ -1,0 +1,7 @@
+<%= render partial: 'post', object: @post %>
+
+<%= form_for @comment do |f| %>
+  <%= f.label :body, 'Say something' %>
+  <%= f.text_field :body %>
+  <%= f.submit %>
+<% end %>
