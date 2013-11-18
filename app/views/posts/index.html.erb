@@ -3,13 +3,7 @@
     <%= link_to "Sign out", signout_path %>
   </p>
 
-
-  <%= form_for @post do |f| %>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-    <%= f.file_field :picture1 %>
-    <%= f.submit %>
-  <% end %>
+<%=  render 'post' %>
 
 <% else %>
   <p> Please sign in to get better results and to be able to post </p>
@@ -18,6 +12,8 @@
 <% if @posts %>
   <% @posts.each do |post| %>
     <h2> <%= post.title %> </h2>
+    <%= link_to "Edit", edit_post_path(post) %>
+    <%= link_to "Delete", post_path(post), method: :delete %>
     <%= image_tag post.picture1.url :medium %>
   <% end %>
 <% end %>
