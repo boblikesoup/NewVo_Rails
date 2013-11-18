@@ -6,4 +6,6 @@ class Post < ActiveRecord::Base
     validates_attachment :picture1, :presence => true,
       :content_type => { :content_type => %w(image/jpg image/png image/jpeg)},
       :size => { :in => 0..500.kilobytes}
+
+
 end

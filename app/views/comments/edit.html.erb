@@ -1,0 +1,5 @@
+<%= form_for @comment, url: post_comment_path, method: :put do |f| %>
+  <%= f.label :body, 'Say something' %>
+  <%= f.text_field :body %>
+  <%= f.submit %>
+<% end %>
