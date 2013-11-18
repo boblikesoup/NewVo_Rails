@@ -9,6 +9,7 @@ group :production do
   gem 'pg'
 end
 
+gem "paperclip", "~> 3.0"
 gem 'omniauth-facebook'
 gem 'dotenv-rails', :groups => [:development, :test]
 # Use SCSS for stylesheets
