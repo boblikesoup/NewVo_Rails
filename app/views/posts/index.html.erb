@@ -11,12 +11,8 @@
 
 <% if @posts %>
   <% @posts.each do |post| %>
-    <h2> <%= post.title %> </h2>
-    <%= link_to "Edit", edit_post_path(post) %>
+    <%= render partial: 'post', object: post %>
 
-    <% if current_user.id == post.user_id %>
-      <%= link_to "Delete", post_path(post), method: :delete %>
-      <%= image_tag post.picture1.url :medium %>
-    <% end %>
+    <%= link_to "Comment", post_path(post) if signed_in? %>
   <% end %>
 <% end %>

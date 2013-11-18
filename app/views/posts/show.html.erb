@@ -1,0 +1,22 @@
+<%= render partial: 'post', object: @post %>
+
+<% if signed_in? %>
+  <%= form_for @comment, url: post_comments_path(@post) do |f| %>
+    <%= f.label :body, 'Say something' %>
+    <%= f.text_field :body %>
+    <%= f.submit %>
+  <% end %>
+<% end %>
+
+<% if @post.comments %>
+  <% @post.comments.each do |comment| %>
+  <p>
+    <%= comment.body %>
+    <% if signed_in? && current_user.id == comment.user_id %>
+      <%= link_to "Edit", edit_post_comment_path(@post, comment) %>
+      <%= link_to "Delete", post_comment_path(@post, comment), method: :delete %>
+    <% end %>
+  </p>
+
+  <% end %>
+<% end %>
