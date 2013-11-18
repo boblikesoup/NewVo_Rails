@@ -10,8 +10,10 @@
   <% @post.comments.each do |comment| %>
   <p>
     <%= comment.body %>
-    <%= link_to "Edit", edit_post_comment_path(@post, comment) %>
-    <%= link_to "Delete", post_comments_path(comment), method: :delete %>
+    <% if comment.user_id == current_user.id %>
+      <%= link_to "Edit", edit_post_comment_path(@post, comment) %>
+      <%= link_to "Delete", post_comment_path(@post, comment), method: :delete %>
+    <% end %>
   </p>
 
   <% end %>
