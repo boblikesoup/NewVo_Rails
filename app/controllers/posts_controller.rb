@@ -8,10 +8,10 @@ class PostsController < ApplicationController
 
   def create
     post = Post.new( post_params )
-    current_user.posts << post 
+    current_user.posts << post
     post.save
     redirect_to posts_path
-      # TODO 
+      # TODO
       # display errors and prevent cookie overflow when content type is not an image
       # handle error when save is not successful
 
@@ -33,14 +33,14 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    post = Post.find(params[:id]).
+    post = Post.find(params[:id])
     post.destroy!
     redirect_to posts_path
   end
 
 
 
-  private 
+  private
 
   def post_params
     params.require( :post ).permit( :title, :picture1 )
