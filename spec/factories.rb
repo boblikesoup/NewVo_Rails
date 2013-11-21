@@ -5,6 +5,7 @@ FactoryGirl.define do
     email "juke@gmail.com"
     first_name "Juke"
     last_name "Aluke"
+    single true
   end
 
   factory :post do
