@@ -5,4 +5,9 @@ FactoryGirl.define do
     last_name "Aluke"
   end
 
+  factory :post do
+    title "word"
+    user_id 1
+  end
+
 end

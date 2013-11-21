@@ -1,4 +1,8 @@
 require 'spec_helper'
+#Need to store unique username and email address
+#Needs tests for comment and vote destruction
+#Need test for find_or_create... method
+#Need to handle account deactivation effects on username appearance and publish status of children
 
 describe User do
   let(:user_template) { build(:user) }
@@ -36,5 +40,15 @@ describe User do
     expect {
       User.create(fb_uid: "12345", first_name: "Juke", last_name: "Aluke")
     }.to change{User.count}.by(0)
+  end
+
+  it "should destroy posts if destroyed" do
+    expect{
+            x = user
+            post = build(:post)
+            post.id = x.id
+            post.save
+            x.destroy
+    }.to change{Post.count}.by(0)
   end
 end
