@@ -1,7 +1,7 @@
 class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :post, :counter_cache => true
-  has_many :votes, :as => :votable
+  has_many :votes, :as => :votable, :dependent => :destroy
 
   validates :body, presence: true
   default_scope order: 'comments.created_at DESC'

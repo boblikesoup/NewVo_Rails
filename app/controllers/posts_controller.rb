@@ -7,9 +7,12 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new( post_params )
+    post = Post.new(params.require(:post).permit(:title))
+    photo = Photo.new(params.require(:post).permit(:photo))
     current_user.posts << post 
     post.save
+    post.photos << photo
+    photo.save
     redirect_to posts_path
       # TODO 
       # display errors and prevent cookie overflow when content type is not an image
@@ -43,7 +46,7 @@ class PostsController < ApplicationController
   private 
 
   def post_params
-    params.require( :post ).permit( :title, :picture1 )
+    params.require( :post ).permit!
   end
 
 end
