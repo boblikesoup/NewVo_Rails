@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_many :posts, :dependent => :destroy
   has_many :comments, :dependent => :destroy
   has_many :votes, :dependent => :destroy
-
+  has_many :photos, through: :posts
   validates_presence_of :first_name
   validates_presence_of :last_name
   validates_presence_of :fb_uid

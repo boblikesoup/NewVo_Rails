@@ -5,6 +5,7 @@ Newvo::Application.routes.draw do
   get '/signout', to: 'sessions#destroy', as: 'signout'
   resources :posts do
     resources :comments
+    resources :photos
   end
 
   resources :votes, only: :create
