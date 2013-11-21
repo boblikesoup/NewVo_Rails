@@ -1,12 +1,6 @@
 class Post < ActiveRecord::Base
     belongs_to :user
-    has_many :comments
-
-
-    has_attached_file :picture1, :styles => { :medium => "300x300>", :thumb => "100x100>" }
-    validates_attachment :picture1, :presence => true,
-      :content_type => { :content_type => %w(image/jpg image/png image/jpeg)},
-      :size => { :in => 0..500.kilobytes}
-
-
+    has_many :comments, :dependent => :destroy
+    has_many :photos, :dependent => :destroy
+    has_many :votes, :as => :votable, :dependent => :destroy
 end
