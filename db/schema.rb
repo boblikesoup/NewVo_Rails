@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131121001730) do
+ActiveRecord::Schema.define(version: 20131121030424) do
 
   create_table "comments", force: true do |t|
     t.string   "body"
@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 20131121001730) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "parent_id"
     t.integer  "votes_count", default: 0, null: false
     t.integer  "type"
   end
@@ -48,6 +47,8 @@ ActiveRecord::Schema.define(version: 20131121001730) do
     t.string   "fb_uid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "username"
+    t.string   "email"
   end
 
   create_table "votes", force: true do |t|
