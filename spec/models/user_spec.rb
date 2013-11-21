@@ -42,7 +42,6 @@ describe User do
     }.to change{User.count}.by(0)
   end
 
-<<<<<<< HEAD
   it "should not save without a username" do
     expect{
             user_template.username = ""
@@ -81,16 +80,4 @@ describe User do
       new_user.destroy
     }.to change{Post.count}.by(0)
   end
-
-=======
-  it "should destroy posts if destroyed" do
-    expect{
-            x = user
-            post = build(:post)
-            post.id = x.id
-            post.save
-            x.destroy
-    }.to change{Post.count}.by(0)
-  end
->>>>>>> 645bcdb8755fb334ab738c3da034f5bdb8a8f3d5
 end
