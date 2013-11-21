@@ -13,8 +13,6 @@ class PostsController < ApplicationController
     current_user.posts << post 
     post.save
 
-
-
     redirect_to posts_path
       # TODO
       # display errors and prevent cookie overflow when content type is not an image
@@ -27,15 +25,6 @@ class PostsController < ApplicationController
     @comment = Comment.new
   end
 
-  def edit
-    @post = Post.find(params[:id])
-  end
-
-  def update
-    @post = Post.find(params[:id])
-    @post.update_attributes! post_params
-    redirect_to posts_path
-  end
 
   def destroy
     post = Post.find(params[:id])
