@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 20131121001730) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "parent_id"
     t.integer  "votes_count", default: 0, null: false
     t.integer  "type"
   end
