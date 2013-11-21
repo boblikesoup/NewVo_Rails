@@ -5,7 +5,15 @@ class Post < ActiveRecord::Base
     has_many :votes, :as => :votable, :dependent => :destroy
     accepts_nested_attributes_for :photos, :reject_if => lambda { |attributes| attributes[:photo].blank? }
 
-    validates_presence_of :title
-    validates_presence_of :user_id
-    validates_presence_of :single
+    after_save :update_has_single_picture
+
+    # validates_presence_of :title
+    # validates_presence_of :user_id
+    # validates_presence_of :single
+
+    private
+
+    def update_has_single_picture
+      self.update_columns(has_single_picture: 'false') if self.photos.count == 2
+    end
 end
