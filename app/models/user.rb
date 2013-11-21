@@ -2,6 +2,12 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
 
+  validates_presence_of :first_name
+  validates_presence_of :last_name
+  validates_presence_of :fb_uid
+  validates_uniqueness_of :fb_uid
+
+
   def self.find_or_create_from_auth_hash auth_hash
     user = self.find_or_create_by(fb_uid: auth_hash["uid"])
     if user
