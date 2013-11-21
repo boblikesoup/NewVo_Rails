@@ -1,19 +1,19 @@
 require 'spec_helper'
 
 describe "Guest can access", :type => :feature do
-  it "should allow guest to view post" do
+  xit "should allow guest to view post" do
   end
 
-  it "should allow guest to view comments" do
+  xit "should allow guest to view comments" do
   end
 
-  it "should not allow guest to create new post" do
+  xit "should not allow guest to create new post" do
   end
 
-  it "should not allow guest to create new comment" do
+  xit "should not allow guest to create new comment" do
   end
 
-  it "should not allow guest to view private post" do
+  xit "should not allow guest to view private post" do
   end
 end
 
@@ -40,33 +40,33 @@ describe "User log in page", :type => :feature do
 end
 
 describe "When user is logged in", :type => :feature do
-  it "should allow user to sign out" do
+  xit "should allow user to sign out" do
   end
 
-  it "should allow user to create a post with a picture" do
+  xit "should allow user to create a post with a picture" do
   end
 
-  it "should allow user to set post as public for anyone to see" do
+  xit "should allow user to set post as public for anyone to see" do
   end
 
-  it "should allow user to respond to post" do
+  xit "should allow user to respond to post" do
   end
 
-  it "should allow user to upvote a post" do
+  xit "should allow user to upvote a post" do
   end
 
-  it "should allow user to downvote a post" do
+  xit "should allow user to downvote a post" do
   end
 
-  it "should not allow user to upvote the same post more than once" do
+  xit "should not allow user to upvote the same post more than once" do
   end
 
-  it "should not allow user to downvote the same post more than once" do
+  xit "should not allow user to downvote the same post more than once" do
   end
 
-  it "should not allow user to upvote the same comment more than once" do
+  xit "should not allow user to upvote the same comment more than once" do
   end
 
-  it "should not allow user to downvote the same comment more than once" do
+  xit "should not allow user to downvote the same comment more than once" do
   end
 end
