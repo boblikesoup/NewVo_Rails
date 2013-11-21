@@ -1,5 +1,7 @@
 <h2> <%= post.title %> </h2>
-<%= image_tag post.photo.url :medium %>
+<% post.photos.each do |photo| %>
+  <%= image_tag photo.photo.url :medium %>
+<% end %>
 
 <% if signed_in? && current_user.id == post.user_id %>
   <%= link_to "Edit", edit_post_path(post) %>
