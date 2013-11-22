@@ -6,4 +6,8 @@ class Photo < ActiveRecord::Base
       :content_type => { :content_type => %w(image/jpg image/png image/jpeg)},
       :size => { :in => 0..500.kilobytes}
 
+  def get_votes
+    self.votes.group(:value).count
+  end
+
 end
