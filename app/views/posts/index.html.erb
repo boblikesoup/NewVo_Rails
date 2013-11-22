@@ -14,6 +14,5 @@
     <%= render partial: 'post', object: post %>
 
     <%= link_to "Comment", post_path(post) if signed_in? %>
-    <%= link_to "Like post", votes_path(:post => post.id), method: :post if signed_in? %>
   <% end %>
 <% end %>

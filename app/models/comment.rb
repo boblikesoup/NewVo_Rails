@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
   belongs_to :user
-  belongs_to :post, :counter_cache => true
+  belongs_to :post#, :counter_cache => true
   has_many :votes, :as => :votable, :dependent => :destroy
 
   validates :body, presence: true
