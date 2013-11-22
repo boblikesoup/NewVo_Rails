@@ -1,11 +1,11 @@
 <h2> <%= post.title %> </h2>
 <% post.photos.each do |photo| %>
   <%= image_tag photo.photo.url :medium %>
-  <% if post.has_single_picture? %>
-    <%= link_to "Upvote", votes_path(:photo => photo.id, :value => 1), method: :post if signed_in? %>
-    <%= link_to "Downvote", votes_path(:photo => photo.id, :value => -1), method: :post if signed_in? %>
+  <% if post.has_single_picture? && signed_in? %>
+    <%= link_to "Upvote", votes_path(:photo => photo.id, :value => 1), method: :post %>
+    <%= link_to "Downvote", votes_path(:photo => photo.id, :value => -1), method: :post %>
   <% else %>
-    <%= link_to "Like", votes_path(:photo => photo.id, :value => 1), method: :post if signed_in? %>
+    <%= link_to "Like", votes_path(:photo => photo.id, :value => 1), method: :post %>
   <% end %>
 
 

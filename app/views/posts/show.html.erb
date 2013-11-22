@@ -6,17 +6,19 @@
     <%= f.text_field :body %>
     <%= f.submit %>
   <% end %>
-<% end %>
 
-<% if @post.comments %>
-  <% @post.comments.each do |comment| %>
-  <p>
-    <%= comment.body %>
-    <% if signed_in? && current_user.id == comment.user_id %>
-      <%= link_to "Edit", edit_post_comment_path(@post, comment) %>
-      <%= link_to "Delete", post_comment_path(@post, comment), method: :delete %>
+  <% if @post.comments %>
+    <% @post.comments.each do |comment| %>
+    <p>
+      <%= comment.body %>
+      <% if current_user.id == comment.user_id %>
+        <%= link_to "Edit", edit_post_comment_path(@post, comment) %>
+        <%= link_to "Delete", post_comment_path(@post, comment), method: :delete %>
+      <% end %>
+      <%= link_to "Like", votes_path(:comment => comment.id, :value => 1), method: :post%>
+      <span> <%= comment.votes.sum(:value) %> </span>
+    </p>
+
     <% end %>
-  </p>
-
   <% end %>
 <% end %>
