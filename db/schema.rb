@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131121065129) do
+ActiveRecord::Schema.define(version: 20131121000733) do
 
   create_table "comments", force: true do |t|
     t.string   "body"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20131121065129) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "votes_count", default: 0, null: false
   end
 
   create_table "photos", force: true do |t|
@@ -35,9 +34,9 @@ ActiveRecord::Schema.define(version: 20131121065129) do
   create_table "posts", force: true do |t|
     t.string   "title"
     t.integer  "user_id"
+    t.boolean  "has_single_picture", default: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "has_single_picture", default: true
   end
 
   create_table "users", force: true do |t|
@@ -46,8 +45,6 @@ ActiveRecord::Schema.define(version: 20131121065129) do
     t.string   "fb_uid"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username"
-    t.string   "email"
   end
 
   create_table "votes", force: true do |t|

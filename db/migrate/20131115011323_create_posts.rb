@@ -3,6 +3,7 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.string :title
       t.belongs_to :user
+      t.boolean :has_single_picture, default: true
       t.timestamps
     end
   end
