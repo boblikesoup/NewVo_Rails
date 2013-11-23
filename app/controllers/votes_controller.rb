@@ -1,18 +1,21 @@
 class VotesController < ApplicationController
-  def create
-    # need to delete previous user vote on the backend so they are able
-    # to upvote, 
+  respond_to :html, :json
+  # TODO
+  # user metaprogramming!
+  def create 
     vote = Vote.new(user_id: current_user.id, value: params[:value])
+
     if params[:photo]
       current_photo = Photo.find(params[:photo])
+      post = Post.find(current_photo.post_id)
       current_photo.votes << vote
-      vote.save
     else
       current_comment = Comment.find(params[:comment])
+      post = Post.find(current_comment.post_id)
       current_comment.votes << vote
-      vote.save
     end
-      redirect_to posts_path
+    vote.save
+    respond_with post, :location => posts_path 
   end
 
 
