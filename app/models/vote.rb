@@ -11,4 +11,7 @@ class Vote < ActiveRecord::Base
     previous_vote = self.votable.votes.where(user_id: self.user_id).take
     previous_vote.destroy if previous_vote != self
   end
+  # TODO
+  #need to add validation after save to delete previous votes on 
+  # other pics. Preferably add post_id to votes table.
 end

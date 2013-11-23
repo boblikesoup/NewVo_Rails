@@ -3,9 +3,8 @@ Newvo::Application.routes.draw do
 
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/signout', to: 'sessions#destroy', as: 'signout'
-  resources :posts do
-    resources :comments
-    resources :photos
+  resources :posts, only: [:index, :create, :show, :destroy] do
+    resources :comments, only: [:create, :update, :edit, :destroy]
   end
 
   resources :votes, only: :create
