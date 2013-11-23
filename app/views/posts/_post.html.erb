@@ -2,12 +2,12 @@
 <% post.photos.each do |photo| %>
   <%= image_tag photo.photo.url :medium %>
   <% if post.has_single_picture? && signed_in? %>
-    <%= link_to "Upvote", votes_path(:photo => photo.id, :value => 1), method: :post %>
+    <%= button_to "Upvote", votes_path(:photo => photo.id, :value => 1), method: :post %>
     <%= photo.upvotes %>
-    <%= link_to "Downvote", votes_path(:photo => photo.id, :value => -1), method: :post %>
+    <%= button_to "Downvote", votes_path(:photo => photo.id, :value => -1), method: :post %>
     <%= photo.downvotes %>
   <% else %>
-    <%= link_to "Like", votes_path(:photo => photo.id, :value => 1), method: :post %>
+    <%= button_to "Like", votes_path(:photo => photo.id, :value => 1), method: :post %>
     <%= photo.upvotes %>
   <% end %>
 
@@ -15,5 +15,5 @@
 <% end %>
 
 <% if signed_in? && current_user.id == post.user_id %>
-  <%= link_to "Delete", post_path(post), method: :delete %>
+  <%= button_to "Delete", post_path(post), method: :delete %>
 <% end %>
