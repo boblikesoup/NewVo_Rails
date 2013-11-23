@@ -1,7 +1,7 @@
 class VotesController < ApplicationController
   respond_to :html, :json
   # TODO
-  # user metaprogramming!
+  # use metaprogramming!
   def create 
     vote = Vote.new(user_id: current_user.id, value: params[:value])
 
