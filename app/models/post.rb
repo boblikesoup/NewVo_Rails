@@ -11,6 +11,16 @@ class Post < ActiveRecord::Base
   # validates_presence_of :user_id
   # validates_presence_of :single
 
+  def as_json(options={})
+    {
+      :post_id => id,
+      :title => title,
+      :has_single_picture => has_single_picture,
+      :photos => photos,
+      :comments => comments
+    }
+  end
+
   private
 
   def update_has_single_picture

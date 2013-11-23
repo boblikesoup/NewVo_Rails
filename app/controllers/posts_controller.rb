@@ -4,7 +4,9 @@ class PostsController < ApplicationController
   def index
     @post = Post.new
     @posts = Post.order(created_at: :desc)
+
     2.times { @post.photos.build }
+    # render json: @posts, :include => [:photos, :comments]
     respond_with(@posts)
   end
 

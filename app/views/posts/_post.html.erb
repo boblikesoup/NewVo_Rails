@@ -3,12 +3,12 @@
   <%= image_tag photo.photo.url :medium %>
   <% if post.has_single_picture? && signed_in? %>
     <%= link_to "Upvote", votes_path(:photo => photo.id, :value => 1), method: :post %>
-    <%= photo.get_votes[1] %>
+    <%= photo.upvotes %>
     <%= link_to "Downvote", votes_path(:photo => photo.id, :value => -1), method: :post %>
-    <%= photo.get_votes[-1] %>
+    <%= photo.downvotes %>
   <% else %>
     <%= link_to "Like", votes_path(:photo => photo.id, :value => 1), method: :post %>
-    <%= photo.get_votes[1] %>
+    <%= photo.upvotes %>
   <% end %>
 
 
