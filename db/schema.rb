@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131121000733) do
+ActiveRecord::Schema.define(version: 20131126064116) do
 
   create_table "comments", force: true do |t|
     t.string   "body"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20131121000733) do
     t.integer  "value",        default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "post_id"
   end
 
 end
