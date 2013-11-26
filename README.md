@@ -18,4 +18,5 @@ Features:
 - Guest can see post.
 - Guest can see comments.
 - Guest needs to sign in to comments or post.
+- All routes spit out JSON ready for titanium.
 
