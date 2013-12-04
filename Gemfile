@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
+# Bootstrap for styling webpage
+gem 'bootstrap-sass'
+
 # Use pg as the database for production
 
 group :production do
