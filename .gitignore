@@ -26,4 +26,4 @@
 /coverage/*
 
 # Ignore local pictures folder
-/public/system/photos/photos/
+/public/system/photos/
