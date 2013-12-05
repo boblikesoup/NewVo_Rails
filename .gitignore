@@ -24,3 +24,6 @@
 
 # Ignore coverage files
 /coverage/*
+
+# Ignore local pictures folder
+/public/system/photos/
