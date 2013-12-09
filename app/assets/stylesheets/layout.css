@@ -64,7 +64,6 @@ body {
 
 .info-square {
   background-color: white;
-  height: 7em;
-  width: 15em;
-  margin-bottom: 2em;
+  border-radius: 1em;
+  padding: 1em;
 }
