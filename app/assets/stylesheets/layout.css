@@ -1,0 +1,70 @@
+body {
+  font-family: 'Raleway', sans-serif;
+
+  width: 100%;
+  margin: 0;
+  background-image: url('/assets/landing.png');
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.container {
+  width: 100%;
+}
+
+.left {
+  position: absolute;
+  width: 20em;
+  min-height: 800px;
+  display: inline-block;
+  background-color: white;
+  text-align: center;
+}
+
+.left h1 {
+  font-size: 2.3em;
+  margin-top: 5em;
+}
+
+.left p {
+  margin-top: 1em;
+}
+.right {
+  width: 60%;
+  height: 700px;
+  margin-left: 25em;
+  display: block;
+  padding-top: 5em;
+  clear: both;
+}
+
+
+.iphone-container {
+  display: inline-block;
+  position: relative;
+  float: left;
+  width: 300px;
+  height: 550px;
+  background-image: url('/assets/iphone-white.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  /*background-position: left top;*/
+}
+
+.iphone-container img {
+  position: absolute;
+  width: 200px;
+}
+.info {
+  width: 300px;
+  margin-left: 2em;
+  display: inline-block;
+}
+
+.info-square {
+  background-color: white;
+  height: 7em;
+  width: 15em;
+  margin-bottom: 2em;
+}
