@@ -9,9 +9,47 @@ body {
   background-repeat: no-repeat;
 }
 
-.container {
-  width: 100%;
+.inner {
+  width: auto;
+  background-color: #cccc80;
+  border-radius: 1em;
+  height: 250;
+  padding: 30px;
 }
+
+.container {
+  width: 50%;
+  height: 700px;
+  margin: 0 auto;
+  display: block;
+  padding-top: 5em;
+  clear: both;
+}
+
+.info {
+  width: 300px;
+  margin-left: 2em;
+  display: inline-block;
+}
+
+.caption {
+  background-color: #cccc99;
+  border-radius: 1em;
+  font-weight: 300;
+}
+
+.caption-box {
+  background-color: #cccc99;
+  border-radius: 1em;
+  padding: 1em;
+  font-weight: 300;
+  height: 2em;
+  margin: 0 0 30px 0;
+}
+
+
+
+/* unused */
 
 .left {
   position: absolute;
@@ -30,15 +68,6 @@ body {
 .left p {
   margin-top: 1em;
 }
-.right {
-  width: 60%;
-  height: 700px;
-  margin-left: 25em;
-  display: block;
-  padding-top: 5em;
-  clear: both;
-}
-
 
 .iphone-container {
   display: inline-block;
@@ -55,16 +84,4 @@ body {
 .iphone-container img {
   position: absolute;
   width: 200px;
-}
-.info {
-  width: 300px;
-  margin-left: 2em;
-  display: inline-block;
-}
-
-.info-square {
-  background-color: #cccc99;
-  border-radius: 1em;
-  padding: 1em;
-  font-weight: 300;
 }
