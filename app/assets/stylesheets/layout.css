@@ -17,7 +17,7 @@ body {
   padding: 30px;
 }
 
-.container {
+.main-container {
   width: 50%;
   height: 700px;
   margin: 0 auto;
@@ -48,15 +48,11 @@ body {
 }
 
 
-
-/* unused */
-
 .left {
   position: absolute;
-  width: 20em;
-  min-height: 800px;
+  width: auto;
+  min-height: auto;
   display: inline-block;
-  background-color: white;
   text-align: center;
 }
 
