@@ -1,5 +1,5 @@
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Courier', sans-serif;
 
   width: 100%;
   margin: 0;
@@ -49,7 +49,7 @@ body {
   background-image: url('/assets/iphone-white.png');
   background-size: contain;
   background-repeat: no-repeat;
-  /*background-position: left top;*/
+  background-position: left top;
 }
 
 .iphone-container img {
@@ -63,7 +63,8 @@ body {
 }
 
 .info-square {
-  background-color: white;
+  background-color: #cccc99;
   border-radius: 1em;
   padding: 1em;
+  font-weight: 300;
 }
