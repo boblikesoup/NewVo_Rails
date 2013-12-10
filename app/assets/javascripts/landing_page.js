@@ -6,27 +6,27 @@ window.onload=function(){
 //   }
 // };
 
-var slideshowArray = [
+var textArray = [
   "Never mismatch your clothes again.",
-  "Before your meeting, know whether your outfit hits the casual/formal sweet spot",
-  "Before and after of post, showing implementation of feedback",
+  "Before your meeting, know whether your outfit hits the casual/formal sweet spot.",
+  "Before and after of post, showing implementation of feedback.",
   "Meeting my boyfriends parents. Help!",
   "What do you think of my homemade outfit???",
   "Is this appropriate for a funeral?"
   ];
 
 (function cycle(index) {
-    var text = slideshowArray[index];
+    var text = textArray[index];
     $('.caption').empty().append(text);
-    delete slideshowArray[index];
-    slideshowArray.push(text);
+    delete textArray[index];
+    textArray.push(text);
     setTimeout(function() {
         cycle(index + 1);
     }, 5000);
 })(0);
 
   // slideShow = function(){
-  //   $.each(slideshowArray, function(index, value){
+  //   $.each(textArray, function(index, value){
   //     $(".slide").attr("src", value[0]);
   //     $("body").attr("background-image", value[1]);
   //     $(".caption").remove().append(value[2]);
@@ -34,7 +34,7 @@ var slideshowArray = [
   //       console.log("i am caption");
   //     },3000);
   //     $(".caption").remove(value[2]);
-  //     if (index === (slideshowArray.length-1)){
+  //     if (index === (textArray.length-1)){
   //       slideShow();
   //     };
   //   });
