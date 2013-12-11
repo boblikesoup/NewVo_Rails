@@ -1,10 +1,6 @@
 window.onload=function(){
 
-// slideShow = function(){
-//   for (i=0; i<5; i++) {
-//     $('.caption').empty().delay().append(" " + i);
-//   }
-// };
+
 
 var textArray = [
   "Do these match?",
@@ -25,6 +21,13 @@ var textArray = [
     }, 5000);
 })(0);
 
+  // Related to rotating pictures.  Need array of images.
+
+  // slideShow = function(){
+  //   for (i=0; i<5; i++) {
+  //     $('.caption').empty().delay().append(" " + i);
+  //   }
+  // };
   // slideShow = function(){
   //   $.each(textArray, function(index, value){
   //     $(".slide").attr("src", value[0]);

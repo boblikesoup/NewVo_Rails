@@ -1,16 +1,17 @@
+div {
+  border: 5px solid #000000;
+}
+
 body {
+  border: 5px solid #000000;
   font-family: 'Courier', sans-serif;
   width: 100%;
   margin: 0;
-  background: url(/assets/landing_page/bg1.jpg) no-repeat center center fixed;
+  /*background: url(/assets/landing_page/bg1.jpg) no-repeat center center fixed;*/
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}
-
-.container {
-  width: 100%;
 }
 
 #title {
@@ -18,20 +19,12 @@ body {
     margin: 0 auto;
 }
 
-#mockup {
-  float:left;
-
-}
-
-#mockup_img {
-  height:500px;
-}
-
 #description{
-  color: white;
+  color: black;
   text-align:center
 }
 
+/*Delete?*/
 .left {
   position: absolute;
   width: 20em;
@@ -41,25 +34,20 @@ body {
   text-align: center;
 }
 
-.left h1 {
-  font-size: 2.3em;
-  margin-top: 5em;
-}
-
-.left p {
-  margin-top: 1em;
-}
-/*.right {
+.right {
   width: 60%;
   height: 700px;
   margin-left: 25em;
   display: block;
   padding-top: 5em;
   clear: both;
-}*/
+}
 
-.iphone-container {
-  display: inline-block;
+.iphone {
+  background:url('/assets/iphone-white.png') no-repeat;
+  height: 371px;
+  width: 200px;
+  /*display: inline-block;
   position: relative;
   float: left;
   width: 300px;
@@ -67,30 +55,46 @@ body {
   background-image: url('/assets/iphone-white.png');
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: left top;
+  background-position: left top;*/
 }
 
-.iphone-container img {
-  position: absolute;
-  width: 200px;
+.iphone .screen {
+  width:155px;
+  height:223px;
+  background:#39F;
+  position:relative;
+  top:76px;
+  left:22px;
 }
+
 .info {
-  width: 300px;
-  margin-left: 2em;
+  width: 446px;
   display: inline-block;
+  border: 5px solid blue;
+  margin: 0 auto;
+}
+
+.text-box {
+  width: 446px;
+  padding: 5px;
+  border: 5px solid red;
 }
 
 .info-square {
-  background-color: #cccc99;
+  background-color: #000000;
+  opacity: .5;
+  color: white;
   border-radius: 1em;
   padding: 1em;
   font-weight: 300;
+  height: 3em;
+  text-align: center;
 }
 
-#Apple {
-  height: 100px;
+.app-button {
+  height: 70px;
 }
 
-#Google {
-  height: 100px;
+.button {
+  display: inline-block;
 }
