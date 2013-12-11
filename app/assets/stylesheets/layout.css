@@ -1,0 +1,99 @@
+body {
+  font-family: 'Courier', sans-serif;
+  width: 100%;
+  margin: 0;
+  background: url(/assets/landing_page/bg1.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#title {
+    display: block;
+    margin: 0 auto;
+}
+
+#description{
+  color: white;
+  text-align:center;
+}
+
+/*Delete?*/
+.left {
+  position: absolute;
+  margin-left: 5em;
+  height: 500px;
+  display: inline-block;
+  text-align: center;
+}
+
+.right {
+  margin-left: 25em;
+  height: 500px;
+  display: block;
+  clear: both;
+}
+
+.iphone {
+  display: inline-block;
+  position: relative;
+  float: left;
+  width: 300px;
+  height: 550px;
+  background-image: url('/assets/iphone-white.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left top;
+}
+
+.iphone .screen {
+  width:217px;
+  height:385px;
+  position:relative;
+  top:76px;
+  left:22px;
+  padding-right: 76px;
+  padding-top: 10px;
+}
+
+.info {
+  display: inline-block;
+  height: 300px;
+  border-radius: 1em;
+  margin: 125px 0;
+  background-color: black;
+  opacity: 0.5;
+}
+
+.text-box {
+  height: 3em;
+  width: 30em;
+  padding: 5px;
+  border-radius: 1em;
+  background-color: grey;
+  margin-top: 1em;
+}
+
+.info-square {
+  background-color: grey;
+  color: white;
+  border-radius: 1em;
+  font-weight: 300;
+  text-align: center;
+}
+
+.app-button {
+  height: 70px;
+  margin-left: 0.90em;
+}
+
+.buttons {
+}
+
+.middle {
+  height: 60px;
+  text-align: center;
+  padding: 40px;
+  color: white;
+}
