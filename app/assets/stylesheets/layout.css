@@ -62,7 +62,8 @@ body {
   height: 300px;
   border-radius: 1em;
   margin: 125px 0;
-  background: url('/assets/landing.png')
+  background-color: black;
+  opacity: 0.5;
 }
 
 .text-box {
@@ -80,7 +81,6 @@ body {
   border-radius: 1em;
   font-weight: 300;
   text-align: center;
-  border: 5px solid green;
 }
 
 .app-button {
@@ -95,4 +95,5 @@ body {
   height: 60px;
   text-align: center;
   padding: 40px;
+  color: white;
 }
