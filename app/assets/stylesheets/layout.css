@@ -29,20 +29,19 @@ body {
 /*Delete?*/
 .left {
   position: absolute;
-  width: 20em;
-  min-height: 800px;
+  height: 500px;
   display: inline-block;
   background-color: white;
   text-align: center;
+  border: 5px dashed #000000;
 }
 
 .right {
-  width: 60%;
-  height: 700px;
   margin-left: 25em;
+  height: 500px;
   display: block;
-  padding-top: 5em;
   clear: both;
+  border: 5px dashed #000000;
 }
 
 .iphone {
@@ -72,33 +71,42 @@ body {
 }
 
 .info {
-  width: 446px;
   display: inline-block;
   border: 5px solid blue;
-  margin: 0 auto;
+  height: 300px;
+  border-radius: 1em;
+  margin: 125px 0;
 }
 
 .text-box {
-  width: 446px;
+  height: 3em;
+  width: 30em;
   padding: 5px;
   border: 5px solid red;
+  border-radius: 1em;
+  background-color: grey;
 }
 
 .info-square {
-  background-color: #000000;
-  opacity: .5;
+  background-color: grey;
   color: white;
   border-radius: 1em;
-  padding: 1em;
   font-weight: 300;
-  height: 3em;
   text-align: center;
+  border: 5px solid green;
 }
 
 .app-button {
   height: 70px;
+  border: 5px solid #000000;
 }
 
 .buttons {
-  display: inline-block;
   border: 5px solid #000000;
+}
+
+.middle {
+  height: 60px;
+  text-align: center;
+  padding: 40px;
+}
