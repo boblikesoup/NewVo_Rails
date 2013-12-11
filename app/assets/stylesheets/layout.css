@@ -1,13 +1,8 @@
-div {
-  border: 5px solid #000000;
-}
-
 body {
-  border: 5px solid #000000;
   font-family: 'Courier', sans-serif;
   width: 100%;
   margin: 0;
-  /*background: url(/assets/landing_page/bg1.jpg) no-repeat center center fixed;*/
+  background: url(/assets/landing_page/bg1.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -17,23 +12,20 @@ body {
 #title {
     display: block;
     margin: 0 auto;
-    border: 5px solid #000000;
 }
 
 #description{
-  color: black;
+  color: white;
   text-align:center;
-  border: 5px solid #000000;
 }
 
 /*Delete?*/
 .left {
   position: absolute;
+  margin-left: 5em;
   height: 500px;
   display: inline-block;
-  background-color: white;
   text-align: center;
-  border: 5px dashed #000000;
 }
 
 .right {
@@ -41,15 +33,10 @@ body {
   height: 500px;
   display: block;
   clear: both;
-  border: 5px dashed #000000;
 }
 
 .iphone {
-  border: 5px solid #000000;
-  background:url('/assets/iphone-white.png') no-repeat;
-  height: 371px;
-  width: 200px;
-  /*display: inline-block;
+  display: inline-block;
   position: relative;
   float: left;
   width: 300px;
@@ -57,34 +44,34 @@ body {
   background-image: url('/assets/iphone-white.png');
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: left top;*/
+  background-position: left top;
 }
 
 .iphone .screen {
-  width:155px;
-  height:223px;
-  background:#39F;
+  width:217px;
+  height:385px;
   position:relative;
   top:76px;
   left:22px;
-  border: 5px solid #000000;
+  padding-right: 76px;
+  padding-top: 10px;
 }
 
 .info {
   display: inline-block;
-  border: 5px solid blue;
   height: 300px;
   border-radius: 1em;
   margin: 125px 0;
+  background: url('/assets/landing.png')
 }
 
 .text-box {
   height: 3em;
   width: 30em;
   padding: 5px;
-  border: 5px solid red;
   border-radius: 1em;
   background-color: grey;
+  margin-top: 1em;
 }
 
 .info-square {
@@ -98,11 +85,10 @@ body {
 
 .app-button {
   height: 70px;
-  border: 5px solid #000000;
+  margin-left: 0.90em;
 }
 
 .buttons {
-  border: 5px solid #000000;
 }
 
 .middle {
