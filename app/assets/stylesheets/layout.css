@@ -9,14 +9,15 @@ body {
   background-size: cover;
 }
 
-#title {
+.title {
     display: block;
-    margin: 0 auto;
+    margin: auto;
 }
 
-#description{
+.description{
   color: white;
   text-align:center;
+  width: 30em;
 }
 
 /*Delete?*/
@@ -59,17 +60,18 @@ body {
 
 .info {
   display: inline-block;
-  height: 300px;
+  height: 450px;
   border-radius: 1em;
   margin: 125px 0;
   background-color: black;
   opacity: 0.5;
+  padding: 1em;
 }
 
 .text-box {
   height: 3em;
   width: 30em;
-  padding: 5px;
+  padding: 10px 0 0 0;
   border-radius: 1em;
   background-color: grey;
   margin-top: 1em;
