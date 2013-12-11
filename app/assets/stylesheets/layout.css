@@ -1,16 +1,35 @@
 body {
   font-family: 'Courier', sans-serif;
-
   width: 100%;
   margin: 0;
-  background-image: url('/assets/landing_page/floor2.jpg');
+  background: url(/assets/landing_page/bg1.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
 }
 
 .container {
   width: 100%;
+}
+
+#title {
+    display: block;
+    margin: 0 auto;
+}
+
+#mockup {
+  float:left;
+
+}
+
+#mockup_img {
+  height:500px;
+}
+
+#description{
+  color: white;
+  text-align:center
 }
 
 .left {
@@ -30,15 +49,14 @@ body {
 .left p {
   margin-top: 1em;
 }
-.right {
+/*.right {
   width: 60%;
   height: 700px;
   margin-left: 25em;
   display: block;
   padding-top: 5em;
   clear: both;
-}
-
+}*/
 
 .iphone-container {
   display: inline-block;
@@ -67,4 +85,12 @@ body {
   border-radius: 1em;
   padding: 1em;
   font-weight: 300;
+}
+
+#Apple {
+  height: 100px;
+}
+
+#Google {
+  height: 100px;
 }

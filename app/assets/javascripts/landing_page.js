@@ -7,9 +7,9 @@ window.onload=function(){
 // };
 
 var textArray = [
-  "Never mismatch your clothes again.",
-  "Before your meeting, know whether your outfit hits the casual/formal sweet spot.",
-  "Before and after of post, showing implementation of feedback.",
+  "Do these match?",
+  "First date.  Want to look sexy!!",
+  "Programming interview in SF, does this meet the casual/formal sweet spot?",
   "Meeting my boyfriends parents. Help!",
   "What do you think of my homemade outfit???",
   "Is this appropriate for a funeral?"
