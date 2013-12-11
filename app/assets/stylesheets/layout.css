@@ -1,71 +1,53 @@
-body {
-  font-family: 'Courier', sans-serif;
+div {
+  border: 5px solid #000000;
+}
 
+body {
+  border: 5px solid #000000;
+  font-family: 'Courier', sans-serif;
   width: 100%;
   margin: 0;
-  background-image: url('/assets/landing_page/floor2.jpg');
+  /*background: url(/assets/landing_page/bg1.jpg) no-repeat center center fixed;*/
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
 }
 
-.inner {
-  width: auto;
-  background-color: #cccc80;
-  border-radius: 1em;
-  height: 250;
-  padding: 30px;
+#title {
+    display: block;
+    margin: 0 auto;
 }
 
-.main-container {
-  width: 50%;
+#description{
+  color: black;
+  text-align:center
+}
+
+/*Delete?*/
+.left {
+  position: absolute;
+  width: 20em;
+  min-height: 800px;
+  display: inline-block;
+  background-color: white;
+  text-align: center;
+}
+
+.right {
+  width: 60%;
   height: 700px;
-  margin: 0 auto;
+  margin-left: 25em;
   display: block;
   padding-top: 5em;
   clear: both;
 }
 
-.info {
-  width: 300px;
-  margin-left: 2em;
-  display: inline-block;
-}
-
-.caption {
-  background-color: #cccc99;
-  border-radius: 1em;
-  font-weight: 300;
-}
-
-.caption-box {
-  background-color: #cccc99;
-  border-radius: 1em;
-  padding: 1em;
-  font-weight: 300;
-  height: 2em;
-  margin: 0 0 30px 0;
-}
-
-
-.left {
-  position: absolute;
-  width: auto;
-  display: inline-block;
-  text-align: center;
-}
-
-.left h1 {
-  font-size: 2.3em;
-  margin-top: 5em;
-}
-
-.left p {
-  margin-top: 1em;
-}
-
-.iphone-container {
-  display: inline-block;
+.iphone {
+  background:url('/assets/iphone-white.png') no-repeat;
+  height: 371px;
+  width: 200px;
+  /*display: inline-block;
   position: relative;
   float: left;
   width: 300px;
@@ -73,16 +55,46 @@ body {
   background-image: url('/assets/iphone-white.png');
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: left top;
+  background-position: left top;*/
 }
 
-.iphone-container img {
-  position: absolute;
-  width: 200px;
+.iphone .screen {
+  width:155px;
+  height:223px;
+  background:#39F;
+  position:relative;
+  top:76px;
+  left:22px;
 }
 
-.title img {
-  width: 100%;
-  height: 300px;
-  background-color: grey;
+.info {
+  width: 446px;
+  display: inline-block;
+  border: 5px solid blue;
+  margin: 0 auto;
+}
+
+.text-box {
+  width: 446px;
+  padding: 5px;
+  border: 5px solid red;
+}
+
+.info-square {
+  background-color: #000000;
+  opacity: .5;
+  color: white;
+  border-radius: 1em;
+  padding: 1em;
+  font-weight: 300;
+  height: 3em;
+  text-align: center;
+}
+
+.app-button {
+  height: 70px;
+}
+
+.button {
+  display: inline-block;
 }

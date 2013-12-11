@@ -1,15 +1,11 @@
 window.onload=function(){
 
-// slideShow = function(){
-//   for (i=0; i<5; i++) {
-//     $('.caption').empty().delay().append(" " + i);
-//   }
-// };
+
 
 var textArray = [
-  "Never mismatch your clothes again.",
-  "Before your meeting, know whether your outfit hits the casual/formal sweet spot.",
-  "Before and after of post, showing implementation of feedback.",
+  "Do these match?",
+  "First date.  Want to look sexy!!",
+  "Programming interview in SF, does this meet the casual/formal sweet spot?",
   "Meeting my boyfriends parents. Help!",
   "What do you think of my homemade outfit???",
   "Is this appropriate for a funeral?"
@@ -25,6 +21,13 @@ var textArray = [
     }, 5000);
 })(0);
 
+  // Related to rotating pictures.  Need array of images.
+
+  // slideShow = function(){
+  //   for (i=0; i<5; i++) {
+  //     $('.caption').empty().delay().append(" " + i);
+  //   }
+  // };
   // slideShow = function(){
   //   $.each(textArray, function(index, value){
   //     $(".slide").attr("src", value[0]);
