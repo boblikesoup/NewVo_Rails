@@ -89,6 +89,7 @@ body {
 .app-button {
   height: 70px;
   margin-left: 0.90em;
+  border-radius: 5px;
 }
 
 .buttons {
