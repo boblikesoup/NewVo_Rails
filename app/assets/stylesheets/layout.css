@@ -1,5 +1,5 @@
 body {
-  font-family: 'Courier', sans-serif;
+  font-family: 'Raleway','Courier', sans-serif;
   width: 100%;
   margin: 0;
   background: url(/assets/landing_page/bg1.jpg) no-repeat center center fixed;
@@ -62,7 +62,7 @@ body {
 .info {
   display: inline-block;
   height: 450px;
-  border-radius: 1em;
+  border-radius: .5em;
   margin: 125px 0;
   background-color: black;
   opacity: 0.5;
@@ -73,7 +73,7 @@ body {
   height: 3em;
   width: 30em;
   padding: 10px 0 0 0;
-  border-radius: 1em;
+  border-radius: .5em;
   background-color: grey;
   margin-top: 1em;
 }
@@ -81,7 +81,7 @@ body {
 .info-square {
   background-color: grey;
   color: white;
-  border-radius: 1em;
+  border-radius: .5em;
   font-weight: 300;
   text-align: center;
 }
