@@ -13,7 +13,33 @@
   padding: 2%;
 }
 
-.iphone{
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
+  display: block;
+  border: 5px solid red;
+  padding: 10%;
+  text-align: center;
+}
+
+  .left {
+    width: auto;
+    display: inline-block;
+    border: 5px solid green;
+  }
+
+  .right {
+    width: auto;
+    display: inline-block;
+    border: 5px solid blue;
+  }
+
+/* images and logos */
+
+.title {
+  display: block;
+  margin: auto;
 }
 
 /* future features */
@@ -40,6 +66,18 @@
 
   .title {
     display: none;
+  }
+
+  .left {
+    width: auto;
+  }
+
+  .right {
+    width: auto;
+  }
+
+  .container {
+    padding: 0;
   }
 }
 
@@ -69,6 +107,8 @@
   }
 }
 
+
+
 /* legacy css, delete before pushing branch */
 
 
@@ -83,18 +123,14 @@
   background-size: cover;
 }
 
-.title {
-    display: block;
-    margin: auto;
-}
-
 .description{
   color: white;
   text-align:center;
-  width: 30em;
+  width: 100%;
 }
 
-/*Delete?*/
+
+
 /*.left {
   position: absolute;
   margin-left: 5em;
