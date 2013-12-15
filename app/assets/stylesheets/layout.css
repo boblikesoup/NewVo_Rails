@@ -1,4 +1,19 @@
-body {
+@viewport {
+  width: extend-to-zoom;
+  zoom: 1.0;
+}
+
+@-ms-viewport{
+  width: extend-to-zoom;
+  zoom: 1.0;
+}
+
+
+
+/* legacy css, delete before pushing branch */
+
+
+/*body {
   font-family: 'Raleway','Courier', sans-serif;
   width: 100%;
   margin: 0;
@@ -21,7 +36,7 @@ body {
 }
 
 /*Delete?*/
-.left {
+/*.left {
   position: absolute;
   margin-left: 5em;
   height: 500px;
@@ -100,4 +115,4 @@ body {
   text-align: center;
   padding: 40px;
   color: white;
-}
+}*/
