@@ -10,7 +10,6 @@
 
 .mobile {
   text-align: center;
-  padding: 2%;
 }
 
 .container {
@@ -19,20 +18,31 @@
   margin: auto;
   display: block;
   border: 5px solid red;
-  padding: 10%;
+  padding: 1%;
   text-align: center;
+  clear: both;
+}
+
+.iphone {
+  border: 5px solid orange;
 }
 
   .left {
+    position: relative;
     width: auto;
     display: inline-block;
     border: 5px solid green;
+    float: left;
+    margin: 0 2% 0 10%;
   }
 
   .right {
+    position: relative;
     width: auto;
     display: inline-block;
     border: 5px solid blue;
+    float: left;
+    margin: 25% 0;
   }
 
 /* images and logos */
@@ -50,13 +60,7 @@
 
 /* media queries */
 
-@media only screen and (max-width: 30em) {
-  p {
-    width: 90%;
-    padding: 20px;
-    height: 500px;
-    background: purple;
-  }
+@media only screen and (max-width: 480px) {
 
   .iphone-image {
     max-height: 100%;
@@ -70,10 +74,12 @@
 
   .left {
     width: auto;
+    margin: 0;
   }
 
   .right {
     width: auto;
+    margin: 0;
   }
 
   .container {
@@ -81,26 +87,39 @@
   }
 }
 
-@media only screen and (min-width: 30em) and (max-width: 48em) {
-  p {
-    width: 95%;
-    padding: 40px;
-    height: 400px;
-    background: blue;
-  }
+@media only screen and (min-width: 481px) and (max-width: 957px) {
 
   .mobile {
     display: none;
   }
+
+  .left{
+    float: none;
+    margin: 0;
+  }
+
+  .right {
+    float: none;
+    margin: 0;
+  }
 }
 
-@media only screen and (min-width: 48em) {
-  p {
-    width: 50%;
-    padding: 50px;
-    height: 300px;
-    background: red;
+@media only screen and (min-width: 958px) and (max-width: 1088px) {
+
+  .mobile {
+    display: none;
   }
+
+  .left{
+    margin: 0;
+  }
+
+  .right {
+    margin: 25% 0;
+  }
+}
+
+@media only screen and (min-width: 1089px) {
 
   .mobile {
     display: none;
