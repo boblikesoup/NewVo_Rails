@@ -8,6 +8,11 @@
   zoom: 1.0;
 }
 
+.mobile {
+  text-align: center;
+  padding: 2%;
+}
+
 @media only screen and (max-width: 30em) {
   p {
     width: 90%;
@@ -24,14 +29,22 @@
     height: 400px;
     background: blue;
   }
+
+  .mobile {
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 48em) {
-    p {
+  p {
     width: 50%;
     padding: 50px;
     height: 300px;
     background: red;
+  }
+
+  .mobile {
+    display: none;
   }
 }
 
