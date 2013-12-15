@@ -8,7 +8,17 @@
   zoom: 1.0;
 }
 
+@media only screen and (max-width: 480px) {
 
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+
+}
+
+@media only screen and (min-width: 769px) {
+
+}
 
 /* legacy css, delete before pushing branch */
 
