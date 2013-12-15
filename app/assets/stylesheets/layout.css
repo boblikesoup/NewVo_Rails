@@ -13,12 +13,33 @@
   padding: 2%;
 }
 
+.iphone{
+}
+
+/* future features */
+
+.buttons {
+  display: none;
+}
+
+/* media queries */
+
 @media only screen and (max-width: 30em) {
   p {
     width: 90%;
     padding: 20px;
     height: 500px;
     background: purple;
+  }
+
+  .iphone-image {
+    max-height: 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .title {
+    display: none;
   }
 }
 
