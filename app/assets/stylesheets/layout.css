@@ -85,17 +85,37 @@ body {
   padding: 0 2%;
 }
 
-.app-button {
-  height: 70px;
-  margin-left: 0.90em;
-  border-radius: 8px;
-}
 
 .middle {
   height: 60px;
   text-align: center;
   padding: 40px;
   color: white;
+}
+
+.signin {
+  color: white;
+  margin: 5%;
+}
+
+/* buttons */
+
+.app-button {
+  height: 70px;
+  margin-left: 0.90em;
+  border-radius: 8px;
+}
+
+.button{
+  background-color: #FD4646;
+  border-radius: 0.25em;
+  padding: 0 2%;
+  color: white;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 /* images and logos */
@@ -108,7 +128,8 @@ body {
 
 /* future features */
 
-.buttons {
+
+.hide {
   display: none;
 }
 
