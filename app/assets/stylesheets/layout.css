@@ -118,6 +118,19 @@ a {
   text-decoration: none;
 }
 
+.text-button {
+  text-decoration: none;
+}
+
+input[type=submit] {
+  background-color: #FD4646;
+  border-radius: 0.25em;
+  padding: 0 2%;
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+}
+
 /* images and logos */
 
 .title {
