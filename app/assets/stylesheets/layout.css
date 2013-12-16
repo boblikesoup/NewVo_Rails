@@ -18,6 +18,11 @@ body {
 
 .mobile {
   text-align: center;
+  margin: 5% 0;
+}
+
+.mobile-title {
+  border-radius: 0.5em;
 }
 
 .description{
@@ -77,6 +82,7 @@ body {
   color: white;
   border-radius: .5em;
   text-align: center;
+  padding: 0 2%;
 }
 
 .app-button {
