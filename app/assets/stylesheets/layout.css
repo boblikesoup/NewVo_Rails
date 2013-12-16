@@ -103,6 +103,7 @@ body {
 .title {
   display: block;
   margin: auto;
+  border-radius: 0.5em;
 }
 
 /* future features */
