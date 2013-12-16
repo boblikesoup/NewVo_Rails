@@ -8,7 +8,13 @@
   zoom: 1.0;
 }
 
-
+body {
+  background: url(/assets/landing_page/bg1.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
 .mobile {
   text-align: center;
@@ -25,21 +31,18 @@
   max-width: 1000px;
   margin: auto;
   display: block;
-  border: 5px solid red;
   padding: 1%;
   text-align: center;
   clear: both;
 }
 
 .iphone {
-  border: 5px solid orange;
 }
 
 .left {
   position: relative;
   width: auto;
   display: inline-block;
-  border: 5px solid green;
   float: left;
   margin: 0 2% 0 10%;
 }
@@ -50,7 +53,7 @@
   position: relative;
   width: auto;
   display: inline-block;
-  border: 5px solid blue;
+  border: 15px solid transparent;
   float: left;
   margin: 25% 0;
 }
@@ -73,7 +76,6 @@
   background-color: grey;
   color: white;
   border-radius: .5em;
-  font-weight: 300;
   text-align: center;
 }
 
@@ -129,10 +131,6 @@
 
   .description {
     margin-bottom: 10%;
-  }
-
-  .description-line1 {
-    display: none;
   }
 
   .container {
