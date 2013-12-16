@@ -28,7 +28,6 @@ body {
 .description{
   color: white;
   text-align:center;
-  width: 100%;
 }
 
 .container {
@@ -67,6 +66,7 @@ body {
   border-radius: .5em;
   background-color: black;
   opacity: 0.5;
+  padding: 1%;
 }
 
 .text-box {
@@ -183,108 +183,3 @@ body {
     display: none;
   }
 }
-
-
-
-/* legacy css, delete before pushing branch */
-
-
-/*body {
-  font-family: 'Raleway','Courier', sans-serif;
-  width: 100%;
-  margin: 0;
-  background: url(/assets/landing_page/bg1.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-.description{
-  color: white;
-  text-align:center;
-  width: 100%;
-}
-
-
-
-/*.left {
-  position: absolute;
-  margin-left: 5em;
-  height: 500px;
-  display: inline-block;
-  text-align: center;
-}
-
-.right {
-  margin-left: 25em;
-  height: 500px;
-  display: block;
-  clear: both;
-}
-
-.iphone {
-  display: inline-block;
-  position: relative;
-  float: left;
-  width: 300px;
-  height: 550px;
-  background-image: url('/assets/iphone-white.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: left top;
-  margin-top: 4.5em;
-}
-
-.iphone .screen {
-  width:217px;
-  height:385px;
-  position:relative;
-  top:76px;
-  left:22px;
-  padding-right: 76px;
-  padding-top: 10px;
-}
-
-.info {
-  display: inline-block;
-  height: 450px;
-  border-radius: .5em;
-  margin: 125px 0;
-  background-color: black;
-  opacity: 0.5;
-  padding: 1em;
-}
-
-.text-box {
-  height: 3em;
-  width: 30em;
-  padding: 10px 0 0 0;
-  border-radius: .5em;
-  background-color: grey;
-  margin-top: 1em;
-}
-
-.info-square {
-  background-color: grey;
-  color: white;
-  border-radius: .5em;
-  font-weight: 300;
-  text-align: center;
-}
-
-.app-button {
-  height: 70px;
-  margin-left: 0.90em;
-  border-radius: 8px;
-}
-
-.buttons {
-}
-
-.middle {
-  height: 60px;
-  text-align: center;
-  padding: 40px;
-  color: white;
-}*/
