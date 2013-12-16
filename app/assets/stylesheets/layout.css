@@ -1,7 +1,14 @@
+@viewport {
+  width: extend-to-zoom;
+  zoom: 1.0;
+}
+
+@-ms-viewport{
+  width: extend-to-zoom;
+  zoom: 1.0;
+}
+
 body {
-  font-family: 'Raleway','Courier', sans-serif;
-  width: 100%;
-  margin: 0;
   background: url(/assets/landing_page/bg1.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -9,69 +16,61 @@ body {
   background-size: cover;
 }
 
-.title {
-    display: block;
-    margin: auto;
+.mobile {
+  text-align: center;
+  margin: 5% 0;
+}
+
+.mobile-title {
+  border-radius: 0.5em;
 }
 
 .description{
   color: white;
   text-align:center;
-  width: 30em;
 }
 
-/*Delete?*/
-.left {
-  position: absolute;
-  margin-left: 5em;
-  height: 500px;
-  display: inline-block;
-  text-align: center;
-}
-
-.right {
-  margin-left: 25em;
-  height: 500px;
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
   display: block;
+  padding: 1%;
+  text-align: center;
   clear: both;
 }
 
 .iphone {
-  display: inline-block;
-  position: relative;
-  float: left;
-  width: 300px;
-  height: 550px;
-  background-image: url('/assets/iphone-white.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: left top;
-  margin-top: 4.5em;
 }
 
-.iphone .screen {
-  width:217px;
-  height:385px;
-  position:relative;
-  top:76px;
-  left:22px;
-  padding-right: 76px;
-  padding-top: 10px;
+.left {
+  position: relative;
+  width: auto;
+  display: inline-block;
+  float: left;
+  margin: 8% 2% 0 10%;
+}
+
+/* right side */
+
+.right {
+  position: relative;
+  width: auto;
+  display: inline-block;
+  border: 15px solid transparent;
+  float: left;
+  margin: 25% 0;
 }
 
 .info {
-  display: inline-block;
-  height: 450px;
   border-radius: .5em;
-  margin: 125px 0;
   background-color: black;
   opacity: 0.5;
-  padding: 1em;
+  padding: 1%;
 }
 
 .text-box {
   height: 3em;
-  width: 30em;
   padding: 10px 0 0 0;
   border-radius: .5em;
   background-color: grey;
@@ -82,8 +81,8 @@ body {
   background-color: grey;
   color: white;
   border-radius: .5em;
-  font-weight: 300;
   text-align: center;
+  padding: 0 2%;
 }
 
 .app-button {
@@ -92,12 +91,95 @@ body {
   border-radius: 8px;
 }
 
-.buttons {
-}
-
 .middle {
   height: 60px;
   text-align: center;
   padding: 40px;
   color: white;
+}
+
+/* images and logos */
+
+.title {
+  display: block;
+  margin: auto;
+  border-radius: 0.5em;
+}
+
+/* future features */
+
+.buttons {
+  display: none;
+}
+
+
+
+/* media queries */
+
+@media only screen and (max-width: 480px) {
+  .body {
+    font-size: 10px;
+  }
+
+  .iphone-image {
+    max-height: 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .title {
+    display: none;
+  }
+
+  .left, .right, .info, .text-box, .info-square, .app-button, .middle {
+    width: auto;
+    margin: 0;
+  }
+
+  .description {
+    margin-bottom: 10%;
+  }
+
+  .container {
+    padding: 0;
+  }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 957px) {
+
+  .mobile {
+    display: none;
+  }
+
+  .left{
+    float: none;
+    margin: 0;
+  }
+
+  .right {
+    float: none;
+    margin: 0;
+  }
+}
+
+@media only screen and (min-width: 958px) and (max-width: 1088px) {
+
+  .mobile {
+    display: none;
+  }
+
+  .left{
+    margin: 0;
+  }
+
+  .right {
+    margin: 25% 0;
+  }
+}
+
+@media only screen and (min-width: 1089px) {
+
+  .mobile {
+    display: none;
+  }
 }
