@@ -27,3 +27,6 @@
 
 # Ignore DS_Store
 .DS_Store
+
+# local photo uploads
+/public/system/photos/
