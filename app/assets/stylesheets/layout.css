@@ -124,8 +124,8 @@ body {
   border-radius: 8px;
 }
 
-.button{
-  background-color: #FD4646;
+.signin-button{
+  background-color: green;
   border-radius: 0.25em;
   padding: 0 2%;
   color: white;
