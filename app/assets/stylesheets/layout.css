@@ -55,8 +55,27 @@ body {
 
 #mc_embed_signup {
   border-radius: 0.5em;
-  border: 5px solid green;
   background: black;
+  text-align: center;
+  margin: 0 auto;
+  width: 75%;
+  color: white;
+}
+
+label {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.subscribe {
+  border: 0 none;
+  border-radius: 0.5em;
+  color: #FFFFFF;
+  cursor: pointer;
+  margin: 0 5px 10px 0;
+  padding:0;
+  text-align: center;
+  text-decoration: none;
 }
 
 /* right side */
@@ -68,13 +87,15 @@ body {
   border: 15px solid transparent;
   float: left;
   margin: 25% 0;
+  background-color: black;
+  opacity: 0.5;
+  border-radius: .5em;
 }
 
 .info {
   border-radius: .5em;
-  background-color: black;
-  opacity: 0.5;
   padding: 1%;
+  border: 1px solid green;
 }
 
 .text-box {
@@ -83,6 +104,7 @@ body {
   border-radius: .5em;
   background-color: grey;
   margin-top: 1em;
+  border: 1px solid blue;
 }
 
 .info-square {
@@ -91,20 +113,12 @@ body {
   border-radius: .5em;
   text-align: center;
   padding: 0 2%;
-}
-
-
-.middle {
-  height: 60px;
-  text-align: center;
-  padding: 40px;
-  color: white;
+  border: 1px solid red;
 }
 
 .signin {
   color: white;
   margin: 5%;
-  border: 5px solid red;
 }
 
 /* buttons */
@@ -185,6 +199,10 @@ input[type=submit] {
 
   .container {
     padding: 0;
+  }
+
+  .text-box {
+    height: 3.5em;
   }
 }
 
