@@ -14,43 +14,37 @@
 
   <div class="right">
     <div class="info">
-    </br>
       <img class="title" src="/assets/landing_page/NewVoLogo.png" />
-    </br>
-    <div class="description">
-      Whoever you are, fashion convenience just got taken to a whole new level.
-    </div>
-    <div class="text-box top">
-      <div class="info-square caption"></div>
-    </div>
-    <div class="middle">
-      <p>Want to be one of the first to use our app?</p>
-      <p>Let us know!</p>
-    </br>
-    <!-- Begin MailChimp Signup Form -->
-    <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
-    <!-- <style type="text/css">
-    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
-      /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
-      We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-      </style> -->
+      <div class="description">
+        Whoever you are, fashion convenience just got taken to a whole new level.
+      </div>
+      <div class="text-box top">
+        <div class="info-square caption"></div>
+      </div>
+      <!-- Begin MailChimp Signup Form -->
       <div id="mc_embed_signup">
         <form action="http://herokuapp.us3.list-manage.com/subscribe/post?u=35ba0a0a46949ae2ed6e21aeb&amp;id=748e65448f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-          <label for="mce-EMAIL">Sign up for beta!</label>
+          <div for="mce-EMAIL">
+            <br>
+            Want to be one of the first to use our app?
+            Sign up for beta!
+            <br>
+          </div>
           <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
           <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
           <div style="position: absolute; left: -5000px;"><input type="text" name="b_35ba0a0a46949ae2ed6e21aeb_748e65448f" value=""></div>
-          <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+          <div><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="subscribe"></div>
         </form>
       </div>
 
       <!--End mc_embed_signup-->
+
+      <div class='signin'>
+        <p>Already have access? <span class='button'><%= link_to "Sign in!", '/auth/facebook' %></span></p>
+      </div>
+      <div class="hide">
+        <img class="app-button" src="/assets/landing_page/app-store.png" />
+        <img class="app-button" src="/assets/landing_page/color-google-play.png" />
+      </div>
+    </div>
   </div>
-  <div class='signin'>
-    <p>Already have access? <span class='button'><%= link_to "Sign in!", '/auth/facebook' %></span></p>
-  </div>
-  <div class="hide">
-    <img class="app-button" src="/assets/landing_page/app-store.png" />
-    <img class="app-button" src="/assets/landing_page/color-google-play.png" />
-  </div>
-</div>
