@@ -60,7 +60,6 @@ body {
   margin: 0 auto;
   width: 75%;
   color: white;
-  border: 5px solid gold;
 }
 
 .subscribe {
@@ -90,7 +89,6 @@ body {
 .info {
   border-radius: .5em;
   padding: 1%;
-  border: 1px solid green;
 }
 
 .text-box {
@@ -99,7 +97,6 @@ body {
   border-radius: .5em;
   background-color: grey;
   margin-top: 1em;
-  border: 1px solid blue;
 }
 
 .info-square {
@@ -108,7 +105,6 @@ body {
   border-radius: .5em;
   text-align: center;
   padding: 0 2%;
-  border: 1px solid red;
 }
 
 .signin {
