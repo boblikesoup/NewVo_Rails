@@ -51,6 +51,14 @@ body {
   margin: 8% 2% 0 10%;
 }
 
+/* MailChimp */
+
+#mc_embed_signup {
+  border-radius: 0.5em;
+  border: 5px solid green;
+  background: black;
+}
+
 /* right side */
 
 .right {
@@ -96,6 +104,7 @@ body {
 .signin {
   color: white;
   margin: 5%;
+  border: 5px solid red;
 }
 
 /* buttons */
