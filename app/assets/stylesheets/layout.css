@@ -60,17 +60,12 @@ body {
   margin: 0 auto;
   width: 75%;
   color: white;
-}
-
-label {
-  text-align: center;
-  margin: 0 auto;
+  border: 5px solid gold;
 }
 
 .subscribe {
   border: 0 none;
   border-radius: 0.5em;
-  color: #FFFFFF;
   cursor: pointer;
   margin: 0 5px 10px 0;
   padding:0;
