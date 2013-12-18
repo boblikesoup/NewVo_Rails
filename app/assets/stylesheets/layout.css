@@ -160,12 +160,19 @@ input[type=submit] {
 
 /* site wide standard */
 
-.text-block-left {
+.nv-left {
   padding: 1% 2.5%;
   display: inline-block;
 }
 
-.text-block-right {
+.nv-mid {
+  padding: 1% 2.5%;
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+  width: auto;
+}
+.nv-right {
   padding: 1% 2.5%;
   display: inline-block;
   position: absolute;
@@ -220,6 +227,10 @@ input[type=submit] {
 
   .text-box {
     height: 3.5em;
+  }
+
+  .nv-left, .nv-mid, .nv-right {
+    padding: 2.5%;
   }
 }
 
