@@ -158,6 +158,25 @@ input[type=submit] {
   display: none;
 }
 
+/* site wide standard */
+
+.black-color-background {
+  background-color: black;
+  opacity: 0.5;
+  color: white;
+}
+
+.text-block-left {
+  padding: 1% 2.5%;
+  display: inline-block;
+}
+
+.text-block-right {
+  padding: 1% 2.5%;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+}
 
 
 /* media queries */

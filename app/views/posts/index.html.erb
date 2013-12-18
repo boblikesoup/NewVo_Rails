@@ -1,7 +1,7 @@
-<% if signed_in? %>
-  <p>Welcome! <%= current_user.first_name %>
-    <%= link_to "Sign out", signout_path %>
-  </p>
+<div class='black-color-background'><% if signed_in? %>
+  <div class='text-block-left'>Welcome <%= current_user.first_name %>!</div>
+  <div class='text-block-right'><%= link_to "Sign out", signout_path %></div>
+</div>
 
 <%=  render 'post_form' %>
 
