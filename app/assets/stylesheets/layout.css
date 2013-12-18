@@ -63,11 +63,9 @@ body {
 }
 
 .subscribe {
-  border: 0 none;
+  border-color: #FD4646;
   border-radius: 0.5em;
   cursor: pointer;
-  margin: 0 5px 10px 0;
-  padding:0;
   text-align: center;
   text-decoration: none;
 }
