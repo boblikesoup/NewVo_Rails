@@ -163,6 +163,7 @@ input[type=submit] {
 .nv-left {
   padding: 1% 2.5%;
   display: inline-block;
+  border: 2px solid white;
 }
 
 .nv-mid {
@@ -172,6 +173,12 @@ input[type=submit] {
 .nv-right {
   padding: 1% 2.5%;
   display: inline-block;
+  border: 2px solid blue;
+}
+
+.nv-right-top-menu {
+  padding: 1% 2.5%;
+  display: inline-block;
   position: absolute;
   right: 0;
 }
@@ -179,6 +186,7 @@ input[type=submit] {
 .nv-block {
   background-color: black;
   color: white;
+  border: 2px solid orange;
 }
 
 .nv-main {
@@ -187,14 +195,51 @@ input[type=submit] {
   border-radius: 0.5em;
   margin: 2% 2%;
   padding: 2%;
+  border: 1px solid yellow;
 }
 
+.nv-title {
+  font-size: 2.5em;
+  border: 1px solid red;
+}
+
+.nv-single-image {
+  background-color: black;
+  color: white;
+  border-radius: 0.5em;
+  margin: 2% 2%;
+  padding: 2%;
+  width: 45%;
+  border: 1px solid green;
+  text-align: center;
+}
+
+.nv-two-images {
+  background-color: black;
+  border-radius: 0.5em;
+  margin: 2% 2%;
+  padding: 2%;
+  width: 45%;
+  border: 1px solid gold;
+  display: inline-block;
+}
+
+.nv-two-images-box {
+  text-align: center;
+  display: inline-block;
+  border: 1px solid white;
+  margin: 1%;
+}
 
 /* media queries */
 
 @media only screen and (max-width: 480px) {
   .body {
     font-size: 10px;
+  }
+
+  .nv-title {
+    font-size: 15px;
   }
 
   .iphone-image {
@@ -224,7 +269,7 @@ input[type=submit] {
     height: 3.5em;
   }
 
-  .nv-left, .nv-mid, .nv-right {
+  .nv-left, .nv-mid, .nv-right, .nv-right-top-menu {
     padding: 2.5%;
   }
 }
