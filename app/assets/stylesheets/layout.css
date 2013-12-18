@@ -160,12 +160,6 @@ input[type=submit] {
 
 /* site wide standard */
 
-.black-color-background {
-  background-color: black;
-  opacity: 0.5;
-  color: white;
-}
-
 .text-block-left {
   padding: 1% 2.5%;
   display: inline-block;
@@ -176,6 +170,21 @@ input[type=submit] {
   display: inline-block;
   position: absolute;
   right: 0;
+}
+
+.nv-block {
+  background-color: black;
+  opacity: 0.5;
+  color: white;
+}
+
+.nv-main {
+  background-color: black;
+  opacity: 0.5;
+  color: white;
+  border-radius: 0.5em;
+  margin: 2% 2%;
+  padding: 2%;
 }
 
 
