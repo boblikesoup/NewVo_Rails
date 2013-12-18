@@ -163,7 +163,6 @@ input[type=submit] {
 .nv-left {
   padding: 1% 2.5%;
   display: inline-block;
-  border: 2px solid white;
 }
 
 .nv-mid {
@@ -173,7 +172,6 @@ input[type=submit] {
 .nv-right {
   padding: 1% 2.5%;
   display: inline-block;
-  border: 2px solid blue;
 }
 
 .nv-right-top-menu {
@@ -186,7 +184,14 @@ input[type=submit] {
 .nv-block {
   background-color: black;
   color: white;
-  border: 2px solid orange;
+}
+
+.nv-create-post-box {
+  background-color: black;
+  color: white;
+  border-radius: 0.5em;
+  margin: 2% 2%;
+  padding: 2%;
 }
 
 .nv-main {
@@ -195,23 +200,20 @@ input[type=submit] {
   border-radius: 0.5em;
   margin: 2% 2%;
   padding: 2%;
-  border: 1px solid yellow;
+  text-align: center;
 }
 
 .nv-title {
   font-size: 2.5em;
-  border: 1px solid red;
 }
 
 .nv-single-image {
   background-color: black;
   color: white;
   border-radius: 0.5em;
-  margin: 2% 2%;
+  margin: 2% auto;
   padding: 2%;
   width: 45%;
-  border: 1px solid green;
-  text-align: center;
 }
 
 .nv-two-images {
@@ -220,14 +222,12 @@ input[type=submit] {
   margin: 2% 2%;
   padding: 2%;
   width: 45%;
-  border: 1px solid gold;
   display: inline-block;
 }
 
 .nv-two-images-box {
   text-align: center;
   display: inline-block;
-  border: 1px solid white;
   margin: 1%;
 }
 
@@ -252,7 +252,7 @@ input[type=submit] {
     display: none;
   }
 
-  .left, .right, .info, .text-box, .info-square, .app-button, .middle {
+  .left, .right, .info, .text-box, .info-square, .app-button, .middle, .nv-single-image {
     width: auto;
     margin: 0;
   }
