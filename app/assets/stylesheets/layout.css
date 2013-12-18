@@ -51,6 +51,25 @@ body {
   margin: 8% 2% 0 10%;
 }
 
+/* MailChimp */
+
+#mc_embed_signup {
+  border-radius: 0.5em;
+  background: black;
+  text-align: center;
+  margin: 0 auto;
+  width: 75%;
+  color: white;
+}
+
+.subscribe {
+  border-color: #FD4646;
+  border-radius: 0.5em;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
 /* right side */
 
 .right {
@@ -60,12 +79,13 @@ body {
   border: 15px solid transparent;
   float: left;
   margin: 25% 0;
+  background-color: black;
+  opacity: 0.5;
+  border-radius: .5em;
 }
 
 .info {
   border-radius: .5em;
-  background-color: black;
-  opacity: 0.5;
   padding: 1%;
 }
 
@@ -85,14 +105,6 @@ body {
   padding: 0 2%;
 }
 
-
-.middle {
-  height: 60px;
-  text-align: center;
-  padding: 40px;
-  color: white;
-}
-
 .signin {
   color: white;
   margin: 5%;
@@ -106,8 +118,8 @@ body {
   border-radius: 8px;
 }
 
-.button{
-  background-color: #FD4646;
+.signin-button{
+  background-color: green;
   border-radius: 0.25em;
   padding: 0 2%;
   color: white;
@@ -176,6 +188,10 @@ input[type=submit] {
 
   .container {
     padding: 0;
+  }
+
+  .text-box {
+    height: 3.5em;
   }
 }
 
