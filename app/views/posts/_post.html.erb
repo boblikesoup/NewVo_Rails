@@ -11,11 +11,12 @@
       <%= button_to "Like", votes_path(:photo => photo.id, :value => 1), method: :post %>
       <%= photo.upvotes %>
     <% end %>
-
-
   <% end %>
-
   <% if signed_in? && current_user.id == post.user_id %>
     <%= button_to "Delete", post_path(post), method: :delete %>
   <% end %>
+  <br>
+  <div class'nv-main'>
+    <%= link_to "Comment", post_path(post) if signed_in? %>
+  </div>
 </div>
