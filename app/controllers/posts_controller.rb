@@ -6,13 +6,13 @@ class PostsController < ApplicationController
     @posts = Post.order(created_at: :desc)
 
     2.times { @post.photos.build }
-    # render json: @posts, :include => [:photos, :comments]
+    #render json: @posts, :include => [:photos, :comments]
     respond_with(@posts)
   end
 
   def create
     post = Post.new(post_params)
-    current_user.posts << post 
+    current_user.posts << post
     post.save
     respond_with @post, :location => posts_path
       # TODO
@@ -30,7 +30,8 @@ class PostsController < ApplicationController
 
   def destroy
     post = Post.find(params[:id])
-    post.destroy!
+    #post.destroy!
+    post.update_attribute(:published, false)
     respond_with post, :location => posts_path
   end
 

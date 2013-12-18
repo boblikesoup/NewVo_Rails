@@ -1,4 +1,7 @@
+
+<% if @post.published == true %>
 <%= render partial: 'post', object: @post %>
+<% end %>
 
 <% if signed_in? %>
   <%= form_for @comment, url: post_comments_path(@post) do |f| %>

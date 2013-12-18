@@ -11,8 +11,10 @@
 
 <% if @posts %>
   <% @posts.each do |post| %>
+    <% if post.published == true %>
     <%= render partial: 'post', object: post %>
 
     <%= link_to "Comment", post_path(post) if signed_in? %>
+    <% end %>
   <% end %>
 <% end %>
