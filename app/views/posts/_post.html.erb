@@ -1,21 +1,35 @@
 <div class='nv-main'>
   <h2> <%= post.title %> </h2>
   <% post.photos.each do |photo| %>
+  <div class='nv-left'>
     <%= image_tag photo.photo.url :medium %>
-    <div class='nv-left'>
-      <% if post.has_single_picture? && signed_in? %>
+  </div>
+  <div class='nv-left'>
+    <% if post.has_single_picture? && signed_in? %>
+      <div class='nv-left'>
+        <%= photo.upvotes %>
+      </div>
+      <div class='nv-left'>
         <%= button_to "Upvote", votes_path(:photo => photo.id, :value => 1), method: :post %>
-        <%= photo.upvotes %>
-        <%= button_to "Downvote", votes_path(:photo => photo.id, :value => -1), method: :post %>
+      </div>
+      <div class='nv-left'>
         <%= photo.downvotes %>
-      <% else %>
-        <%= button_to "Like", votes_path(:photo => photo.id, :value => 1), method: :post %>
+      </div>
+      <div class='nv-left'>
+        <%= button_to "Downvote", votes_path(:photo => photo.id, :value => -1), method: :post %>
+      </div>
+    <% else %>
+      <div class='nv-left'>
         <%= photo.upvotes %>
-      <% end %>
-    </div>
+      </div>
+      <div class='nv-left'>
+        <%= button_to "Like", votes_path(:photo => photo.id, :value => 1), method: :post %>
+      </div>
+    <% end %>
+  </div>
   <% end %>
   <% if signed_in? && current_user.id == post.user_id %>
-    <%= button_to "Delete", post_path(post), method: :delete %>
+  <%= button_to "Delete", post_path(post), method: :delete %>
   <% end %>
   <br>
   <div class'nv-main'>
