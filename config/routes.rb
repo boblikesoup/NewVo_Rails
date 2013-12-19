@@ -8,6 +8,8 @@ Newvo::Application.routes.draw do
     resources :comments, only: [:create, :update, :edit, :destroy]
   end
 
+  resources :users, only: :show
+
   resources :votes, only: :create
 
   # The priority is based upon order of creation: first created -> highest priority.
