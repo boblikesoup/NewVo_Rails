@@ -2,9 +2,11 @@
   <div class='nv-block'>
     <div class='nv-left'>Welcome <%= current_user.first_name %>!</div>
     <div class='nv-mid'>NewVo</div>
-    <div class='nv-mid'><%= link_to "Profile", current_user %></div>
+    <% if @posts_page %>
+      <div class='nv-mid'><%= link_to "Profile", current_user %></div>
+    <% end %>
     <% if @profile %>
-      <div class='nv-mid'>Posts
+      <div class='nv-mid'><%= link_to "Posts", posts_path %></div>
     <% end %>
     <div class='nv-right-top-menu'><%= link_to "Sign out", signout_path %></div>
   </div>
