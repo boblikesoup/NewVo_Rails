@@ -3,6 +3,9 @@
     <div class='nv-left'>Welcome <%= current_user.first_name %>!</div>
     <div class='nv-mid'>NewVo</div>
     <div class='nv-mid'><%= link_to "Profile", current_user %></div>
+    <% if @profile %>
+      <div class='nv-mid'>Posts
+    <% end %>
     <div class='nv-right-top-menu'><%= link_to "Sign out", signout_path %></div>
   </div>
 </header>
