@@ -35,7 +35,8 @@ class PostsController < ApplicationController
     respond_with post, :location => posts_path
   end
 
-
+  def published
+  end
 
   private
   #refactor this shit!
