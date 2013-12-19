@@ -1,6 +1,7 @@
 Newvo::Application.routes.draw do
   root to: 'pages#home'
 
+  get '/auth/mobile/fbtoken=:facebook_token&device_id=:device_id&time_zone=:time_zone&os_type=:os_type', to: 'sessions#fb_sso'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/signout', to: 'sessions#destroy', as: 'signout'
   resources :posts, only: [:index, :create, :show, :destroy] do
@@ -49,7 +50,7 @@ Newvo::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
