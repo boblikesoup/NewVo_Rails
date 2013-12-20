@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
   #fix -> user.following_users to find all following current user
   #User.joins(:followings).where({"followings.follower_id" => 1})
 
+  has_many :friendships
+  has_many :friends, through: :friendships
+
   # validates_presence_of :first_name
   # validates_presence_of :last_name
   # validates_presence_of :username
