@@ -1,5 +1,8 @@
 <div class='nv-main'>
   <div class='nv-title'> <%= post.title %> </div>
+    <div class='nv-main'>Asked by <%= post.user.first_name %> <%= post.user.last_name %> at
+      <%= post.user.updated_at.strftime("%H:%M, %d %b") %>
+    </div>
   <br>
   <% post.photos.each do |photo| %>
 
@@ -7,9 +10,6 @@
 
 <div class='nv-single-image'>
     <%= image_tag photo.photo.url :medium %>
-    <div class='nv-main'>Asked by <%= post.user.first_name %> <%= post.user.last_name %> at
-      <%= post.user.updated_at.strftime("%H:%M, %d %b") %>
-    </div>
 
           <%= photo.upvotes %>
 
