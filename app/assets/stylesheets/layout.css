@@ -272,6 +272,11 @@ input[type=submit] {
   .nv-left, .nv-mid, .nv-right, .nv-right-top-menu {
     padding: 2.5%;
   }
+
+  img {
+    height: auto;
+    max-width: 100%;
+  }
 }
 
 @media only screen and (min-width: 481px) and (max-width: 957px) {
