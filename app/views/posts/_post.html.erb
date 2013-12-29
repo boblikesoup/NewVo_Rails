@@ -4,24 +4,30 @@
       <%= post.user.created_at.strftime("%H:%M, %d %b") %>
     </div>
     <br>
-    <% post.photos.each do |photo| %>
-      <% if post.has_single_picture? && signed_in? %>
-      <div class='nv-single-image'>
-        <%= image_tag photo.photo.url :medium %>
-        <%= photo.upvotes %>
-        <%= button_to "Upvote", votes_path(:photo => photo.id, :value => 1), method: :post %>
-        <%= photo.downvotes %>
-        <%= button_to "Downvote", votes_path(:photo => photo.id, :value => -1), method: :post %>
-      </div>
+    <% if post.photos.length == 1 %>
+      <% post.photos.each do |photo| %>
+        <div class='nv-single-image'>
+          <%= image_tag photo.photo.url :medium %>
+          <%= photo.upvotes %>
+          <%= button_to "Upvote", votes_path(:photo => photo.id, :value => 1), method: :post %>
+          <%= photo.downvotes %>
+          <%= button_to "Downvote", votes_path(:photo => photo.id, :value => -1), method: :post %>
+        </div>
+      <% end %>
     <% else %>
+    <div class='nv-two-image-holder'>
       <div class='nv-two-images-box'>
+      <% post.photos.each do |photo| %>
+      <div class='nv-two-images'>
         <%= image_tag photo.photo.url :medium %>
-        <div class='nv-two-images'>
+        <div class='nv-two-images-vote'>
           <%= photo.upvotes %>
           <%= button_to "Like", votes_path(:photo => photo.id, :value => 1), method: :post %>
         </div>
       </div>
       <% end %>
+      </div>
+    </div>
     <% end %>
     <% if signed_in? && current_user.id == post.user_id %>
       <%= button_to "Delete", post_path(post), method: :delete %>
