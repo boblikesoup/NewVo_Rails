@@ -16,7 +16,6 @@
   <% @posts.each do |post| %>
     <% if post.published == true %>
     <%= render partial: 'post', object: post %>
-
     <% end %>
   <% end %>
 <% end %>
