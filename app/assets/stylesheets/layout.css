@@ -203,6 +203,17 @@ input[type=submit] {
   text-align: center;
 }
 
+.nv-center {
+  text-align: center;
+}
+
+.nv-comments {
+  background-color: black;
+  border-radius: 0.5em;
+  margin: 2% 2%;
+  padding: 2%;
+}
+
 .nv-title {
   font-size: 2.5em;
 }

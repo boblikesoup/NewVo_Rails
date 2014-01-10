@@ -1,5 +1,9 @@
-<%= form_for @comment, url: post_comment_path, method: :put do |f| %>
-  <%= f.label :body, 'Say something' %>
-  <%= f.text_field :body %>
-  <%= f.submit %>
-<% end %>
+<div class="nv-comments">
+  <%= form_for @comment, url: post_comment_path, method: :put do |f| %>
+    <%= f.label :body, 'Say something' %>
+    <%= f.text_field :body %>
+    <br>
+    <br>
+    <div class="nv-center"><%= f.submit %></div>
+  <% end %>
+</div>
