@@ -9,14 +9,10 @@ class User < ActiveRecord::Base
 
   has_many :followed_users, through: :followings, source: :followed
   has_many :following_users, through: :followings, source: :follower
-  #fix -> user.followed_users to find all current user is following
-  #User.joins(:followings).where({"followings.followed_id" => 1})
-  #fix -> user.following_users to find all following current user
-  #User.joins(:followings).where({"followings.follower_id" => 1})
 
   has_many :friendships
   has_many :friends, through: :friendships
-  has_many :inverse_friendships, :classname => "Friendship", :foreign_key => "friend_id"
+  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, through: :inverse_friendships, :source => :user
 
   # validates_presence_of :first_name
@@ -28,16 +24,49 @@ class User < ActiveRecord::Base
   # validates_presence_of :fb_uid
   # validates_uniqueness_of :fb_uid
 
+  def followed_users
+    #to find all current user is following
+    User.joins(:followings).where({"followings.followed_id" => self.id})
+  end
+
+  def following_users
+    #to find all following current user
+    User.joins(:followings).where({"followings.follower_id" => self.id})
+  end
+
+
   def following?(other_user)
-    followings.find_by_followed_id(other_user.id)
+    if Following.exists?(follower_id: self.id, followed_id: other_user.id)
+      return true
+    else
+      return false
+    end
   end
 
   def follow!(other_user)
-    followings.create!(followed_id: other_user.id)
+    Following.create!(follower_id: self.id, followed_id: other_user.id)
   end
 
   def unfollow!(other_user)
-    followings.find_by_followed_id(other_user.id).destroy
+    Following.find_by(follower_id: self.id, followed_id: other_user.id).destroy
+  end
+
+
+
+  def following?(other_user)
+    if Following.exists?(follower_id: self.id, followed_id: other_user.id)
+      return true
+    else
+      return false
+    end
+  end
+
+  def follow!(other_user)
+    Following.create!(follower_id: self.id, followed_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    Following.find_by(follower_id: self.id, followed_id: other_user.id).destroy
   end
 
 #Store unique username and email address
