@@ -216,19 +216,33 @@ input[type=submit] {
   width: 45%;
 }
 
-.nv-two-images {
+.nv-two-images-vote {
   background-color: black;
   border-radius: 0.5em;
   margin: 2% 2%;
   padding: 2%;
   width: 45%;
-  display: inline-block;
 }
 
 .nv-two-images-box {
   text-align: center;
   display: inline-block;
   margin: 1%;
+  background-color: green;
+  border-radius: 0.5em;
+  padding: 1%;
+}
+
+.nv-two-image-holder {
+}
+
+.nv-two-images {
+  float: left;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
 }
 
 /* media queries */
@@ -271,6 +285,16 @@ input[type=submit] {
 
   .nv-left, .nv-mid, .nv-right, .nv-right-top-menu {
     padding: 2.5%;
+  }
+
+  .nv-two-images-box {
+    max-height: 50%;
+    max-width: 100%;
+  }
+
+  .nv-two-images {
+    max-height: auto;
+    max-width: 50%;
   }
 }
 
