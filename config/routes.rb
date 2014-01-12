@@ -11,7 +11,7 @@ Newvo::Application.routes.draw do
   resources :votes, only: :create
   resources :followings, only: [:create, :destroy, :show]
 
-  namespace :api, :path => "", :constraints => {:subdomain => "api"} do
+  namespace :api, :path => "", :constraints => {:subdomain => "api"}, :defaults => {:format => :json} do
    namespace :v1 do
     resources :posts, only: [:index, :create, :show, :destroy] do
       resources :comments, only: [:create, :update, :edit, :destroy]
