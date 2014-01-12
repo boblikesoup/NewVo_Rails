@@ -1,19 +1,15 @@
 class FollowingsController < ApplicationController
   def create
-    @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
-    if @friendship.save
-      flash[:notice] = "Added friend."
-      redirect_to root_url
-    else
-      flash[:error] = "Unable to add friend."
-      render :action => 'new'
+    current_user.follow!(params[:followed_id])
+    if current_user.both_following?(params[:followed_id])
+      current_user.create_friendship(params[:followed_id])
     end
   end
 
   def destroy
-    @friendship = current_user.friendships.find(params[:id])
-    @friendship.destroy
-    flash[:notice] = "Removed friend."
-    redirect_to root_url
+    if current_user.both_following?(params[:followed_id])
+      current_user.destroy_friendship(params[:followed_id])
+    end
+    current_user.unfollow!(params[:followed_id])
   end
 end
