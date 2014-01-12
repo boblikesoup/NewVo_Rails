@@ -38,6 +38,6 @@ class PostsController < ApplicationController
   private
   #refactor this shit!
   def post_params
-    params.require(:post).permit(:title, photos_attributes: [:id, :photo])
+    params.require(:post).permit(:description, photos_attributes: [:id, :photo])
   end
 end

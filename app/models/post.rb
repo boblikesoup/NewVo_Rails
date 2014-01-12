@@ -14,7 +14,7 @@ class Post < ActiveRecord::Base
   def as_json(options={})
     {
       :post_id => id,
-      :title => title,
+      :description => description,
       :has_single_picture => has_single_picture,
       :photos => photos,
       :comments => comments

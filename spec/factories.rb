@@ -9,7 +9,7 @@ FactoryGirl.define do
   end
 
   factory :post do
-    title "word"
+    description "word"
     user_id 1
   end
 end
