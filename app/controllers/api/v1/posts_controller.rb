@@ -1,5 +1,4 @@
 class API::V1::PostsController < ApplicationController
-  respond_to :html, :json
 
   def index
     @post = Post.new
@@ -14,7 +13,7 @@ class API::V1::PostsController < ApplicationController
     post = Post.new(post_params)
     current_user.posts << post
     post.save
-    respond_with @post, :location => posts_path
+    respond_with @post, :location => api_v1_posts_path
       # TODO
       # display errors and prevent cookie overflow when content type is not an image
       # handle error when save is not successful
@@ -32,7 +31,7 @@ class API::V1::PostsController < ApplicationController
     post = Post.find(params[:id])
     #post.destroy!
     post.update_attribute(:published, false)
-    respond_with post, :location => posts_path
+    respond_with post, :location => api_v1_posts_path
   end
 
   private

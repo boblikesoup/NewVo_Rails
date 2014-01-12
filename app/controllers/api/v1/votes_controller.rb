@@ -1,5 +1,4 @@
 class API::V1::VotesController < ApplicationController
-  respond_to :html, :json
   # TODO
   # use metaprogramming!
   def create
@@ -16,7 +15,7 @@ class API::V1::VotesController < ApplicationController
       current_comment.votes << vote
     end
     vote.save
-    respond_with post, :location => posts_path
+    respond_with post, :location => api_v1_posts_path
   end
 
 
