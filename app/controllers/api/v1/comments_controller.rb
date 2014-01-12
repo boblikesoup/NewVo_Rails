@@ -1,4 +1,5 @@
 class API::V1::CommentsController < ApplicationController
+  respond_to :json
 
   def create
     post = Post.find(params[:post_id])

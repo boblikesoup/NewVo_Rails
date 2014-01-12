@@ -1,8 +1,7 @@
 class API::V1::VotesController < ApplicationController
-  # TODO
-  # use metaprogramming!
-  def create
+  respond_to :json
 
+  def create
     if params[:photo]
       current_photo = Photo.find(params[:photo])
       vote = Vote.new(user_id: current_user.id, value: params[:value], post_id: current_photo.post.id)
@@ -17,7 +16,6 @@ class API::V1::VotesController < ApplicationController
     vote.save
     respond_with post, :location => api_v1_posts_path
   end
-
 
 end
 
