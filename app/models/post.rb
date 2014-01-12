@@ -7,7 +7,6 @@ class Post < ActiveRecord::Base
 
   after_save :update_has_single_picture
 
-  validates_presence_of :title
   validates_presence_of :user_id
   validates_presence_of :photos
 
@@ -15,7 +14,7 @@ class Post < ActiveRecord::Base
   def as_json(options={})
     {
       :post_id => id,
-      :title => title,
+      :description => description,
       :has_single_picture => has_single_picture,
       :photos => photos,
       :comments => comments
