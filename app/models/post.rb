@@ -7,7 +7,6 @@ class Post < ActiveRecord::Base
 
   after_save :update_has_single_picture
 
-  validates_presence_of :title
   validates_presence_of :user_id
   validates_presence_of :photos
 
