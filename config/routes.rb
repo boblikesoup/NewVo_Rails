@@ -4,11 +4,22 @@ Newvo::Application.routes.draw do
   get '/auth/mobile/fbtoken=:facebook_token&device_id=:device_id&time_zone=:time_zone&os_type=:os_type', to: 'sessions#fb_sso'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/signout', to: 'sessions#destroy', as: 'signout'
+
   resources :posts, only: [:index, :create, :show, :destroy] do
     resources :comments, only: [:create, :update, :edit, :destroy]
   end
-
   resources :votes, only: :create
+  resources :followings, only: [:create, :destroy, :show]
+
+  namespace :api, :path => "", :constraints => {:subdomain => "api"} do
+   namespace :v1 do
+    resources :posts, only: [:index, :create, :show, :destroy] do
+      resources :comments, only: [:create, :update, :edit, :destroy]
+    end
+    resources :votes, only: :create
+    resources :followings, only: [:create, :destroy, :show]
+  end
+end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
