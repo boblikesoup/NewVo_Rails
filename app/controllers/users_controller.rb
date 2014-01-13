@@ -5,4 +5,8 @@ respond_to :html, :json
     respond_with(current_user)
   end
 
+  def show
+    respond_with(User.find(params[:id]))
+  end
+
 end
