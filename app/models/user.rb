@@ -96,6 +96,17 @@ class User < ActiveRecord::Base
     user
   end
 
+  def as_json(options={})
+    {
+      :first_name => first_name,
+      :last_name => last_name,
+      :description => description,
+      :avatar => avatar,
+      :followed_users => User.current.followed_users,
+      :following_users => User.current.following_users,
+      :friends => User.current.friends
+    }
+  end
 end
 
 # user.avatar_from_facebook('http://graph.facebook.com/#{@user.fb_uid}/picture')
