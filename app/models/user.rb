@@ -19,28 +19,31 @@ class User < ActiveRecord::Base
   has_many :inverse_friends, through: :inverse_friendships, :source => :user
   #user.friends returns array of all friends
 
-  # validates_presence_of :first_name
-  # validates_presence_of :last_name
+  validates_presence_of :first_name
+  validates_presence_of :last_name
   # validates_presence_of :username
   # validates_uniqueness_of :username
   # validates_presence_of :email
   # validates_uniqueness_of :email
-  # validates_presence_of :fb_uid
-  # validates_uniqueness_of :fb_uid
-
-
-
-
-
+  validates_presence_of :fb_uid
+  validates_uniqueness_of :fb_uid
 
   def followed_users
     #to find all current user is following
-    User.joins(:followings).where({"followings.follower_id" => self.id})
+    followings = []
+    Following.where(follower_id: self.id).each do |following|
+      followings << following.followed_id
+    end
+    User.where(id: followings)
   end
 
   def following_users
     #to find all following current user
-    User.joins(:followings).where({"followings.followed_id" => self.id})
+    followings = []
+    Following.where(followed_id: self.id).each do |following|
+      followings << following.follower_id
+    end
+    User.where(id: followings)
   end
 
 
@@ -74,13 +77,13 @@ class User < ActiveRecord::Base
   end
 
   def create_friendship(followed_id)
-    Friendship.create(user_id: current_user.id, friend_id: followed_id)
-    Friendship.create(user_id: followed_id, friend_id: current_user.id)
+    Friendship.create(user_id: self.id, friend_id: followed_id)
+    Friendship.create(user_id: followed_id, friend_id: self.id)
   end
 
   def destroy_friendship(followed_id)
-    Friendship.find_by(user_id: current_user.id, friend_id: followed_id).destroy
-    Friendship.find_by(user_id: followed_id, friend_id: current_user.id).destroy
+    Friendship.find_by(user_id: self.id, friend_id: followed_id).destroy
+    Friendship.find_by(user_id: followed_id, friend_id: self.id).destroy
   end
 
 
@@ -96,6 +99,7 @@ class User < ActiveRecord::Base
     user
   end
 
+  #To send json of all profile information
   def as_json(options={})
     {
       :first_name => first_name,
@@ -107,6 +111,15 @@ class User < ActiveRecord::Base
       :friends => User.current.friends
     }
   end
+
+  def self.current
+    Thread.current[:user]
+  end
+
+  def self.current=(user)
+    Thread.current[:user] = user
+  end
+
 end
 
 # user.avatar_from_facebook('http://graph.facebook.com/#{@user.fb_uid}/picture')
