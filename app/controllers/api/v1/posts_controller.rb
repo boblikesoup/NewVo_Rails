@@ -13,6 +13,7 @@ class API::V1::PostsController < ApplicationController
         return Post.find(:all, :order => "created_at desc", :limit => 6)
       elsif query == "friends"
         return Post.where(:order => "created_at desc", :limit => 2)
+        friends = []
         current_user.friends.each do |friend|
           friends << friend.id
         end

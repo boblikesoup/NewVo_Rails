@@ -28,12 +28,20 @@ class User < ActiveRecord::Base
 
   def followed_users
     #to find all current user is following
-    User.joins(:followings).where({"followings.follower_id" => self.id})
+    followings = []
+    Following.where(follower_id: self.id).each do |following|
+      followings << following.followed_id
+    end
+    User.where(id: followings)
   end
 
   def following_users
     #to find all following current user
-    User.joins(:followings).where({"followings.followed_id" => self.id})
+    followings = []
+    Following.where(followed_id: self.id).each do |following|
+      followings << following.follower_id
+    end
+    User.where(id: followings)
   end
 
 
