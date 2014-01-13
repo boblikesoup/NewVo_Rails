@@ -10,9 +10,11 @@ Newvo::Application.routes.draw do
   end
   resources :votes, only: :create
   resources :followings, only: [:create, :destroy, :show]
+  resources :users, only: [:index, :show]
 
   namespace :api, :defaults => {:format => :json} do
    namespace :v1 do
+    resources :users, only: [:index, :show]
     resources :posts, only: [:index, :create, :show, :destroy] do
       member do
         post 'search', path: 'posts/search'

@@ -105,9 +105,9 @@ class User < ActiveRecord::Base
       :last_name => last_name,
       :description => description,
       :avatar => avatar,
-      :followed_users => User.current.followed_users,
-      :following_users => User.current.following_users,
-      :friends => User.current.friends,
+      :followed_users => self.followed_users,
+      :following_users => self.following_users,
+      :friends => self.friends,
       :posts => posts.order("created_at desc").limit(1),
     }
   end
