@@ -1,8 +1,10 @@
 <div class='nv-block'><% if signed_in? %>
-  <div class='nv-left'>Welcome <%= current_user.first_name %>!</div>
+  <div class='nv-left'><%= image_tag current_user.avatar.url %> Welcome <%= current_user.first_name %>!</div>
   <div class='nv-mid'>NewVo</div>
   <div class='nv-right-top-menu'><%= link_to "Sign out", signout_path %></div>
 </div>
+
+
 
 <%=  render 'post_form' %>
 

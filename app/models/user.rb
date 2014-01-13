@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
-  has_many :posts, :dependent => :destroy
-  has_many :comments, :dependent => :destroy
-  has_many :votes, :dependent => :destroy
+  has_many :posts
+  has_many :comments
+  has_many :votes
   has_many :photos, through: :posts
+  has_attached_file :avatar
 
   #most of code needed to hard-cod db relationships intead of methods
   # has_many :followings, foreign_key: "follower_id", dependent: :destroy
@@ -17,14 +18,14 @@ class User < ActiveRecord::Base
   has_many :inverse_friends, through: :inverse_friendships, :source => :user
   #user.friends returns array of all friends
 
-  # validates_presence_of :first_name
-  # validates_presence_of :last_name
+  validates_presence_of :first_name
+  validates_presence_of :last_name
   # validates_presence_of :username
   # validates_uniqueness_of :username
   # validates_presence_of :email
   # validates_uniqueness_of :email
-  # validates_presence_of :fb_uid
-  # validates_uniqueness_of :fb_uid
+  validates_presence_of :fb_uid
+  validates_uniqueness_of :fb_uid
 
   def followed_users
     #to find all current user is following
@@ -91,9 +92,24 @@ class User < ActiveRecord::Base
     if user
       first_name = auth_hash["info"]["first_name"]
       last_name = auth_hash["info"]["last_name"]
-      user.update_attributes(first_name: first_name, last_name: last_name)
+      avatar = auth_hash["info"]["image"]
+      user.update_attributes(first_name: first_name, last_name: last_name, avatar: avatar)
     end
     user
+  end
+
+  #To send json of all profile information
+  def as_json(options={})
+    {
+      :first_name => first_name,
+      :last_name => last_name,
+      :description => description,
+      :avatar => avatar,
+      :followed_users => User.current.followed_users,
+      :following_users => User.current.following_users,
+      :friends => User.current.friends,
+      :posts => posts.order("created_at desc").limit(1),
+    }
   end
 
   def self.current
@@ -105,3 +121,4 @@ class User < ActiveRecord::Base
   end
 
 end
+
