@@ -28,12 +28,20 @@ class User < ActiveRecord::Base
 
   def followed_users
     #to find all current user is following
-    User.joins(:followings).where({"followings.follower_id" => self.id})
+    followings = []
+    Following.where(follower_id: self.id).each do |following|
+      followings << following.followed_id
+    end
+    User.where(id: followings)
   end
 
   def following_users
     #to find all following current user
-    User.joins(:followings).where({"followings.followed_id" => self.id})
+    followings = []
+    Following.where(followed_id: self.id).each do |following|
+      followings << following.follower_id
+    end
+    User.where(id: followings)
   end
 
 
@@ -67,13 +75,13 @@ class User < ActiveRecord::Base
   end
 
   def create_friendship(followed_id)
-    Friendship.create(user_id: current_user.id, friend_id: followed_id)
-    Friendship.create(user_id: followed_id, friend_id: current_user.id)
+    Friendship.create(user_id: self.id, friend_id: followed_id)
+    Friendship.create(user_id: followed_id, friend_id: self.id)
   end
 
   def destroy_friendship(followed_id)
-    Friendship.find_by(user_id: current_user.id, friend_id: followed_id).destroy
-    Friendship.find_by(user_id: followed_id, friend_id: current_user.id).destroy
+    Friendship.find_by(user_id: self.id, friend_id: followed_id).destroy
+    Friendship.find_by(user_id: followed_id, friend_id: self.id).destroy
   end
 
 
@@ -86,6 +94,14 @@ class User < ActiveRecord::Base
       user.update_attributes(first_name: first_name, last_name: last_name)
     end
     user
+  end
+
+  def self.current
+    Thread.current[:user]
+  end
+
+  def self.current=(user)
+    Thread.current[:user] = user
   end
 
 end

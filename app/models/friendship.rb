@@ -4,6 +4,8 @@ class Friendship < ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :friend_id, presence: true
+
+  has_many :posts
 end
 
 #at a user's profile add <%= link_to "Add Friend",
