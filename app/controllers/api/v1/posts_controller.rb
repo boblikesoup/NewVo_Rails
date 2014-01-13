@@ -2,11 +2,6 @@ class API::V1::PostsController < ApplicationController
   respond_to :json
 
   def search
-    if params[:newest_photo_time] == nil
-      @posts = newest_photos(params[:query])
-    else
-      @posts = time_search(params[:query], params[:oldest_photo_time], params[:newest_photo_time])
-    end
 
     def newest_photos(query)
       if query == "global"
@@ -16,15 +11,45 @@ class API::V1::PostsController < ApplicationController
         current_user.friends.each do |friend|
           friends << friend.id
         end
-        return Post.where(user_id: friends)
+        return Post.where(user_id: friends).order('created_at desc').limit(6)
       elsif query == "following"
         following = []
-
+        current_user.followed_users.each do |followed_user|
+          following << followed_user.id
+        end
+        return Post.where(user_id: following).order('created_at desc').limit(6)
       else
         "error!!!"
       end
     end
 
+    def time_search(query, newest_photo_time, oldest_photo_time)
+      if query == "global"
+        first_batch = Post.where(created_at: newest_photo_time..Time.now).order('created_at desc').limit(6)
+        return Post.find(:all, :order => "created_at desc", :limit => 6)
+      elsif query == "friends"
+        friends = []
+        current_user.friends.each do |friend|
+          friends << friend.id
+        end
+        return Post.where(user_id: friends).order('created_at desc').limit(6)
+      elsif query == "following"
+        following = []
+        current_user.followed_users.each do |followed_user|
+          following << followed_user.id
+        end
+        return Post.where(user_id: following).order('created_at desc').limit(6)
+      else
+        "error!!!"
+      end
+    end
+
+    params[:query] = "global"
+    if params[:newest_photo_time] == nil
+      @posts = newest_photos(params[:query])
+    else
+      @posts = time_search(params[:query], Time.parse(params[:newest_photo_time]), Time.parse(params[:oldest_photo_time]))
+    end
 
     respond_with(@posts)
   end
@@ -43,9 +68,9 @@ class API::V1::PostsController < ApplicationController
     current_user.posts << post
     post.save
     respond_with @post, :location => api_v1_posts_path
-      # TODO
-      # display errors and prevent cookie overflow when content type is not an image
-      # handle error when save is not successful
+    # TODO
+    # display errors and prevent cookie overflow when content type is not an image
+    # handle error when save is not successful
   end
 
   def show
