@@ -1,8 +1,10 @@
+require "open-uri"
 class User < ActiveRecord::Base
-  has_many :posts, :dependent => :destroy
-  has_many :comments, :dependent => :destroy
-  has_many :votes, :dependent => :destroy
+  has_many :posts
+  has_many :comments
+  has_many :votes
   has_many :photos, through: :posts
+  has_attached_file :avatar
 
   #most of code needed to hard-cod db relationships intead of methods
   # has_many :followings, foreign_key: "follower_id", dependent: :destroy
@@ -25,6 +27,11 @@ class User < ActiveRecord::Base
   # validates_uniqueness_of :email
   # validates_presence_of :fb_uid
   # validates_uniqueness_of :fb_uid
+
+
+
+
+
 
   def followed_users
     #to find all current user is following
@@ -83,9 +90,12 @@ class User < ActiveRecord::Base
     if user
       first_name = auth_hash["info"]["first_name"]
       last_name = auth_hash["info"]["last_name"]
-      user.update_attributes(first_name: first_name, last_name: last_name)
+      avatar = auth_hash["info"]["image"]
+      user.update_attributes(first_name: first_name, last_name: last_name, avatar: avatar)
     end
     user
   end
 
 end
+
+# user.avatar_from_facebook('http://graph.facebook.com/#{@user.fb_uid}/picture')
