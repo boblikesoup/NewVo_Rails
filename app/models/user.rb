@@ -108,7 +108,7 @@ class User < ActiveRecord::Base
       :followed_users => self.followed_users,
       :following_users => self.following_users,
       :friends => self.friends,
-      :posts => posts.order("created_at desc").limit(1),
+      :posts => posts.order("created_at desc").limit(6),
     }
   end
 
