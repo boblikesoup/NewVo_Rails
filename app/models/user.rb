@@ -108,7 +108,8 @@ class User < ActiveRecord::Base
       :avatar => avatar,
       :followed_users => User.current.followed_users,
       :following_users => User.current.following_users,
-      :friends => User.current.friends
+      :friends => User.current.friends,
+      :posts => posts.order("created_at desc").limit(1),
     }
   end
 
@@ -122,4 +123,3 @@ class User < ActiveRecord::Base
 
 end
 
-# user.avatar_from_facebook('http://graph.facebook.com/#{@user.fb_uid}/picture')
