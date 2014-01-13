@@ -13,13 +13,14 @@ Newvo::Application.routes.draw do
 
   namespace :api, :defaults => {:format => :json} do
    namespace :v1 do
+    get '/posts/search', to: 'posts#search'
     resources :posts, only: [:index, :create, :show, :destroy] do
-      member do
-        post 'search', path: 'posts/search'
-     end
+     #  member do
+     #    post 'search', path: 'posts/search'
+     # end
       resources :comments, only: [:create, :update, :edit, :destroy]
     end
-    match 'posts/search' => 'posts#search', :via => :get
+    # match 'posts/search' => 'posts#search', :via => :get
     resources :votes, only: :create
     resources :followings, only: [:create, :destroy, :show]
   end
