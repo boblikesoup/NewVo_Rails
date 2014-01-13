@@ -13,4 +13,7 @@ class API::V1::ApplicationController < ActionController::Base
     current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  def set_current_user
+      User.current = current_user
+  end
 end

@@ -1,6 +1,33 @@
 class API::V1::PostsController < ApplicationController
   respond_to :json
 
+  def search
+    if params[:newest_photo_time] == nil
+      @posts = newest_photos(params[:query])
+    else
+      @posts = time_search(params[:query], params[:oldest_photo_time], params[:newest_photo_time])
+    end
+
+    def newest_photos(query)
+      if query == "global"
+        return Post.find(:all, :order => "created_at desc", :limit => 6)
+      elsif query == "friends"
+        return Post.where(:order => "created_at desc", :limit => 2)
+        current_user.friends.each do |friend|
+          friends << friend.id
+        end
+        Post.where(user_id: friends)
+      elsif query == "following"
+
+      else
+        "error!!!"
+      end
+    end
+
+
+    respond_with(@posts)
+  end
+
   def index
     @post = Post.new
     @posts = Post.order(created_at: :desc)
@@ -18,7 +45,6 @@ class API::V1::PostsController < ApplicationController
       # TODO
       # display errors and prevent cookie overflow when content type is not an image
       # handle error when save is not successful
-
   end
 
   def show
@@ -42,6 +68,8 @@ class API::V1::PostsController < ApplicationController
   end
 
 
-
+  # before_filter :require_user # require_user will set the current_user in controllers
+  # ^ in tutorial but not working http://rails-bestpractices.com/posts/47-fetch-current-user-in-models
+  before_filter :set_current_user
 
 end

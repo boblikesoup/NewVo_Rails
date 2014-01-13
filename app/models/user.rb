@@ -67,13 +67,13 @@ class User < ActiveRecord::Base
   end
 
   def create_friendship(followed_id)
-    Friendship.create(user_id: current_user.id, friend_id: followed_id)
-    Friendship.create(user_id: followed_id, friend_id: current_user.id)
+    Friendship.create(user_id: self.id, friend_id: followed_id)
+    Friendship.create(user_id: followed_id, friend_id: self.id)
   end
 
   def destroy_friendship(followed_id)
-    Friendship.find_by(user_id: current_user.id, friend_id: followed_id).destroy
-    Friendship.find_by(user_id: followed_id, friend_id: current_user.id).destroy
+    Friendship.find_by(user_id: self.id, friend_id: followed_id).destroy
+    Friendship.find_by(user_id: followed_id, friend_id: self.id).destroy
   end
 
 
@@ -86,6 +86,14 @@ class User < ActiveRecord::Base
       user.update_attributes(first_name: first_name, last_name: last_name)
     end
     user
+  end
+
+  def self.current
+    Thread.current[:user]
+  end
+
+  def self.current=(user)
+    Thread.current[:user] = user
   end
 
 end
