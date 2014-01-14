@@ -26,7 +26,15 @@ class API::V1::PostsController < ApplicationController
     def time_search(query, newest_photo_time, oldest_photo_time)
       if query == "global"
         first_batch = Post.where(created_at: newest_photo_time..Time.now).order('created_at desc').limit(6)
-        return Post.find(:all, :order => "created_at desc", :limit => 6)
+        #code another parameter for letting know whether last query fetched all newest
+        #photos. if so start search between last time sent and first time from JSON before
+        if first_batch.length < 6
+          second_batch = Post.where(created_at: (Time.now - 2.days)..Time.now).order('created_at desc').limit(6 - first_batch.length)
+          second_batch.each do |post|
+            first_batch << post
+          end
+        end
+        return first_batch
       elsif query == "friends"
         friends = []
         current_user.friends.each do |friend|
