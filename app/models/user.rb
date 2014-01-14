@@ -1,7 +1,4 @@
 class User < ActiveRecord::Base
-  attr_accessible :post_id
-  attr_accessible :avatar
-
   has_many :posts
   has_many :comments
   has_many :votes
