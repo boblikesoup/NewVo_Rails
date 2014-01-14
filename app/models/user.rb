@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
       first_name = auth_hash["info"]["first_name"]
       last_name = auth_hash["info"]["last_name"]
       avatar = auth_hash["info"]["image"]
-      user.update_attributes(first_name: first_name, last_name: last_name, avatar: avatar)
+      user.update_attributes(first_name: first_name, last_name: last_name, profile_pic: avatar)
     end
     user
   end
@@ -104,7 +104,7 @@ class User < ActiveRecord::Base
       first_name = user_info["info"]["first_name"]
       last_name = user_info["info"]["last_name"]
       avatar = user_info["info"]["image"]
-      user.update_attributes(first_name: first_name, last_name: last_name, avatar: avatar)
+      user.update_attributes(first_name: first_name, last_name: last_name, profile_pic: avatar)
     end
     user
   end
@@ -115,7 +115,7 @@ class User < ActiveRecord::Base
       :first_name => first_name,
       :last_name => last_name,
       :description => description,
-      :avatar => avatar,
+      :profile_pic => profile_pic,
       :followed_users => self.followed_users,
       :following_users => self.following_users,
       :friends => self.friends,
