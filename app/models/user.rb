@@ -98,6 +98,17 @@ class User < ActiveRecord::Base
     user
   end
 
+  def self.find_or_create_from_user_info user_info
+    user = self.find_or_create_by(fb_uid: user_info["uid"])
+    if user
+      first_name = user_info["info"]["first_name"]
+      last_name = user_info["info"]["last_name"]
+      avatar = user_info["info"]["image"]
+      user.update_attributes(first_name: first_name, last_name: last_name, avatar: avatar)
+    end
+    user
+  end
+
   #To send json of all profile information
   def as_json(options={})
     {
