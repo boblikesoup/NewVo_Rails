@@ -100,7 +100,7 @@ class User < ActiveRecord::Base
 
   def self.find_or_create_from_user_info user_info
     user = self.find_or_create_by(fb_uid: user_info["id"])
-    # if user
+    if user
     #   first_name = user_info["info"]["first_name"]
     #   last_name = user_info["info"]["last_name"]
     #   avatar = user_info["info"]["image"]
