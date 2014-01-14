@@ -17,21 +17,21 @@ class Post < ActiveRecord::Base
       :description => description,
       :has_single_picture => has_single_picture,
       :photos => photos,
-      # :user_voted => user_voted,
+      :user_voted => user_voted,
       :comments => comments
     }
   end
 
   private
 
-  # def user_voted
-  #   vote = Vote.find_by(user_id: User.current.id, post_id: self.id)
-  #   if vote != nil
-  #     return true
-  #   else
-  #     return false
-  #   end
-  # end
+  def user_voted
+    vote = Vote.find_by(user_id: User.current.id, post_id: self.id)
+    if vote != nil
+      return true
+    else
+      return false
+    end
+  end
 
   def update_has_single_picture
     self.update_columns(has_single_picture: 'true') if self.photos.count == 1
