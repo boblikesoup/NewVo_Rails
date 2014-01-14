@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :votes
   has_many :photos, through: :posts
-  has_attached_file :avatar, :path => '/:attachment/:user_id/:style/:filename'
+  has_attached_file :avatar, :path => '/:attachment/:uid/:style/:filename'
 
   #most of code needed to hard-cod db relationships intead of methods
   # has_many :followings, foreign_key: "follower_id", dependent: :destroy
