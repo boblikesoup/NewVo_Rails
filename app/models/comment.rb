@@ -10,7 +10,8 @@ class Comment < ActiveRecord::Base
     {
       :id => id,
       :body => body,
-      :user_id => user_id
+      :user_id => user_id,
+      :profile_pic => User.find(user_id).profile_pic
     }
   end
 

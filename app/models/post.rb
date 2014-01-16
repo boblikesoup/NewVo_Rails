@@ -14,6 +14,8 @@ class Post < ActiveRecord::Base
   def as_json(options={})
     {
       :post_id => id,
+      :user_id => user_id,
+      :profile_pic => User.find(user_id).profile_pic,
       :description => description,
       :has_single_picture => has_single_picture,
       :photos => photos,
