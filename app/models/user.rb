@@ -119,6 +119,7 @@ class User < ActiveRecord::Base
       :following_users => self.following_users,
       :friends => self.friends,
       :posts => posts.order("created_at desc").limit(6),
+      :fb_token =>
     }
   end
 
