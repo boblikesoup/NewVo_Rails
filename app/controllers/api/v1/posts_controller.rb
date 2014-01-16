@@ -3,54 +3,42 @@ class API::V1::PostsController < ApplicationController
 
   def search
 
-    def newest_photos(query)
+    def post_retrieval(query, used_post_ids)
       if query == "global"
-        return Post.find(:all, :order => "created_at desc", :limit => 6)
+        big_set = Post.all.order('created_at desc').limit(100)
+        if used_post_ids.empty?
+          return big_set.limit(10)
+        else
+          return big_set.where("id NOT IN (?)", used_post_ids).limit(10)
+        end
       elsif query == "friends"
         friends = []
         current_user.friends.each do |friend|
           friends << friend.id
         end
-        return Post.where(user_id: friends).order('created_at desc').limit(6)
+        big_set = Post.where("user_id = ?", friends).order('created_at desc').limit(100)
+        if big_set.empty?
+          return big_set.limit(10)
+        else
+          return big_set.where("id NOT IN (?)", used_post_ids).limit(10)
+        end
       elsif query == "following"
         following = []
         current_user.followed_users.each do |followed_user|
           following << followed_user.id
         end
-        return Post.where(user_id: following).order('created_at desc').limit(6)
+        big_set = Post.where("user_id = ?", following).order('created_at desc').limit(100)
+        if big_set.empty?
+          return big_set.limit(10)
+        else
+          return big_set.where("id NOT IN (?)", used_post_ids).limit(10)
+        end
       else
-        "error!!!"
+        return "Invalid params or already returned all 100 most recent posts."
       end
     end
 
-    def time_search(query, newest_photo_time, oldest_photo_time)
-      if query == "global"
-        first_batch = Post.where(created_at: newest_photo_time..Time.now).order('created_at desc').limit(6)
-        return Post.find(:all, :order => "created_at desc", :limit => 6)
-      elsif query == "friends"
-        friends = []
-        current_user.friends.each do |friend|
-          friends << friend.id
-        end
-        return Post.where(user_id: friends).order('created_at desc').limit(6)
-      elsif query == "following"
-        following = []
-        current_user.followed_users.each do |followed_user|
-          following << followed_user.id
-        end
-        return Post.where(user_id: following).order('created_at desc').limit(6)
-      else
-        "error!!!"
-      end
-    end
-
-    params[:query] = "global"
-    if params[:newest_photo_time] == nil
-      @posts = newest_photos(params[:query])
-    else
-      @posts = time_search(params[:query], Time.parse(params[:newest_photo_time]), Time.parse(params[:oldest_photo_time]))
-    end
-
+    @posts = post_retrieval(params[:query], params[:used_post_ids])
     respond_with(@posts)
   end
 
