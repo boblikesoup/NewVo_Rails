@@ -10,12 +10,13 @@ class Comment < ActiveRecord::Base
     {
       :id => id,
       :body => body,
-      :votes => get_votes,
-      :user_id => user_id
+      :user_id => user_id,
+      :
     }
   end
 
   def get_votes
+    #when using votes add ":votes => get_votes," to as_json method
     self.votes.group(:value).count[1] || 0
   end
 
