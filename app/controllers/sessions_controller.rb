@@ -17,10 +17,9 @@ class SessionsController < ApplicationController
       site: 'https://graph.facebook.com')
     facebook_token = OAuth2::AccessToken.new(client, params[:facebook_token])
     user_info = ActiveSupport::JSON.decode(facebook_token.get('/me').body)
-    #not sure exactly how to sign in users after this or if we still need to. This will work for users in our db. We may also need variable for DaWei's extra params(os_type, device_id, etc..).
-
-    ##totally usure of line 23
-    # user = User.find_or_create_from_auth_hash(user_info)
+    user = User.find_or_create_from_user_info(user_info)
+    session[:user_id] = user.id
+    redirect_to posts_path
   end
 
   private
@@ -30,3 +29,11 @@ class SessionsController < ApplicationController
   end
 
 end
+
+
+#Do we need this code at some point? Exchanges short term and long term tokens.
+# https://graph.facebook.com/oauth/access_token?
+#     client_id=APP_ID&
+#     client_secret=APP_SECRET&
+#     grant_type=fb_exchange_token&
+#     fb_exchange_token=EXISTING_ACCESS_TOKEN

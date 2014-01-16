@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-  has_many :posts, :dependent => :destroy
-  has_many :comments, :dependent => :destroy
-  has_many :votes, :dependent => :destroy
+  has_many :posts
+  has_many :comments
+  has_many :votes
   has_many :photos, through: :posts
 
   #most of code needed to hard-cod db relationships intead of methods
@@ -17,14 +17,14 @@ class User < ActiveRecord::Base
   has_many :inverse_friends, through: :inverse_friendships, :source => :user
   #user.friends returns array of all friends
 
-  # validates_presence_of :first_name
-  # validates_presence_of :last_name
+  validates_presence_of :first_name
+  validates_presence_of :last_name
   # validates_presence_of :username
   # validates_uniqueness_of :username
   # validates_presence_of :email
   # validates_uniqueness_of :email
-  # validates_presence_of :fb_uid
-  # validates_uniqueness_of :fb_uid
+  validates_presence_of :fb_uid
+  validates_uniqueness_of :fb_uid
 
   def followed_users
     #to find all current user is following
@@ -91,9 +91,35 @@ class User < ActiveRecord::Base
     if user
       first_name = auth_hash["info"]["first_name"]
       last_name = auth_hash["info"]["last_name"]
-      user.update_attributes(first_name: first_name, last_name: last_name)
+      avatar = auth_hash["info"]["image"]
+      user.update_attributes(first_name: first_name, last_name: last_name, profile_pic: avatar)
     end
     user
+  end
+
+  def self.find_or_create_from_user_info user_info
+    user = self.find_or_create_by(fb_uid: user_info["id"])
+    if user
+      first_name = user_info["info"]["first_name"]
+      last_name = user_info["info"]["last_name"]
+      avatar = user_info["info"]["image"]
+      user.update_attributes(first_name: first_name, last_name: last_name, profile_pic: avatar)
+    end
+    user
+  end
+
+  #To send json of all profile information
+  def as_json(options={})
+    {
+      :first_name => first_name,
+      :last_name => last_name,
+      :description => description,
+      :profile_pic => profile_pic,
+      :followed_users => self.followed_users,
+      :following_users => self.following_users,
+      :friends => self.friends,
+      :posts => posts.order("created_at desc").limit(6),
+    }
   end
 
   def self.current
@@ -105,3 +131,4 @@ class User < ActiveRecord::Base
   end
 
 end
+
