@@ -3,31 +3,42 @@ class API::V1::PostsController < ApplicationController
 
   def search
 
-    def post_retrieval(query, used_photo_ids)
+    def post_retrieval(query, used_post_ids)
       if query == "global"
         big_set = Post.all.order('created_at desc').limit(100)
-        return big_set.where("id NOT IN (?)", used_photo_ids).limit(10)
+        if used_post_ids.empty?
+          return big_set.limit(10)
+        else
+          return big_set.where("id NOT IN (?)", used_post_ids).limit(10)
+        end
       elsif query == "friends"
         friends = []
         current_user.friends.each do |friend|
           friends << friend.id
         end
-        Client.where("orders_count = ?", params[:orders])
         big_set = Post.where("user_id = ?", friends).order('created_at desc').limit(100)
-        return big_set.where("id NOT IN (?)", used_photo_ids).limit(10)
+        if big_set.empty?
+          return big_set.limit(10)
+        else
+          return big_set.where("id NOT IN (?)", used_post_ids).limit(10)
+        end
       elsif query == "following"
         following = []
         current_user.followed_users.each do |followed_user|
           following << followed_user.id
         end
         big_set = Post.where("user_id = ?", following).order('created_at desc').limit(100)
-        return big_set.where("id NOT IN (?)", used_photo_ids).limit(10)
+        if big_set.empty?
+          return big_set.limit(10)
+        else
+          return big_set.where("id NOT IN (?)", used_post_ids).limit(10)
+        end
       else
-        return "Already returned all 100 most recent posts"
+        return "Invalid params or already returned all 100 most recent posts."
       end
     end
 
-    @posts = post_retrieval(params[:query], params[:used_photo_ids])
+    @posts = post_retrieval(params[:query], params[:used_post_ids])
     respond_with(@posts)
   end
 
