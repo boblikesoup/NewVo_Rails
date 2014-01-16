@@ -10,8 +10,7 @@ class Comment < ActiveRecord::Base
     {
       :id => id,
       :body => body,
-      :user_id => user_id,
-      :
+      :user_id => user_id
     }
   end
 
