@@ -1,4 +1,5 @@
 Newvo::Application.routes.draw do
+  devise_for :users
   root to: 'pages#home'
 
   get '/auth/mobile/fbtoken=:facebook_token&device_id=:device_id&time_zone=:time_zone&os_type=:os_type', to: 'sessions#fb_sso'

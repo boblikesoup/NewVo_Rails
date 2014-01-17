@@ -10,6 +10,7 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'devise'
 gem 'paperclip', '~> 3.0'
 gem 'aws-sdk'
 gem 'omniauth-facebook'
