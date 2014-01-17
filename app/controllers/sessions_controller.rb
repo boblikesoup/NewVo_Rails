@@ -17,9 +17,7 @@ class SessionsController < ApplicationController
       site: 'https://graph.facebook.com')
     facebook_token = OAuth2::AccessToken.new(client, params[:facebook_token])
     user_info = ActiveSupport::JSON.decode(facebook_token.get('/me').body)
-    user = User.find_or_create_from_user_info(user_info)
-    session[:user_id] = user.id
-    redirect_to posts_path
+    sign_in @user, :event => :authentication
   end
 
   private
