@@ -10,6 +10,7 @@ group :production do
   gem 'rails_12factor'
 end
 
+
 gem 'devise'
 gem 'paperclip', '~> 3.0'
 gem 'aws-sdk'
@@ -46,6 +47,7 @@ group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_girl_rails', "~> 4.0"
+  gem 'pry'
 end
 
 # Use ActiveModel has_secure_password

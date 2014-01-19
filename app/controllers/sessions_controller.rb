@@ -1,3 +1,4 @@
+require 'pry'
 class SessionsController < ApplicationController
   def create
     user = User.find_or_create_from_auth_hash(auth_hash)
@@ -7,7 +8,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_path
+    redirect_to posts_path
   end
 
   def fb_sso
@@ -15,9 +16,10 @@ class SessionsController < ApplicationController
       ENV['FACEBOOK_APP_ID'],
       ENV['FACEBOOK_APP_SECRET'],
       site: 'https://graph.facebook.com')
-    facebook_token = OAuth2::AccessToken.new(client, params[:facebook_token])
+    facebook_token = OAuth2::AccessToken.new(client, params[:fbtoken])
     user_info = ActiveSupport::JSON.decode(facebook_token.get('/me').body)
-    sign_in @user, :event => :authentication
+    puts user_info
+    redirect_to posts_path
   end
 
   private
