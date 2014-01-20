@@ -20,9 +20,6 @@ class API::V1::SessionsController < ApplicationController
       site: 'https://graph.facebook.com')
     facebook_token = OAuth2::AccessToken.new(client, params[:facebook_token])
     user_info = ActiveSupport::JSON.decode(facebook_token.get('/me').body)
-
-    #need to log them in as current user
-    #sign in using Devise method: sign_in @user, :event => :authentication #this will throw if @user is not activated
   end
 
   private

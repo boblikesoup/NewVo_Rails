@@ -1,5 +1,4 @@
 Newvo::Application.routes.draw do
-  devise_for :users
   root to: 'pages#home'
 
   get '/auth/mobile', to: 'sessions#fb_sso'
