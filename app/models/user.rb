@@ -85,10 +85,12 @@ class User < ActiveRecord::Base
   end
 
 
-#Store unique username and email address
+  # Sign in web
+  # Example object on omniauth github page
   def self.find_or_create_from_auth_hash auth_hash
     user = self.find_or_create_by(fb_uid: auth_hash["uid"])
     if user
+      user.generate_newvo_token
       first_name = auth_hash["info"]["first_name"]
       last_name = auth_hash["info"]["last_name"]
       avatar = auth_hash["info"]["image"]
@@ -97,15 +99,20 @@ class User < ActiveRecord::Base
     user
   end
 
+  # Sign in mobile
   def self.find_or_create_from_user_info user_info
-    user = self.find_or_create_by(fb_uid: user_info["id"])
-    if user
-      first_name = user_info["info"]["first_name"]
-      last_name = user_info["info"]["last_name"]
-      avatar = user_info["info"]["image"]
-      user.update_attributes(first_name: first_name, last_name: last_name, profile_pic: avatar)
-    end
-    user
+      user = self.find_or_create_by(fb_uid: user_info["id"])
+      user.generate_newvo_token
+      first_name = user_info["first_name"]
+      last_name = user_info["last_name"]
+      user.update_attributes(first_name: first_name, last_name: last_name)
+  end
+  # Example user_info object returned
+  # {"id"=>"1765376600", "name"=>"Brent Gaynor", "first_name"=>"Brent", "last_name"=>"Gaynor", "link"=>"https://www.facebook.com/brent.gaynor.1", "gender"=>"male", "timezone"=>-8, "locale"=>"en_US", "verified"=>true, "updated_time"=>"2013-12-11T08:46:38+0000", "username"=>"brent.gaynor.1"}
+
+  def generate_newvo_token
+    generate_unique_field! :newvo_token, 32 if newvo_token.blank?
+    self.save
   end
 
   #To send json of all profile information

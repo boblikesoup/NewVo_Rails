@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140114234353) do
+ActiveRecord::Schema.define(version: 20140120014901) do
 
   create_table "comments", force: true do |t|
     t.string   "body"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20140114234353) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "profile_pic"
+    t.string   "newvo_token"
   end
 
   create_table "votes", force: true do |t|

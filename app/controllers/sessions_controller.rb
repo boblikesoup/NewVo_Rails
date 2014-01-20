@@ -1,4 +1,3 @@
-require 'pry'
 class SessionsController < ApplicationController
   def create
     user = User.find_or_create_from_auth_hash(auth_hash)
@@ -11,6 +10,7 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
+  # For testing
   def fb_sso
     client = OAuth2::Client.new(
       ENV['FACEBOOK_APP_ID'],
@@ -18,9 +18,23 @@ class SessionsController < ApplicationController
       site: 'https://graph.facebook.com')
     facebook_token = OAuth2::AccessToken.new(client, params[:fbtoken])
     user_info = ActiveSupport::JSON.decode(facebook_token.get('/me').body)
-    puts user_info
-    redirect_to posts_path
+    user = User.find_or_create_from_user_info(user_info)
+    if user
+      valid_login_attempt
+      redirect_to posts_path
+    else
+      # Invalid Login Attempt is never used. Things blow up at user_info when params are bad.
+      invalid_login_attempt
+      redirect_to root_path
+    end
   end
+
+# Do we need this code at some point? Exchanges short term and long term tokens.
+# https://graph.facebook.com/oauth/access_token?
+#     client_id=APP_ID&
+#     client_secret=APP_SECRET&
+#     grant_type=fb_exchange_token&
+#     fb_exchange_token=EXISTING_ACCESS_TOKEN
 
   private
 
@@ -28,12 +42,12 @@ class SessionsController < ApplicationController
     request.env['omniauth.auth']
   end
 
+  def invalid_login_attempt(message="There has been an error with your login or password.")
+    puts "failure"
+  end
+
+  def valid_login_attempt
+    puts "success"
+  end
+
 end
-
-
-#Do we need this code at some point? Exchanges short term and long term tokens.
-# https://graph.facebook.com/oauth/access_token?
-#     client_id=APP_ID&
-#     client_secret=APP_SECRET&
-#     grant_type=fb_exchange_token&
-#     fb_exchange_token=EXISTING_ACCESS_TOKEN
