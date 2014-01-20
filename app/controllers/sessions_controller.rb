@@ -21,11 +21,9 @@ class SessionsController < ApplicationController
     user = User.find_or_create_from_user_info(user_info)
     if user
       valid_login_attempt
-      redirect_to posts_path
     else
       # Invalid Login Attempt is never used. Things blow up at user_info when params are bad.
       invalid_login_attempt
-      redirect_to root_path
     end
   end
 
@@ -43,11 +41,11 @@ class SessionsController < ApplicationController
   end
 
   def invalid_login_attempt(message="There has been an error with your login or password.")
-    puts "failure"
+    render :json=> {:success=>false, :message=>message}, :status=>401
   end
 
   def valid_login_attempt
-    puts "success"
+    render :json=> {:success=>true, :id=>@user.id, :newvo_token=>@user.newvo_token }
   end
 
 end

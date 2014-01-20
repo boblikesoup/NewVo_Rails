@@ -106,6 +106,7 @@ class User < ActiveRecord::Base
       first_name = user_info["first_name"]
       last_name = user_info["last_name"]
       user.update_attributes(first_name: first_name, last_name: last_name)
+      user
   end
   # Example user_info object returned
   # {"id"=>"1765376600", "name"=>"Brent Gaynor", "first_name"=>"Brent", "last_name"=>"Gaynor", "link"=>"https://www.facebook.com/brent.gaynor.1", "gender"=>"male", "timezone"=>-8, "locale"=>"en_US", "verified"=>true, "updated_time"=>"2013-12-11T08:46:38+0000", "username"=>"brent.gaynor.1"}
@@ -118,6 +119,7 @@ class User < ActiveRecord::Base
   #To send json of all profile information
   def as_json(options={})
     {
+      :id => id,
       :first_name => first_name,
       :last_name => last_name,
       :description => description,
