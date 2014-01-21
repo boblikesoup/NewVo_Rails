@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
   end
 
   # Sign in mobile
-  def self.find_or_create_from_user_info user_info
+  def self.find_or_create_from_user_info (user_info, profile_pic)
       user = self.find_or_create_by(fb_uid: user_info["id"])
       if user
       user.generate_newvo_token
@@ -109,7 +109,8 @@ class User < ActiveRecord::Base
       last_name = user_info["last_name"]
       username = user_info["username"]
       facebook_id = user_info["id"]
-      user.update_attributes(first_name: first_name, last_name: last_name, facebook_username: username, fb_uid: facebook_id)
+      profile_pic = profile_pic["picture"]["data"]["url"]
+      user.update_attributes(first_name: first_name, last_name: last_name, facebook_username: username, fb_uid: facebook_id, profile_pic: profile_pic)
     end
    user
   end
