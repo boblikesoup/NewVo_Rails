@@ -94,7 +94,8 @@ class User < ActiveRecord::Base
       first_name = auth_hash["info"]["first_name"]
       last_name = auth_hash["info"]["last_name"]
       avatar = auth_hash["info"]["image"]
-      user.update_attributes(first_name: first_name, last_name: last_name, profile_pic: avatar)
+      facebook_id = auth_hash["uid"]
+      user.update_attributes(first_name: first_name, last_name: last_name, profile_pic: avatar, fb_uid: facebook_id)
     end
     user
   end
@@ -106,11 +107,10 @@ class User < ActiveRecord::Base
       first_name = user_info["first_name"]
       last_name = user_info["last_name"]
       username = user_info["username"]
-      user.update_attributes(first_name: first_name, last_name: last_name, facebook_username: username )
+      facebook_id = user_info["id"]
+      user.update_attributes(first_name: first_name, last_name: last_name, facebook_username: username, fb_uid: facebook_id)
       user
   end
-  # Example user_info object returned
-  # {"id"=>"1765376600", "name"=>"Brent Gaynor", "first_name"=>"Brent", "last_name"=>"Gaynor", "link"=>"https://www.facebook.com/brent.gaynor.1", "gender"=>"male", "timezone"=>-8, "locale"=>"en_US", "verified"=>true, "updated_time"=>"2013-12-11T08:46:38+0000", "username"=>"brent.gaynor.1"}
 
   def generate_newvo_token
     generate_unique_field! :newvo_token, 32 if newvo_token.blank?
