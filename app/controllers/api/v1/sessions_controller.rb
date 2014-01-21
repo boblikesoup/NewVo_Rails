@@ -36,7 +36,15 @@ class API::V1::SessionsController < ApplicationController
   end
 
   def valid_login_attempt
-    render :json=> {:success=>true, :id=>@user.id, :newvo_token=>@user.newvo_token }
+    render :json=> {
+     :success=>true,
+     :id=>@user.id,
+     :newvo_token=>@user.newvo_token
+     :first_name => @user.first_name,
+     :last_name => @user.last_name,
+     :facebook_username => @user.facebook_username
+     :profile_pic => @user.profile_pic
+      }
   end
 
 end

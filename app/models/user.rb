@@ -105,7 +105,8 @@ class User < ActiveRecord::Base
       user.generate_newvo_token
       first_name = user_info["first_name"]
       last_name = user_info["last_name"]
-      user.update_attributes(first_name: first_name, last_name: last_name)
+      username = user_info["username"]
+      user.update_attributes(first_name: first_name, last_name: last_name, facebook_username: username )
       user
   end
   # Example user_info object returned
