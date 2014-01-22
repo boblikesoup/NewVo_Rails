@@ -255,6 +255,12 @@ input[type=submit] {
   float: left;
 }
 
+.nv-two-images img {
+  width: 300px;
+  height: 320px%;
+  padding: 0.5%;
+}
+
 img {
   height: auto;
   max-width: 100%;
@@ -309,7 +315,8 @@ img {
 
   .nv-two-images {
     max-height: auto;
-    max-width: 50%;
+    max-width: 48%;
+    padding: 0.5%;
   }
 }
 
