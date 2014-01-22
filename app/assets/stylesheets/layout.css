@@ -347,24 +347,7 @@ img {
   }
 }
 
-@media only screen and (min-width: 481px) and (max-width: 957px) {
-
-  .mobile {
-    display: none;
-  }
-
-  .left{
-    float: none;
-    margin: 0;
-  }
-
-  .right {
-    float: none;
-    margin: 0;
-  }
-}
-
-@media only screen and (min-width: 958px) and (max-width: 1088px) {
+@media only screen and (min-width: 481px) and (max-width: 1088px) {
 
   .mobile {
     display: none;
@@ -375,7 +358,8 @@ img {
   }
 
   .right {
-    margin: 25% 0;
+    margin: 10% 2%;
+    height: 450px;
   }
 }
 
