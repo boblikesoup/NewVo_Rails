@@ -1,7 +1,7 @@
 <header>
   <div class='nv-block'>
-    <div class='nv-left'>Welcome <%= current_user.first_name %>!</div>
-    <div class='nv-mid'>NewVo</div>
+    <div class='gravatar'><%= image_tag current_user.profile_pic %></div>
+    <div class='nv-left'> Welcome <%= current_user.first_name %>!</div>
     <% if @posts_page %>
       <div class='nv-mid'><%= link_to "Profile", current_user %></div>
     <% end %>

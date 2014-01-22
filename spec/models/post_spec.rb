@@ -12,13 +12,6 @@ describe Post do
     }.to change{Post.count}.from(0).to(1)
   end
 
-  it "should not save without a title" do
-    expect{
-            post_template.title = ""
-            post_template.save
-    }.to change{Post.count}.by(0)
-  end
-
   it "should not save without a user_id" do
     expect{
             post_template.user_id = ""

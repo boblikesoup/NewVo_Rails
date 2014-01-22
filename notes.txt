@@ -1,0 +1,21 @@
+# App Access Token
+https://graph.facebook.com/oauth/access_token?grant_type=client_credentials&client_id=650360678349775&client_secret=f328dd02b38f0911c1fafa1ba2c09bce
+# access_token=650360678349775|4AMi2eAfkGTyVd-t2SrWduEGfAU
+
+# Get User Access Token here:
+https://developers.facebook.com/tools/explorer/145634995501895/?method=GET&path=1765376600%3Ffields%3Did%2Cname
+
+# Working mobile route with facebook User Access Token (these expire quickly)
+/auth/mobile?fbtoken=CAACEdEose0cBAJRLF5JJTqPBj4ANHdiljxPdA5S5R4ZB4Bbm33URvWlp16xJStof4g9gleShNlBOrBM6PxLJY5AXIZANhxiu4fl9gB8mTIuWshlU9Kb1nkOrZAufBG15ouUTLgTCO7i8bFuZAqGVVHLaov53fi8N4bTWe0HkGKisxZCLizEZCogXvp8P9TATcZD&device_id=device_id&time_zone=+0800&os_type=ios
+
+# Why won't these associations work in user.rb? Shouldn't have to hard code them.
+has_many :followings, foreign_key: "follower_id", dependent: :destroy
+has_many :followings, foreign_key: "followed_id", dependent: :destroy
+has_many :followed_users, through: :followings, source: :followed
+has_many :following_users, through: :followings, source: :follower
+
+{"id": "517267866", "picture": { "data": { "url": "http://profile.ak.fbcdn.net/hprofile-ak-prn2/260681_517267866_1289222130_q.jpg",
+         "is_silhouette": false
+      }
+   }
+}

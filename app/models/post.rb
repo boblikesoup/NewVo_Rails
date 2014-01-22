@@ -1,29 +1,42 @@
 class Post < ActiveRecord::Base
   belongs_to :user
-  has_many :comments#, :dependent => :destroy
-  has_many :photos#, :dependent => :destroy
+  has_many :comments
+  has_many :photos
   accepts_nested_attributes_for :photos,
       :reject_if => lambda { |attributes| attributes[:photo].blank? }
 
   after_save :update_has_single_picture
 
-  # validates_presence_of :title
-  # validates_presence_of :user_id
-  # validates_presence_of :single
+  validates_presence_of :user_id
+  validates_presence_of :photos
+
 
   def as_json(options={})
     {
       :post_id => id,
-      :title => title,
+      :user_id => user_id,
+      :profile_pic => User.find(user_id).profile_pic,
+      :description => description,
       :has_single_picture => has_single_picture,
       :photos => photos,
+      :user_voted => user_voted,
       :comments => comments
     }
   end
 
   private
 
-  def update_has_single_picture
-    self.update_columns(has_single_picture: 'false') if self.photos.count == 2
+  def user_voted
+    vote = Vote.find_by(user_id: User.current.id, post_id: self.id)
+    if vote != nil
+      return true
+    else
+      return false
+    end
   end
+
+  def update_has_single_picture
+    self.update_columns(has_single_picture: 'true') if self.photos.count == 1
+  end
+
 end
