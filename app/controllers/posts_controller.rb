@@ -18,7 +18,6 @@ class PostsController < ApplicationController
       # TODO
       # display errors and prevent cookie overflow when content type is not an image
       # handle error when save is not successful
-
   end
 
   def show
@@ -38,10 +37,11 @@ class PostsController < ApplicationController
   private
   #refactor this shit!
   def post_params
-    params.require(:post).permit(:title, photos_attributes: [:id, :photo])
+    params.require(:post).permit(:description, photos_attributes: [:id, :photo])
   end
 
-
-
+  # before_filter :require_user # require_user will set the current_user in controllers
+  # ^ in tutorial but not working http://rails-bestpractices.com/posts/47-fetch-current-user-in-models
+  before_filter :set_current_user
 
 end

@@ -4,8 +4,8 @@
     <p>Can't decide between what to wear or buy?</p>
     <p>Ask away!</p>
     <%= form_for @post, :html => {:multipart => true} do |f| %>
-      <%= f.label :title %>
-      <%= f.text_field :title %>
+      <%= f.label :description %>
+      <%= f.text_field :description %>
       <%= f.fields_for :photos do |builder| %>
         <% if builder.object.new_record? %>
         <%= builder.file_field :photo %>
