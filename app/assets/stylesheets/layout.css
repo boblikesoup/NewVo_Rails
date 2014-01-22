@@ -32,14 +32,27 @@ body {
 }
 
 .container {
-  width: 90%;
-  max-width: 1000px;
+  width: 960px;
   margin: auto;
   display: block;
   padding: 1%;
   text-align: center;
-  clear: both;
 }
+
+/*for modern browsers */
+  .clearfix:before,
+  .clearfix:after {
+     content: "";
+     display: table;
+  }
+  .clearfix:after {
+     clear: both;
+  }
+
+  /* IE6-7 */
+  .clearfix {
+     zoom: 1;
+  }
 
 .iphone-image {
   height: 60%;
@@ -51,7 +64,7 @@ body {
   width: auto;
   display: inline-block;
   float: left;
-  margin: 3% 2% 0 10%;
+  margin: 3% 2% 0 5%;
 }
 
 /* MailChimp */
@@ -76,8 +89,7 @@ body {
 /* right side */
 
 .right {
-  position: relative;
-  width: auto;
+  width: 55%;
   display: inline-block;
   border: 15px solid transparent;
   float: left;
@@ -85,12 +97,12 @@ body {
   background-color: black;
   opacity: 0.5;
   border-radius: .5em;
+  text-align: center;
 }
 
 .info {
   border-radius: .5em;
-  padding: 5% 5%;
-  width: 450px;
+  width: 100%;
 }
 
 .text-box {
@@ -207,6 +219,17 @@ input[type=submit] {
   text-align: center;
 }
 
+.nv-center {
+  text-align: center;
+}
+
+.nv-comments {
+  background-color: black;
+  border-radius: 0.5em;
+  margin: 2% 2%;
+  padding: 2%;
+}
+
 .nv-title {
   font-size: 2.5em;
 }
@@ -244,6 +267,12 @@ input[type=submit] {
   float: left;
 }
 
+.nv-two-images img {
+  width: 300px;
+  height: 320px%;
+  padding: 0.5%;
+}
+
 img {
   height: auto;
   max-width: 100%;
@@ -252,6 +281,12 @@ img {
 /* media queries */
 
 @media only screen and (max-width: 480px) {
+  .container {
+    width: auto;
+    padding: 0;
+    margin: auto;
+  }
+
   .body {
     font-size: 10px;
   }
@@ -270,17 +305,26 @@ img {
     display: none;
   }
 
-  .left, .right, .info, .text-box, .info-square, .app-button, .middle, .nv-single-image {
+  .info, .info-square, .app-button, .middle, .nv-single-image {
     width: auto;
-    margin: 0;
+    margin: auto;
+  }
+
+  .right {
+    width: 280px;
+    margin: 2% 1.5%;
+  }
+
+  .left {
+    margin: 2% 2.5%;
+  }
+
+  .text-box {
+    text-align: center;
   }
 
   .description {
     margin-bottom: 10%;
-  }
-
-  .container {
-    padding: 0;
   }
 
   .text-box {
@@ -298,28 +342,12 @@ img {
 
   .nv-two-images {
     max-height: auto;
-    max-width: 50%;
+    max-width: 48%;
+    padding: 0.5%;
   }
 }
 
-@media only screen and (min-width: 481px) and (max-width: 957px) {
-
-  .mobile {
-    display: none;
-  }
-
-  .left{
-    float: none;
-    margin: 0;
-  }
-
-  .right {
-    float: none;
-    margin: 0;
-  }
-}
-
-@media only screen and (min-width: 958px) and (max-width: 1088px) {
+@media only screen and (min-width: 481px) and (max-width: 1088px) {
 
   .mobile {
     display: none;
@@ -330,7 +358,8 @@ img {
   }
 
   .right {
-    margin: 25% 0;
+    margin: 10% 2%;
+    height: 450px;
   }
 }
 
