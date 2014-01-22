@@ -28,6 +28,7 @@ body {
 .description{
   color: white;
   text-align:center;
+  margin: 3%;
 }
 
 .container {
@@ -40,7 +41,9 @@ body {
   clear: both;
 }
 
-.iphone {
+.iphone-image {
+  height: 75%;
+  width: 325px;
 }
 
 .left {
@@ -86,7 +89,8 @@ body {
 
 .info {
   border-radius: .5em;
-  padding: 1%;
+  padding: 5% 5%;
+  width: 450px;
 }
 
 .text-box {
