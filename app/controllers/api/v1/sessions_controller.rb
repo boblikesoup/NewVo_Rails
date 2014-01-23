@@ -8,7 +8,8 @@ class API::V1::SessionsController < ApplicationController
       site: 'https://graph.facebook.com')
     facebook_token = OAuth2::AccessToken.new(client, params[:fbtoken])
     user_info = ActiveSupport::JSON.decode(facebook_token.get('/me').body)
-    @user = User.find_or_create_from_user_info(user_info)
+    picture_info = ActiveSupport::JSON.decode(facebook_token.get('/me?fields=picture').body)
+    @user = User.find_or_create_from_user_info(user_info, picture_info)
     if @user
       valid_login_attempt
     else
@@ -36,7 +37,16 @@ class API::V1::SessionsController < ApplicationController
   end
 
   def valid_login_attempt
-    render :json=> {:success=>true, :id=>@user.id, :newvo_token=>@user.newvo_token }
+    render :json=> {
+     :success=>true,
+     :id=>@user.id,
+     :newvo_token=>@user.newvo_token,
+     :first_name => @user.first_name,
+     :last_name => @user.last_name,
+     :facebook_username => @user.facebook_username,
+     :profile_pic => @user.profile_pic,
+     :facebook_id => @user.fb_uid
+      }
   end
 
 end

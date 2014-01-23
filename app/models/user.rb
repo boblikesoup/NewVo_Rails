@@ -78,20 +78,26 @@ class User < ActiveRecord::Base
       first_name = auth_hash["info"]["first_name"]
       last_name = auth_hash["info"]["last_name"]
       avatar = auth_hash["info"]["image"]
-      user.update_attributes(first_name: first_name, last_name: last_name, profile_pic: avatar)
+      facebook_id = auth_hash["uid"]
+      user.update_attributes(first_name: first_name, last_name: last_name, profile_pic: avatar, fb_uid: facebook_id)
     end
     user
   end
 
-  def self.find_or_create_from_user_info user_info
+
+  # Sign in mobile
+  def self.find_or_create_from_user_info (user_info, picture_info)
       user = self.find_or_create_by(fb_uid: user_info["id"])
       if user
       user.generate_newvo_token
       first_name = user_info["first_name"]
       last_name = user_info["last_name"]
-      user.update_attributes(first_name: first_name, last_name: last_name)
+      username = user_info["username"]
+      facebook_id = user_info["id"]
+      profile_pic = picture_info["picture"]["data"]["url"]
+      user.update_attributes(first_name: first_name, last_name: last_name, facebook_username: username, fb_uid: facebook_id, profile_pic: profile_pic)
     end
-    user
+   user
   end
 
   def generate_newvo_token

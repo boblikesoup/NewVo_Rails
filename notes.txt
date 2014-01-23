@@ -6,7 +6,6 @@ https://graph.facebook.com/oauth/access_token?grant_type=client_credentials&clie
 https://developers.facebook.com/tools/explorer/145634995501895/?method=GET&path=1765376600%3Ffields%3Did%2Cname
 
 # Working mobile route with facebook User Access Token (these expire quickly)
-
 /auth/mobile?fbtoken=CAACEdEose0cBAJRLF5JJTqPBj4ANHdiljxPdA5S5R4ZB4Bbm33URvWlp16xJStof4g9gleShNlBOrBM6PxLJY5AXIZANhxiu4fl9gB8mTIuWshlU9Kb1nkOrZAufBG15ouUTLgTCO7i8bFuZAqGVVHLaov53fi8N4bTWe0HkGKisxZCLizEZCogXvp8P9TATcZD&device_id=device_id&time_zone=+0800&os_type=ios
 
 # Why won't these associations work in user.rb? Shouldn't have to hard code them.
