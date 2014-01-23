@@ -47,12 +47,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails', "~> 4.0"
   gem 'pry'
-  ###########################
   gem 'shoulda-matchers'
-  gem 'selenium-webdriver'
-  gem 'simplecov', :require => false, :group => :test
-  ###########################
-  gem 'debugger'
   gem 'dotenv-rails'
 end
 
