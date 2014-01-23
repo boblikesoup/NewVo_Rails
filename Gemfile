@@ -10,11 +10,11 @@ group :production do
   gem 'rails_12factor'
 end
 
+
 gem 'unique_generator'
 gem 'paperclip', '~> 3.0'
 gem 'aws-sdk'
 gem 'omniauth-facebook'
-gem 'dotenv-rails', :groups => [:development, :test]
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -47,6 +47,8 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails', "~> 4.0"
   gem 'pry'
+  gem 'shoulda-matchers'
+  gem 'dotenv-rails'
 end
 
 # Use ActiveModel has_secure_password
@@ -57,6 +59,3 @@ end
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
