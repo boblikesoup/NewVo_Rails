@@ -213,7 +213,7 @@ input[type=submit] {
   background-color: black;
   color: white;
   border-radius: 0.5em;
-  margin: 8% 2% 2% 2%;
+  margin: 100px 2% 2% 2%;
   padding: 2%;
 }
 
@@ -372,6 +372,10 @@ img {
     max-height: auto;
     max-width: 48%;
     padding: 0.5%;
+  }
+
+  .nv-create-post-box {
+    margin-top: 75px;
   }
 }
 
