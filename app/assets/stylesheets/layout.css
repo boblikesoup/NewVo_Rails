@@ -193,7 +193,7 @@ input[type=submit] {
 .nv-right-top-menu {
   padding: 1% 2.5%;
   display: inline-block;
-  position: absolute;
+  position: relative;
   right: 0;
 }
 
@@ -276,6 +276,11 @@ input[type=submit] {
 img {
   height: auto;
   max-width: 100%;
+}
+
+.gravatar {
+  padding: 1% 0 0.5% 1%;
+  display: inline-block;
 }
 
 /* media queries */

@@ -12,6 +12,7 @@ Newvo::Application.routes.draw do
   resources :posts, only: [:index, :create, :show, :destroy] do
     resources :comments, only: [:create, :update, :edit, :destroy]
   end
+
   resources :votes, only: :create
   resources :followings, only: [:create, :destroy, :show]
   resources :users, only: [:index, :show]
