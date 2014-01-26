@@ -4,6 +4,8 @@ class PostsController < ApplicationController
   def index
     @post = Post.new
     @posts = Post.order(created_at: :desc)
+    @posts_page = true
+    @profile = false
 
     2.times { @post.photos.build }
     #render json: @posts, :include => [:photos, :comments]

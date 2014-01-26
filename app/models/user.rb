@@ -3,26 +3,13 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :votes
   has_many :photos, through: :posts
-
-  #most of code needed to hard-cod db relationships intead of methods
-  # has_many :followings, foreign_key: "follower_id", dependent: :destroy
-  # has_many :followings, foreign_key: "followed_id", dependent: :destroy
-
-  # has_many :followed_users, through: :followings, source: :followed
-  # has_many :following_users, through: :followings, source: :follower
-
   has_many :friendships
   has_many :friends, through: :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, through: :inverse_friendships, :source => :user
-  #user.friends returns array of all friends
 
   validates_presence_of :first_name
   validates_presence_of :last_name
-  # validates_presence_of :username
-  # validates_uniqueness_of :username
-  # validates_presence_of :email
-  # validates_uniqueness_of :email
   validates_presence_of :fb_uid
   validates_uniqueness_of :fb_uid
 
@@ -84,9 +71,6 @@ class User < ActiveRecord::Base
     Friendship.find_by(user_id: followed_id, friend_id: self.id).destroy
   end
 
-
-  # Sign in web
-  # Example object on omniauth github page
   def self.find_or_create_from_auth_hash auth_hash
     user = self.find_or_create_by(fb_uid: auth_hash["uid"])
     if user
@@ -99,6 +83,7 @@ class User < ActiveRecord::Base
     end
     user
   end
+
 
   # Sign in mobile
   def self.find_or_create_from_user_info (user_info, picture_info)
@@ -120,7 +105,6 @@ class User < ActiveRecord::Base
     self.save
   end
 
-  #To send json of all profile information
   def as_json(options={})
     {
       :id => id,
