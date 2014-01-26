@@ -8,6 +8,13 @@
   zoom: 1.0;
 }
 
+header {
+  top: 0;
+  margin-bottom: 2%;
+  width: 100%;
+  position: fixed;
+}
+
 body {
   background: url(/assets/landing_page/bg1.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
