@@ -249,6 +249,10 @@ input[type=submit] {
   margin: 0 20% 0;
 }
 
+.post-title {
+  margin: 0 0 2%;
+}
+
 .asked-by {
   font-size: 0.5em;
 }

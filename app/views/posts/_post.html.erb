@@ -1,5 +1,8 @@
 <div class='nv-main'>
-  <div class='post-box'> <%= post.description %>
+  <div class='post-box'>
+    <div class='post-title'>
+      <%= post.description %>
+    </div>
     <div class='asked-by'>Asked by <%= post.user.first_name %> <%= post.user.last_name %> on
       <%= post.user.created_at.strftime("%H:%M, %d %b") %>
     </div>
