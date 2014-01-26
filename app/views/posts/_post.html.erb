@@ -1,8 +1,9 @@
 <div class='nv-main'>
-  <div class='nv-title'> <%= post.description %> </div>
-    <div class='nv-main'>Asked by <%= post.user.first_name %> <%= post.user.last_name %> on
+  <div class='post-box'> <%= post.description %>
+    <div class='asked-by'>Asked by <%= post.user.first_name %> <%= post.user.last_name %> on
       <%= post.user.created_at.strftime("%H:%M, %d %b") %>
     </div>
+  </div>
     <br>
     <% if post.photos.length == 1 %>
       <% post.photos.each do |photo| %>
