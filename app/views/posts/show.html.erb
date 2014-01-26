@@ -1,6 +1,6 @@
 
 <% if @post.published == true %>
-<%= render partial: 'post', object: @post %>
+  <%= render partial: 'post', object: @post %>
 <% end %>
 
 <% if signed_in? %>
@@ -9,7 +9,6 @@
     <%= f.text_field :body %>
     <%= f.submit %>
   <% end %>
-
   <% if @post.comments %>
     <% @post.comments.each do |comment| %>
     <p>
@@ -21,7 +20,6 @@
       <%= link_to "Like", votes_path(:comment => comment.id, :value => 1), method: :post%>
       <span> <%= comment.votes.sum(:value) %> </span>
     </p>
-
     <% end %>
   <% end %>
 <% end %>

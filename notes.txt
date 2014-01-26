@@ -14,8 +14,5 @@ has_many :followings, foreign_key: "followed_id", dependent: :destroy
 has_many :followed_users, through: :followings, source: :followed
 has_many :following_users, through: :followings, source: :follower
 
-{"id": "517267866", "picture": { "data": { "url": "http://profile.ak.fbcdn.net/hprofile-ak-prn2/260681_517267866_1289222130_q.jpg",
-         "is_silhouette": false
-      }
-   }
-}
+# for binding.pry (similar to debugger)
+xit "should allow guest to view post", :js => true do
