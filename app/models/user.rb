@@ -45,10 +45,7 @@ class User < ActiveRecord::Base
     if @following = Following.create!(follower_id: self.id, followed_id: followed_id)
       FollowingActivity.create!(notified_user_id: self.id, other_user_id: followed_id, followed_type: "follower", following_id: @following.id)
       FollowingActivity.create!(notified_user_id: followed_id, other_user_id: self.id, followed_type: "followed", following_id: @following.id)
-
-    else
-  # error handling
-end
+    end
   end
 
   def unfollow!(followed_id)
@@ -67,8 +64,10 @@ end
   end
 
   def create_friendship(followed_id)
-    Friendship.create(user_id: self.id, friend_id: followed_id)
-    Friendship.create(user_id: followed_id, friend_id: self.id)
+    if @friender = Friendship.create(user_id: self.id, friend_id: followed_id) && @friended = Friendship.create(user_id: followed_id, friend_id: self.id)
+      FriendshipActivity.create!(notified_user_id: self.id, other_user_id: followed_id, friendship_id: @friender.id)
+      FriendshipActivity.create!(notified_user_id: followed_id, other_user_id: self.id, friendship_id: @friended.id)
+    end
   end
 
   def destroy_friendship(followed_id)
