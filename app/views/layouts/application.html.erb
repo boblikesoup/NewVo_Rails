@@ -11,14 +11,6 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <header>
-      <div class='nv-block'><% if signed_in? %>
-        <div class='nv-left'>Welcome <%= current_user.first_name %>!</div>
-        <div class='nv-mid'>NewVo</div>
-        <div class='nv-right-top-menu'><%= link_to "Sign out", signout_path %></div>
-      <% end %>
-      </div>
-    </header>
 
   <%= yield %>
 

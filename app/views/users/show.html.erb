@@ -1,0 +1,9 @@
+<% if signed_in? %>
+  <%= render 'layouts/header' %>
+<% else %>
+  Please sign in to get better results and to be able to post.
+<% end %>
+
+<div class='nv-main'>
+  <% p params %>
+</div>
