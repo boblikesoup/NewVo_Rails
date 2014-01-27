@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140127023834) do
+ActiveRecord::Schema.define(version: 20140127183647) do
 
   create_table "comments", force: true do |t|
     t.string   "body"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20140127023834) do
     t.integer  "following_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "followed_type"
   end
 
   create_table "followings", force: true do |t|

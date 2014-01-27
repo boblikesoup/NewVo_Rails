@@ -42,8 +42,13 @@ class User < ActiveRecord::Base
   end
 
   def follow!(followed_id)
-    #creates current user following user B relationship
-    Following.create!(follower_id: self.id, followed_id: followed_id)
+    if @following = Following.create!(follower_id: self.id, followed_id: followed_id)
+      FollowingActivity.create!(notified_user_id: self.id, other_user_id: followed_id, followed_type: "follower", following_id: @following.id)
+      FollowingActivity.create!(notified_user_id: followed_id, other_user_id: self.id, followed_type: "followed", following_id: @following.id)
+
+    else
+  # error handling
+end
   end
 
   def unfollow!(followed_id)

@@ -5,6 +5,7 @@ class API::V1::FollowingsController < ApplicationController
     current_user.follow!(params[:followed_id])
     if current_user.both_following?(params[:followed_id])
       current_user.create_friendship(params[:followed_id])
+      FriendshipActvitiy.create()
     end
   end
 
