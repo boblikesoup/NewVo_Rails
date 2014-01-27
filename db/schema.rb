@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140121012113) do
+ActiveRecord::Schema.define(version: 20140126230121) do
 
   create_table "comments", force: true do |t|
     t.string   "body"
@@ -66,6 +66,10 @@ ActiveRecord::Schema.define(version: 20140121012113) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "description"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.string   "profile_pic"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -82,6 +86,14 @@ ActiveRecord::Schema.define(version: 20140121012113) do
   end
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "vote_activities", force: true do |t|
+    t.integer  "notified_user_id"
+    t.integer  "other_user_id"
+    t.integer  "vote_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "votes", force: true do |t|
     t.integer  "votable_id"
