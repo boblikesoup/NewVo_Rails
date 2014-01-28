@@ -11,6 +11,8 @@ group :production do
 end
 
 
+gem 'exceptiontrap'
+gem 'thin'
 gem 'unique_generator'
 gem 'paperclip', '~> 3.0'
 gem 'aws-sdk'
@@ -41,7 +43,6 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
-  gem 'jasmine'
   gem 'faker'
   gem 'capybara'
   gem 'database_cleaner'

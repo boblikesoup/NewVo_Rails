@@ -95,7 +95,7 @@ class User < ActiveRecord::Base
       username = user_info["username"]
       facebook_id = user_info["id"]
       profile_pic = picture_info["picture"]["data"]["url"]
-      user.update_attributes(first_name: first_name, last_name: last_name, facebook_username: username, fb_uid: facebook_id, profile_pic: profile_pic)
+      user.update_attributes(first_name: first_name, last_name: last_name, fb_uid: facebook_id, profile_pic: profile_pic, facebook_username: username)
     end
    user
   end

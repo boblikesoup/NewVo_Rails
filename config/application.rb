@@ -13,6 +13,6 @@ Bundler.require(:default, Rails.env)
 
 module Newvo
   class Application < Rails::Application
-    config.force_ssl = true
+    # config.force_ssl = true
   end
 end
