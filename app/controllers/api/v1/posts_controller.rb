@@ -63,7 +63,7 @@ class API::V1::PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:id].to_i)
     @comment = Comment.new
     respond_with @post
   end
