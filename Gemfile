@@ -42,6 +42,7 @@ end
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'thin'
   gem 'rspec-rails'
   gem 'faker'
   gem 'capybara'
