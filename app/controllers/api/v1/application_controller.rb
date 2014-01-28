@@ -17,16 +17,12 @@ class API::V1::ApplicationController < ActionController::Base
     !@current_user.nil?
   end
 
-  def set_current_user
-      User.current = @current_user
-  end
-
   def sessions_controller?
     params[:controller] == "api/v1/sessions"
   end
 
   def current_user
-    @current_user
+    User.current = @current_user
   end
 
 end
