@@ -3,7 +3,7 @@ class Vote < ActiveRecord::Base
   belongs_to :votable, polymorphic: true #, counter_cache: true
   validates_uniqueness_of :user_id, scope: [:votable_id, :votable_type, :value]
   after_save :destroy_previous_vote
-  
+
   private
 
   def destroy_previous_vote
@@ -14,4 +14,5 @@ class Vote < ActiveRecord::Base
     end
       previous_vote.destroy if previous_vote != self
   end
+
 end

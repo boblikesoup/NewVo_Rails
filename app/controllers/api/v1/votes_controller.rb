@@ -5,17 +5,19 @@ class API::V1::VotesController < ApplicationController
     if params[:photo]
       current_photo = Photo.find(params[:photo])
       vote = Vote.new(user_id: current_user.id, value: params[:value], post_id: current_photo.post.id)
-      post = Post.find(current_photo.post_id)
       current_photo.votes << vote
-    else
-      current_comment = Comment.find(params[:comment])
-      vote = Vote.new(user_id: current_user.id, value: params[:value], post_id: current_photo.post.id)
-      post = Post.find(current_comment.post_id)
-      current_comment.votes << vote
+    #for voting on comments
+    # else
+    #   current_comment = Comment.find(params[:comment])
+    #   vote = Vote.new(user_id: current_user.id, value: params[:value], post_id: current_photo.post.id)
+    #   post = Post.find(current_comment.post_id)
+    #   current_comment.votes << vote
     end
-    vote.save
-    respond_with post, :location => api_v1_posts_path
+    if @vote = vote.save
+      notified_user_post = Post.find(@vote.post_id)
+      notified_user = notified_user_post.user_id
+      VoteActivity.create!(notified_user_id: notified_user, other_user_id: @vote.user_id, vote_id: @vote.id)
+    end
   end
 
 end
-
