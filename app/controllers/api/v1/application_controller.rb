@@ -1,4 +1,5 @@
 class API::V1::ApplicationController < ActionController::Base
+  before_action :authorize, unless: :sessions_controller?
   respond_to :json
 
   # Prevent CSRF attacks by raising an exception.
@@ -6,16 +7,22 @@ class API::V1::ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user, :signed_in?
 
+  def authorize
+    authenticate_or_request_with_http_token do |token|
+      @current_user = User.find_by(newvo_token: token)
+    end
+  end
+
   def signed_in?
-    !current_user.nil?
+    !@current_user.nil?
+  end
+
+  def sessions_controller?
+    params[:controller] == "api/v1/sessions"
   end
 
   def current_user
-    current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
-
-  def set_current_user
-    User.current = current_user
+    User.current = @current_user
   end
 
 end
