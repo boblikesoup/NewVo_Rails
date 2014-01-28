@@ -77,8 +77,8 @@ class User < ActiveRecord::Base
 
   def self.find_or_create_from_auth_hash auth_hash
     user = self.find_or_create_by(fb_uid: auth_hash["uid"])
+    user.generate_newvo_token
     if user
-      user.generate_newvo_token
       first_name = auth_hash["info"]["first_name"]
       last_name = auth_hash["info"]["last_name"]
       avatar = auth_hash["info"]["image"]
@@ -92,8 +92,8 @@ class User < ActiveRecord::Base
   # Sign in mobile
   def self.find_or_create_from_user_info (user_info, picture_info)
       user = self.find_or_create_by(fb_uid: user_info["id"])
-      if user
       user.generate_newvo_token
+      if user
       first_name = user_info["first_name"]
       last_name = user_info["last_name"]
       username = user_info["username"]
