@@ -2,6 +2,7 @@ class API::V1::ActivityFeedController < ApplicationController
   respond_to :json
 
   def index
+    #destroy irrelevnt activities
     @activity = {}
     two_weeks_ago = Time.now - 2.weeks
 
