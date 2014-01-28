@@ -38,8 +38,8 @@ class API::V1::PostsController < ApplicationController
       end
     end
 
-
-    @posts = post_retrieval(params[:query], params[:used_post_ids])
+    used_post_ids = eval(params[:used_post_ids])
+    @posts = post_retrieval(params[:query], used_post_ids)
     respond_with(@posts)
   end
 
