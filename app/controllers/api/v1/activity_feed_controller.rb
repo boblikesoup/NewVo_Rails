@@ -31,7 +31,5 @@ class API::V1::ActivityFeedController < ApplicationController
     respond_with(@activity)
   end
 
-  before_filter :set_current_user
-
 end
 

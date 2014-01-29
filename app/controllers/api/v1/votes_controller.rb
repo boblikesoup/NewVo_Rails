@@ -21,3 +21,7 @@ class API::V1::VotesController < ApplicationController
   end
 
 end
+
+#####
+# Why @vote?
+#####

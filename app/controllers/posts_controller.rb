@@ -42,8 +42,4 @@ class PostsController < ApplicationController
     params.require(:post).permit(:description, photos_attributes: [:id, :photo])
   end
 
-  # before_filter :require_user # require_user will set the current_user in controllers
-  # ^ in tutorial but not working http://rails-bestpractices.com/posts/47-fetch-current-user-in-models
-  before_filter :set_current_user
-
 end

@@ -27,7 +27,7 @@ class Post < ActiveRecord::Base
   private
 
   def user_voted
-    vote = Vote.find_by(user_id: User.current.id, post_id: self.id)
+    vote = Vote.find_by(user_id: self.user_id, post_id: self.id)
     if vote != nil
       return true
     else
@@ -40,3 +40,12 @@ class Post < ActiveRecord::Base
   end
 
 end
+
+######
+# self.user_id instead of user.current?
+######
+
+#<Post id: 1, description: "post", user_id: 1, has_single_picture: false, created_at: "2014-01-28 22:47:43", updated_at: "2014-01-28 22:47:43", published: true, global: false>
+# irb(main):002:0> post.user_voted
+#   Vote Load (0.3ms)  SELECT "votes".* FROM "votes" WHERE "votes"."user_id" = 1 AND "votes"."post_id" = 1 LIMIT 1
+# => true
