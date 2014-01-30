@@ -1,54 +1,52 @@
-<div class='nv-main'>
-  <% if post.photos.length == 1 %>
-    <div class='nv-single-image'>
-      <div class='post-box'>
-        <div class='post-title'>
-          <%= post.description %>
-        </div>
-        <div class='asked-by'>Asked by <%= post.user.first_name %> <%= post.user.last_name %> on
-          <%= post.user.created_at.strftime("%H:%M, %d %b") %>
-        </div>
+<% if post.photos.length == 1 %>
+  <div class='nv-single-image'>
+    <div class='post-box'>
+      <div class='post-title'>
+        <%= post.description %>
       </div>
-    <br>
-    <% post.photos.each do |photo| %>
-        <%= image_tag photo.photo.url :medium %>
-        <%= photo.upvotes %>
-        <%= button_to "Upvote", votes_path(:photo => photo.id, :value => 1), method: :post %>
-        <%= photo.downvotes %>
-        <%= button_to "Downvote", votes_path(:photo => photo.id, :value => -1), method: :post %>
-    <% end %>
-    <% if signed_in? && current_user.id == post.user_id %>
-      <%= button_to "Delete", post_path(post), method: :delete %>
-    <% end %>
-    <br>
-    <%= link_to "Comments", post_path(post) if signed_in? %>
+      <div class='asked-by'>Asked by <%= post.user.first_name %> <%= post.user.last_name %> on
+        <%= post.user.created_at.strftime("%H:%M, %d %b") %>
+      </div>
     </div>
-  <% else %>
-  <div class='nv-two-image-holder'>
-    <div class='nv-two-images-box'>
-      <div class='post-box'>
-        <div class='post-title'>
-          <%= post.description %>
-        </div>
-        <div class='asked-by'>Asked by <%= post.user.first_name %> <%= post.user.last_name %> on
-          <%= post.user.created_at.strftime("%H:%M, %d %b") %>
-        </div>
-      </div>
-    <% post.photos.each do |photo| %>
-    <div class='nv-two-images'>
+  <br>
+  <% post.photos.each do |photo| %>
       <%= image_tag photo.photo.url :medium %>
-      <div class='nv-two-images-vote'>
-        <%= photo.upvotes %>
-        <%= button_to "Like", votes_path(:photo => photo.id, :value => 1), method: :post %>
+      <%= photo.upvotes %>
+      <%= button_to "Upvote", votes_path(:photo => photo.id, :value => 1), method: :post %>
+      <%= photo.downvotes %>
+      <%= button_to "Downvote", votes_path(:photo => photo.id, :value => -1), method: :post %>
+  <% end %>
+  <% if signed_in? && current_user.id == post.user_id %>
+    <%= button_to "Delete", post_path(post), method: :delete %>
+  <% end %>
+  <br>
+  <%= link_to "Comments", post_path(post) if signed_in? %>
+  </div>
+<% else %>
+<div class='nv-two-image-holder'>
+  <div class='nv-two-images-box'>
+    <div class='post-box'>
+      <div class='post-title'>
+        <%= post.description %>
+      </div>
+      <div class='asked-by'>Asked by <%= post.user.first_name %> <%= post.user.last_name %> on
+        <%= post.user.created_at.strftime("%H:%M, %d %b") %>
       </div>
     </div>
-    <% end %>
-    <% if signed_in? && current_user.id == post.user_id %>
-      <%= button_to "Delete", post_path(post), method: :delete %>
-    <% end %>
-    <br>
-    <%= link_to "Comments", post_path(post) if signed_in? %>
+  <% post.photos.each do |photo| %>
+  <div class='nv-two-images'>
+    <%= image_tag photo.photo.url :medium %>
+    <div class='nv-two-images-vote'>
+      <%= photo.upvotes %>
+      <%= button_to "Like", votes_path(:photo => photo.id, :value => 1), method: :post %>
     </div>
   </div>
   <% end %>
+  <% if signed_in? && current_user.id == post.user_id %>
+    <%= button_to "Delete", post_path(post), method: :delete %>
+  <% end %>
+  <br>
+  <%= link_to "Comments", post_path(post) if signed_in? %>
+  </div>
 </div>
+<% end %>
