@@ -281,6 +281,7 @@ input[type=submit] {
   background-color: green;
   border-radius: 0.5em;
   padding: 1%;
+  width: 45%;
 }
 
 .nv-two-image-holder {
