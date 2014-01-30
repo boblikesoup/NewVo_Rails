@@ -1,5 +1,6 @@
 class API::V1::ApplicationController < ActionController::Base
   before_action :authorize, unless: :sessions_controller?
+  before_filter :signed_in?, unless: :sessions_controller?
   respond_to :json
 
   # Prevent CSRF attacks by raising an exception.
@@ -8,13 +9,15 @@ class API::V1::ApplicationController < ActionController::Base
   helper_method :current_user, :signed_in?
 
   def authorize
-    authenticate_or_request_with_http_token do |token|
-      @current_user = User.find_by(newvo_token: token)
-    end
+    @current_user =
+      User.find_by(newvo_token: params[:newvo_token]) ||
+      authenticate_or_request_with_http_token do |newvo_token|
+        User.find_by(newvo_token: newvo_token)
+      end
   end
 
   def signed_in?
-    !@current_user.nil?
+    !!@current_user
   end
 
   def sessions_controller?
