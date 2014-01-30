@@ -286,6 +286,8 @@ input[type=submit] {
 }
 
 .nv-two-image-holder {
+  width: 45%;
+  text-align: center;
 }
 
 .nv-two-images {
@@ -337,7 +339,7 @@ img {
 
   .info, .info-square, .app-button, .middle, .nv-single-image {
     width: auto;
-    margin: auto;
+    margin: 2%;
   }
 
   .right {
