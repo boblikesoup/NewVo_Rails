@@ -15,7 +15,7 @@
   <% post.photos.each do |photo| %>
       <%= image_tag photo.photo.url :medium %>
       <div class="vote-box">
-      <table>
+      <table class='vote-table'>
         <tr>
         <td><%= button_to "Upvote", votes_path(:photo => photo.id, :value => 1), method: :post %></td>
         <td><%= photo.upvotes %></td>

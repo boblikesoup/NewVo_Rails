@@ -310,6 +310,15 @@ img {
   display: inline-block;
 }
 
+.vote-box {
+
+}
+
+.vote-table {
+  margin: auto;
+  border: 1px solid white;
+}
+
 /* media queries */
 
 @media only screen and (max-width: 480px) {
