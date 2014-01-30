@@ -3,10 +3,9 @@ class API::V1::PostsController < API::V1::ApplicationController
 
   # TODO
   # Get shit out of controllers
-  # Refactor into scopes? read rails guides on scopes.
-  # tests using factory girl (possibly factories in factories, posts, what is returned)
+  # Refactor into scopes? read rails 4 design patterns on scopes.
+  # tests using factory girl (possibly factories in factories creating posts and then testing search or something)
   # have each as own route (gets rid of if statement)
-
 
     def post_retrieval(query, used_post_ids)
       if query == "global"
@@ -39,7 +38,6 @@ class API::V1::PostsController < API::V1::ApplicationController
     post = Post.new(post_params)
     current_user.posts << post
     post.save
-    # this will be
     respond_with @post, :location => api_v1_posts_path
     # TODO
     # display errors and prevent cookie overflow when content type is not an image
