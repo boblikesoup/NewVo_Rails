@@ -27,8 +27,6 @@ class API::V1::PostsController < API::V1::ApplicationController
     respond_with(@posts)
   end
 
-  # No need for @post and @posts
-
   def index
     @posts = Post.recent
     render json: @posts, :include => [:photos, :comments]
