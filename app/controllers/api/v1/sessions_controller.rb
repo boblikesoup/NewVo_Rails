@@ -7,16 +7,27 @@ class API::V1::SessionsController < API::V1::ApplicationController
       ENV['FACEBOOK_APP_SECRET'],
       site: 'https://graph.facebook.com')
     facebook_token = OAuth2::AccessToken.new(client, params[:fbtoken])
+    begin
     user_info = ActiveSupport::JSON.decode(facebook_token.get('/me').body)
     picture_info = ActiveSupport::JSON.decode(facebook_token.get('/me?fields=picture').body)
-    @user = User.find_or_create_from_user_info(user_info, picture_info)
-    if @user
-      valid_login_attempt
-    else
-      # Invalid Login Attempt never used, see Sessions#fb_sso
+    rescue OAuth2::Error
+      invalid_login_attempt
+    rescue StandardError => e
+      invalid_login_attempt
+    rescue NoMethodError
       invalid_login_attempt
     end
+    if user_info && picture_info
+      @user = User.find_or_create_from_user_info(user_info, picture_info)
+      if @user
+        valid_login_attempt
+      else
+        invalid_login_attempt
+      end
+    end
   end
+
+
 
   def destroy
     session[:user_id] = nil
@@ -32,8 +43,9 @@ class API::V1::SessionsController < API::V1::ApplicationController
 
   private
 
-  def invalid_login_attempt(message="There has been an error with your login or password.")
+  def invalid_login_attempt(message="Seems like you've been trying to give our associates at facebook a fake name and password. Watch it, punk.")
     render :json=> {:success=>false, :message=>message}, :status=>401
+    return
   end
 
   def valid_login_attempt
@@ -46,7 +58,7 @@ class API::V1::SessionsController < API::V1::ApplicationController
      :facebook_username => @user.facebook_username,
      :profile_pic => @user.profile_pic,
      :facebook_id => @user.fb_uid
-      }
+      } and return
   end
 
 end
