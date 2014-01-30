@@ -282,12 +282,12 @@ input[type=submit] {
   background-color: green;
   border-radius: 0.5em;
   padding: 1%;
-  width: 45%;
 }
 
 .nv-two-image-holder {
-  width: 45%;
+  width: auto;
   text-align: center;
+  margin: auto;
 }
 
 .nv-two-images {
@@ -375,6 +375,11 @@ img {
 
   .text-box {
     height: 3.5em;
+  }
+
+  .nv-two-image-holder {
+    width: auto;
+    margin: 2%;
   }
 
   .nv-left, .nv-mid, .nv-right, .nv-right-top-menu {
