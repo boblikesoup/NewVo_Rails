@@ -13,3 +13,6 @@ FactoryGirl.define do
     user_id 1
   end
 end
+
+# attributes_for method generates a hash of attributes instead of a ruby object
+# record.reload variables must be reloaded from the database, attributes won't update unless

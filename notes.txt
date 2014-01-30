@@ -14,3 +14,86 @@ has_many :following_users, through: :followings, source: :follower
 # for binding.pry (similar to debugger)
 xit "should allow guest to view post", :js => true do
 
+Testing Notes:
+
+require 'spec_helper'
+
+describe Api::V1::EmployeesController do
+  # optional (for rabl)
+  render_views
+  # makes variable available to each test case
+  let(:auth_token) { "sYiHGuxbznOwqPuQrMR2tA"}
+  # Setting up HTTP headers for environment
+  before  :each do
+    request.env["HTTP_ACCEPT"] = 'application/json'
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(auth_token)
+  end
+
+  describe "GET #show" do
+    # factory girl, override
+    let(:user) { create(:user, auth_token: auth_token )}
+    it "assigns employee" do
+      json = {id: user.employee.id, auth_token: auth_token }
+      get :show, json
+
+      # assigns is a hash containing all variables in request
+      expect(assigns(:employee)).to eq user.employee
+    end
+
+
+    it "renders :show json" do
+      json = {id: user.employee.id, auth_token: auth_token }
+      get :show, json
+
+      expect(response).to render_template :show
+    end
+  end
+
+  describe "PATCH #update" do
+    before :each do
+      @employee = create(:employee, first_name: 'Lawrence', last_name: 'Smith')
+      @user = create(:user, auth_token: auth_token, employee: @employee )
+    end
+
+    context "with valid attributes" do
+      it "locates requested employee" do
+        json = { id: @employee.id, employee: attributes_for(:employee, first_name: "Larry", last_name: "Smith"), auth_token: auth_token }
+        patch :update, json
+        expect(assigns(:current_employee)).to eq @employee
+      end
+      it "changes employees attributes" do
+        json = { id: @employee.id, employee: attributes_for(:employee, first_name: "Larry", last_name: "Smith"), auth_token: auth_token }
+        patch :update, json
+        @employee.reload
+        expect(@employee.first_name).to eq "Larry"
+        expect(@employee.last_name).to eq "Smith"
+      end
+      it "responds with JSON success" do
+        json = { id: @employee.id, employee: attributes_for(:employee, first_name: "Larry", last_name: "Smith"), auth_token: auth_token }
+        patch :update, json
+        expect(response.status).to eq(200)
+        expect(JSON.parse(response.body)["success"]).to eq("true")
+      end
+    end
+    context "with invalid attributes" do
+      it "does not change employees attributes" do
+        json = { id: @employee.id, employee: attributes_for(:employee, first_name: "Larry", last_name: nil), auth_token: auth_token }
+        patch :update, json
+        @employee.reload
+        expect(@employee.first_name).to_not eq("Larry")
+        expect(@employee.last_name).to eq("Smith")
+      end
+      it "responds with JSON errors" do
+        json = { id: @employee.id, employee: attributes_for(:employee, first_name: "Larry", last_name: nil), auth_token: auth_token }
+        patch :update, json
+        expect(JSON.parse(response.body)["last_name"]).to eq(["can't be blank"])
+      end
+      it "responds with 400 status" do
+        json = { id: @employee.id, employee: attributes_for(:employee, first_name: "Larry", last_name: nil), auth_token: auth_token }
+        patch :update, json
+        expect(response.status).to eq(400)
+      end
+    end
+  end
+end
+
