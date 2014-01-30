@@ -42,8 +42,10 @@ class User < ActiveRecord::Base
   end
 
   def follow!(followed_id)
-    #creates current user following user B relationship
-    Following.create!(follower_id: self.id, followed_id: followed_id)
+    if @following = Following.create!(follower_id: self.id, followed_id: followed_id)
+      FollowingActivity.create!(notified_user_id: self.id, other_user_id: followed_id, followed_type: "follower", following_id: @following.id)
+      FollowingActivity.create!(notified_user_id: followed_id, other_user_id: self.id, followed_type: "followed", following_id: @following.id)
+    end
   end
 
   def unfollow!(followed_id)
@@ -62,8 +64,10 @@ class User < ActiveRecord::Base
   end
 
   def create_friendship(followed_id)
-    Friendship.create(user_id: self.id, friend_id: followed_id)
-    Friendship.create(user_id: followed_id, friend_id: self.id)
+    if @friender = Friendship.create(user_id: self.id, friend_id: followed_id) && @friended = Friendship.create(user_id: followed_id, friend_id: self.id)
+      FriendshipActivity.create!(notified_user_id: self.id, other_user_id: followed_id, friendship_id: @friender.id)
+      FriendshipActivity.create!(notified_user_id: followed_id, other_user_id: self.id, friendship_id: @friended.id)
+    end
   end
 
   def destroy_friendship(followed_id)
@@ -73,8 +77,8 @@ class User < ActiveRecord::Base
 
   def self.find_or_create_from_auth_hash auth_hash
     user = self.find_or_create_by(fb_uid: auth_hash["uid"])
+    user.generate_newvo_token
     if user
-      user.generate_newvo_token
       first_name = auth_hash["info"]["first_name"]
       last_name = auth_hash["info"]["last_name"]
       avatar = auth_hash["info"]["image"]
@@ -88,14 +92,14 @@ class User < ActiveRecord::Base
   # Sign in mobile
   def self.find_or_create_from_user_info (user_info, picture_info)
       user = self.find_or_create_by(fb_uid: user_info["id"])
-      if user
       user.generate_newvo_token
+      if user
       first_name = user_info["first_name"]
       last_name = user_info["last_name"]
       username = user_info["username"]
       facebook_id = user_info["id"]
       profile_pic = picture_info["picture"]["data"]["url"]
-      user.update_attributes(first_name: first_name, last_name: last_name, facebook_username: username, fb_uid: facebook_id, profile_pic: profile_pic)
+      user.update_attributes(first_name: first_name, last_name: last_name, fb_uid: facebook_id, profile_pic: profile_pic, facebook_username: username)
     end
    user
   end
@@ -128,4 +132,3 @@ class User < ActiveRecord::Base
   end
 
 end
-

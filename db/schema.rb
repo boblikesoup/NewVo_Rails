@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140121012113) do
+ActiveRecord::Schema.define(version: 20140127183647) do
 
   create_table "comments", force: true do |t|
     t.string   "body"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 20140121012113) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "following_activities", force: true do |t|
+    t.integer  "notified_user_id"
+    t.integer  "other_user_id"
+    t.integer  "following_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "followed_type"
   end
 
   create_table "followings", force: true do |t|
@@ -31,6 +40,14 @@ ActiveRecord::Schema.define(version: 20140121012113) do
   add_index "followings", ["followed_id"], name: "index_followings_on_followed_id"
   add_index "followings", ["follower_id", "followed_id"], name: "index_followings_on_follower_id_and_followed_id", unique: true
   add_index "followings", ["follower_id"], name: "index_followings_on_follower_id"
+
+  create_table "friendship_activities", force: true do |t|
+    t.integer  "notified_user_id"
+    t.integer  "other_user_id"
+    t.integer  "friendship_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "friendships", force: true do |t|
     t.integer  "user_id"
@@ -69,6 +86,14 @@ ActiveRecord::Schema.define(version: 20140121012113) do
     t.string   "profile_pic"
     t.string   "newvo_token"
     t.string   "facebook_username"
+  end
+
+  create_table "vote_activities", force: true do |t|
+    t.integer  "notified_user_id"
+    t.integer  "other_user_id"
+    t.integer  "vote_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "votes", force: true do |t|
