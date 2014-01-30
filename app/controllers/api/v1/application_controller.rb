@@ -1,6 +1,7 @@
 class API::V1::ApplicationController < ActionController::Base
   before_action :authorize, unless: :sessions_controller?
   before_filter :signed_in?, unless: :sessions_controller?
+
   respond_to :json
 
   # Prevent CSRF attacks by raising an exception.
