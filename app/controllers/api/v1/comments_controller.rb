@@ -1,4 +1,4 @@
-class API::V1::CommentsController < ApplicationController
+class API::V1::CommentsController < API::V1::ApplicationController
   respond_to :json
 
   def create

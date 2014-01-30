@@ -3,13 +3,21 @@ class Post < ActiveRecord::Base
   has_many :comments
   has_many :photos
   accepts_nested_attributes_for :photos,
-      :reject_if => lambda { |attributes| attributes[:photo].blank? }
+      reject_if: ->(attributes) {attributes[:photo].blank?}
 
   after_save :update_has_single_picture
 
   validates_presence_of :user_id
   validates_presence_of :photos
+  scope :recent, ->{order(created_at: :desc)}
 
+    def self.not_seen(used_post_ids)
+        if used_post_ids.empty?
+          Post.recent.limit(10)
+        else
+          Post.recent.where.not(id: used_post_ids).limit(10)
+        end
+    end
 
   def as_json(options={})
     {

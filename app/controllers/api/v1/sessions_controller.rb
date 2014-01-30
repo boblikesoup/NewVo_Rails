@@ -1,5 +1,4 @@
-class API::V1::SessionsController < ApplicationController
-  skip_before_filter :signed_in?
+class API::V1::SessionsController < API::V1::ApplicationController
   respond_to :json
 
   def create

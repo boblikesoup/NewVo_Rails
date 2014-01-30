@@ -1,4 +1,4 @@
-class API::V1::VotesController < ApplicationController
+class API::V1::VotesController < API::V1::ApplicationController
   respond_to :json
 
   def create
