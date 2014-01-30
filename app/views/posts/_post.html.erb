@@ -15,10 +15,14 @@
   <% post.photos.each do |photo| %>
       <%= image_tag photo.photo.url :medium %>
       <div class="vote-box">
-        <%= photo.upvotes %>
-        <%= button_to "Upvote", votes_path(:photo => photo.id, :value => 1), method: :post %>
-        <%= photo.downvotes %>
-        <%= button_to "Downvote", votes_path(:photo => photo.id, :value => -1), method: :post %>
+      <table>
+        <tr>
+        <td><%= button_to "Upvote", votes_path(:photo => photo.id, :value => 1), method: :post %></td>
+        <td><%= photo.upvotes %></td>
+        </tr>
+        <td><%= button_to "Downvote", votes_path(:photo => photo.id, :value => -1), method: :post %></td>
+        <td><%= photo.downvotes %></td>
+      </table>
       </div>
   <% end %>
   <br>
