@@ -50,6 +50,7 @@ group :development, :test do
   gem 'pry'
   gem 'shoulda-matchers'
   gem 'dotenv-rails'
+  gem 'selenium-webdriver'
 end
 
 # Use ActiveModel has_secure_password
