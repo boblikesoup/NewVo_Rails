@@ -8,6 +8,13 @@
   zoom: 1.0;
 }
 
+header {
+  top: 0;
+  margin-bottom: 2%;
+  width: 100%;
+  position: fixed;
+}
+
 body {
   background: url(/assets/landing_page/bg1.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -206,7 +213,7 @@ input[type=submit] {
   background-color: black;
   color: white;
   border-radius: 0.5em;
-  margin: 2% 2%;
+  margin: 100px 2% 2% 2%;
   padding: 2%;
 }
 
@@ -234,13 +241,30 @@ input[type=submit] {
   font-size: 2.5em;
 }
 
+/* Posts */
+
+.post-box {
+  font-size: 1.5em;
+  text-align: left;
+  margin: 0 20% 0;
+}
+
+.post-title {
+  margin: 0 0 2%;
+}
+
+.asked-by {
+  font-size: 0.5em;
+}
+
 .nv-single-image {
-  background-color: black;
+  background-color: green;
   color: white;
   border-radius: 0.5em;
   margin: 2% auto;
   padding: 2%;
   width: 45%;
+  text-align: center;
 }
 
 .nv-two-images-vote {
@@ -261,6 +285,9 @@ input[type=submit] {
 }
 
 .nv-two-image-holder {
+  width: auto;
+  text-align: center;
+  margin: auto;
 }
 
 .nv-two-images {
@@ -281,6 +308,20 @@ img {
 .gravatar {
   padding: 1% 0 0.5% 1%;
   display: inline-block;
+}
+
+.vote-box {
+  margin-top: 2%;
+}
+
+.vote-table {
+  margin: auto;
+  border: 1px solid white;
+}
+
+.cells {
+  border: 1px solid white;
+  padding: 5%;
 }
 
 /* media queries */
@@ -312,7 +353,7 @@ img {
 
   .info, .info-square, .app-button, .middle, .nv-single-image {
     width: auto;
-    margin: auto;
+    margin: 2%;
   }
 
   .right {
@@ -336,6 +377,11 @@ img {
     height: 3.5em;
   }
 
+  .nv-two-image-holder {
+    width: auto;
+    margin: 2%;
+  }
+
   .nv-left, .nv-mid, .nv-right, .nv-right-top-menu {
     padding: 2.5%;
   }
@@ -349,6 +395,10 @@ img {
     max-height: auto;
     max-width: 48%;
     padding: 0.5%;
+  }
+
+  .nv-create-post-box {
+    margin-top: 75px;
   }
 }
 
