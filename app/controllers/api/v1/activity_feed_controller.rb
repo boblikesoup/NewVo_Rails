@@ -1,4 +1,4 @@
-class API::V1::ActivityFeedController < ApplicationController
+class API::V1::ActivityFeedController < API::V1::ApplicationController
   respond_to :json
 
   def index
