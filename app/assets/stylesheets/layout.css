@@ -264,6 +264,7 @@ input[type=submit] {
   margin: 2% auto;
   padding: 2%;
   width: 45%;
+  text-align: center;
 }
 
 .nv-two-images-vote {
