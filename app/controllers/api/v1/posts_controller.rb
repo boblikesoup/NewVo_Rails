@@ -1,4 +1,4 @@
-class API::V1::PostsController < ApplicationController
+class API::V1::PostsController < API::V1::ApplicationController
   respond_to :json
 
   def search

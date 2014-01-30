@@ -1,5 +1,5 @@
 class API::V1::ApplicationController < ActionController::Base
-  before_action :authorize, unless: :sessions_controller
+  before_action :authorize, unless: :sessions_controller?
   respond_to :json
 
   # Prevent CSRF attacks by raising an exception.
@@ -19,10 +19,6 @@ class API::V1::ApplicationController < ActionController::Base
 
   def sessions_controller?
     params[:controller] == "api/v1/sessions"
-  end
-
-  def current_user
-    User.current = @current_user
   end
 
 end
