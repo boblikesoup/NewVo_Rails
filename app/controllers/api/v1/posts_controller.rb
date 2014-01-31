@@ -11,15 +11,15 @@ class API::V1::PostsController < API::V1::ApplicationController
       if query == "global"
         Post.not_seen(used_post_ids)
       elsif query == "friends"
-        current_user.friends.recent.not_seen(used_post_ids)
+        @current_user.friends.recent.not_seen(used_post_ids)
       elsif query == "following"
-        current_user.followed_users.recent.not_seen(used_post_ids)
+        @current_user.followed_users.recent.not_seen(used_post_ids)
       else
         return "Invalid params or already returned all 100 most recent posts."
       end
     end
 
-  # test with (Juke db token): curl -s "http://localhost:3000/api/v1/posts/search/?newvo_token=K6Nb4m9PqIhajdRbAcgxCKsqdYlBonsi&used_post_ids=1,2&query=global" | json
+  # test with (Juke db token): curl -s "http://localhost:3000/api/v1/posts/search/?newvo_token=1L6zRtt5SJJ8iZuY0XZ3Xd6StdPOpDkk&used_post_ids=1,2&query=global" | json
   # online test (Juke's) token: OLmeNSbGdgtZEr4nBnRZSYvgc7Hi1hHH
   def search
     used_post_ids = params[:used_post_ids].strip.split(',').map(&:strip).map(&:to_i) unless params[:used_post_ids].blank?
@@ -34,7 +34,7 @@ class API::V1::PostsController < API::V1::ApplicationController
 
   def create
     post = Post.new(post_params)
-    current_user.posts << post
+    @current_user.posts << post
     post.save
     respond_with @post, :location => api_v1_posts_path
     # TODO
@@ -52,7 +52,6 @@ class API::V1::PostsController < API::V1::ApplicationController
     post = Post.find(params[:id])
     #post.destroy!
     post.update_attribute(:published, false)
-    respond_with post, :location => api_v1_posts_path
   end
 
   private
