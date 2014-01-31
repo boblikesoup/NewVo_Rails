@@ -117,10 +117,11 @@ class User < ActiveRecord::Base
   end
 
   def assemble_user
-      user["id"] = self.id
-      user["name"] = self.full_name
-      user["profile_pic"] = self.profile_pic
-      return user
+    user = {}
+    user["id"] = self.id
+    user["name"] = self.full_name
+    user["profile_pic"] = self.profile_pic
+    return user
   end
 
   def full_name
