@@ -22,7 +22,11 @@ class API::V1::PostsController < API::V1::ApplicationController
   # test with (Juke db token): curl -s "http://localhost:3000/api/v1/posts/search/?newvo_token=1L6zRtt5SJJ8iZuY0XZ3Xd6StdPOpDkk&used_post_ids=1,2&query=global" | json
   # online test (Juke's) token: OLmeNSbGdgtZEr4nBnRZSYvgc7Hi1hHH
   def search
-    used_post_ids = params[:used_post_ids].strip.split(',').map(&:strip).map(&:to_i) unless params[:used_post_ids].blank?
+    if params[:used_post_ids].blank?
+      used_post_ids = []
+    else
+      used_post_ids = params[:used_post_ids].strip.split(',').map(&:strip).map(&:to_i) unless params[:used_post_ids]
+    end
     @posts = post_retrieval(params[:query], used_post_ids)
     respond_with(@posts)
   end
