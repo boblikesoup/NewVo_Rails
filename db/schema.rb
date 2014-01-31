@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140127183647) do
+ActiveRecord::Schema.define(version: 20140131230622) do
 
   create_table "comments", force: true do |t|
     t.string   "body"
@@ -72,7 +72,6 @@ ActiveRecord::Schema.define(version: 20140127183647) do
     t.boolean  "has_single_picture", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "published",          default: true
     t.boolean  "global",             default: false
   end
 
