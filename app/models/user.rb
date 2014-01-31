@@ -112,11 +112,15 @@ class User < ActiveRecord::Base
     users_info = []
     users.each do |user|
       user["id"] = user.id
-      user["name"] = user.first_name + " " + user.last_name
+      user["name"] = user.full_name
       user["profile_pic"] = user.profile_pic
       users_info << user
     end
     return users_info
+  end
+
+  def full_name
+    self.first_name + " " + self.last_name
   end
 
 end
