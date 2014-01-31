@@ -52,7 +52,6 @@ class API::V1::PostsController < API::V1::ApplicationController
     post = Post.find(params[:id])
     #post.destroy!
     post.update_attribute(:published, false)
-    respond_with post, :location => api_v1_posts_path
   end
 
   private

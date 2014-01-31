@@ -12,6 +12,7 @@ class Post < ActiveRecord::Base
   scope :recent, ->{order(created_at: :desc)}
 
     def self.not_seen(used_post_ids)
+      #broken "undefined method `empty?'" on empty array
         if used_post_ids.empty?
           Post.recent.limit(10)
         else
