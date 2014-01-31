@@ -6,6 +6,12 @@ class Comment < ActiveRecord::Base
   validates :body, presence: true
   default_scope order: 'comments.created_at DESC'
 
+  scope :recent, ->{order(created_at: :desc)}
+  scope :published, ->{where(status: self::STATUS_PUBLISHED)}
+
+  STATUS_PUBLISHED = 0
+  STATUS_UNPUBLISHED = 1
+
   def as_json(options={})
     {
       :id => id,

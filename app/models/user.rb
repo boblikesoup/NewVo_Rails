@@ -18,6 +18,11 @@ class User < ActiveRecord::Base
   validates_presence_of :fb_uid
   validates_uniqueness_of :fb_uid
 
+  scope :published, ->{where(status: self::STATUS_PUBLISHED)}
+
+  STATUS_PUBLISHED = 0
+  STATUS_UNPUBLISHED = 1
+
 
   def following?(followed_id)
     #tells whether current use is following user B
