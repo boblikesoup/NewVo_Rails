@@ -11,14 +11,13 @@ class Post < ActiveRecord::Base
   validates_presence_of :photos
   scope :recent, ->{order(created_at: :desc)}
 
-    def self.not_seen(used_post_ids)
-      #broken "undefined method `empty?'" on empty array
-        if used_post_ids.empty?
-          Post.recent.limit(10)
-        else
-          Post.recent.where.not(id: used_post_ids).limit(10)
-        end
-    end
+  def self.not_seen(used_post_ids)
+      if used_post_ids.empty?
+        Post.recent.limit(10)
+      else
+        Post.recent.where.not(id: used_post_ids).limit(10)
+      end
+  end
 
   def as_json(options={})
     {
