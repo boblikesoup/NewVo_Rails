@@ -37,12 +37,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def unfollow!(followed_id)
-    #creates current user following user B relationship
-    #friendship must also be destroyed
-    Following.find_by(follower_id: self.id, followed_id: followed_id).destroy
-  end
-
 #friendships
   def both_following?(followed_id)
     #tells whether two users are following each other

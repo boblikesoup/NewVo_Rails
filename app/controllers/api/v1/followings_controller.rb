@@ -9,9 +9,12 @@ class API::V1::FollowingsController < API::V1::ApplicationController
   end
 
   def destroy
-    if @current_user.both_following?(params[:followed_id])
-      @current_user.destroy_friendship(params[:followed_id])
+    following = Following.find(params[:id])
+
+    if @current_user.both_following?(following.followed_id)
+      @current_user.destroy_friendship(following.followed_id)
     end
-    @current_user.unfollow!(params[:followed_id])
+
+    following.destroy!
   end
 end
