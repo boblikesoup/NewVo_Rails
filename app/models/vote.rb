@@ -15,4 +15,12 @@ class Vote < ActiveRecord::Base
       previous_vote.destroy if previous_vote != self
   end
 
+  def assemble_vote
+    vote = {}
+    vote[:value] = self.value
+    vote[:photo] = Photo.find(self.votable_id).photo.url(:thumb)
+    vote[:post_id] = self.post_id
+    return vote
+  end
+
 end

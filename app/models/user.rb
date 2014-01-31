@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
 
   #User.followed_users = users User is following
   #User.following_users = users following User
-  has_many :followed_users, :class_name => 'Followings', :foreign_key => 'follower_id'
-  has_many :following_users, :class_name => 'Followings', :foreign_key => 'followed_id'
+  has_many :followed_users, :class_name => 'Following', :foreign_key => 'follower_id'
+  has_many :following_users, :class_name => 'Following', :foreign_key => 'followed_id'
 
   validates_presence_of :first_name
   validates_presence_of :last_name
@@ -95,16 +95,37 @@ class User < ActiveRecord::Base
 
   def as_json(options={})
     {
+      #just id's of followed_users and thumbnails
       :id => id,
       :first_name => first_name,
       :last_name => last_name,
       :description => description,
       :profile_pic => profile_pic,
-      :followed_users => self.followed_users,
-      :following_users => self.following_users,
-      :friends => self.friends,
+      :followed_users => assemble_users(self.followed_users),
+      :following_users => assemble_users(self.following_users),
+      :friends => assemble_users(self.friends),
       :posts => posts.order("created_at desc").limit(6)
     }
+  end
+
+  def assemble_users(users)
+    users_info = []
+    users.each do |user|
+      users_info << user.assemble_user
+    end
+    return users_info
+  end
+
+  def assemble_user
+    user = {}
+    user["id"] = self.id
+    user["name"] = self.full_name
+    user["profile_pic"] = self.profile_pic
+    return user
+  end
+
+  def full_name
+    return self.first_name + " " + self.last_name
   end
 
 end

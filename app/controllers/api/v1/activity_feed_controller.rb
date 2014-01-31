@@ -20,9 +20,7 @@ class API::V1::ActivityFeedController < API::V1::ApplicationController
     end
     @activity["following_activities"] = following_activities
 
-    friendships_activity_queries = FriendshipActivity.where("notified_user_id = ?", @current_user.id).where("created_at > ?", two_weeks_ago)
-    friendships_activity_queries = FollowingActivity.where("notified_user_id = ?", @current_user.id).where("created_at > ?", two_weeks_ago).where("followed_type = ?", "followed")
-    friendships_activities = []
+    friendships_activity_queries = FriendshipActivity.where("notified_user_id = ?", @current_user.id).where("created_at > ?", two_weeks_ago)    friendships_activities = []
     friendships_activity_queries.each do |activity|
       friendships_activities << activity.assemble_json
     end
