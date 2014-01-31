@@ -5,7 +5,7 @@ class API::V1::CommentsController < API::V1::ApplicationController
     post = Post.find(params[:post_id])
     comment = Comment.new( comment_params )
     post.comments << comment
-    current_user.comments << comment
+    @current_user.comments << comment
     comment.save
     respond_with post
   end

@@ -11,9 +11,9 @@ class API::V1::PostsController < API::V1::ApplicationController
       if query == "global"
         Post.not_seen(used_post_ids)
       elsif query == "friends"
-        current_user.friends.recent.not_seen(used_post_ids)
+        @current_user.friends.recent.not_seen(used_post_ids)
       elsif query == "following"
-        current_user.followed_users.recent.not_seen(used_post_ids)
+        @current_user.followed_users.recent.not_seen(used_post_ids)
       else
         return "Invalid params or already returned all 100 most recent posts."
       end
@@ -34,7 +34,7 @@ class API::V1::PostsController < API::V1::ApplicationController
 
   def create
     post = Post.new(post_params)
-    current_user.posts << post
+    @current_user.posts << post
     post.save
     respond_with @post, :location => api_v1_posts_path
     # TODO

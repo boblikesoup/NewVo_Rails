@@ -4,7 +4,7 @@ class API::V1::VotesController < API::V1::ApplicationController
   def create
     if params[:photo]
       current_photo = Photo.find(params[:photo])
-      vote = Vote.new(user_id: current_user.id, value: params[:value], post_id: current_photo.post.id)
+      vote = Vote.new(user_id: @current_user.id, value: params[:value], post_id: current_photo.post.id)
       current_photo.votes << vote
     #for voting on comments
     # else
