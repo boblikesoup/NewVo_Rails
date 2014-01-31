@@ -95,6 +95,7 @@ class User < ActiveRecord::Base
 
   def as_json(options={})
     {
+      #just id's of followed_users and thumbnails
       :id => id,
       :first_name => first_name,
       :last_name => last_name,
