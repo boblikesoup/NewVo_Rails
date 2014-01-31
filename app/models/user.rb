@@ -101,26 +101,30 @@ class User < ActiveRecord::Base
       :last_name => last_name,
       :description => description,
       :profile_pic => profile_pic,
-      :followed_users => user_ids_and_thumbnails(self.followed_users),
-      :following_users => user_ids_and_thumbnails(self.following_users),
-      :friends => user_ids_and_thumbnails(self.friends),
+      :followed_users => assemble_users(self.followed_users),
+      :following_users => assemble_users(self.following_users),
+      :friends => assemble_users(self.friends),
       :posts => posts.order("created_at desc").limit(6)
     }
   end
 
-  def user_ids_and_thumbnails (users)
+  def assemble_users(users)
     users_info = []
     users.each do |user|
-      user["id"] = user.id
-      user["name"] = user.full_name
-      user["profile_pic"] = user.profile_pic
-      users_info << user
+      users_info << user.assemble_user
     end
     return users_info
   end
 
+  def assemble_user
+      user["id"] = self.id
+      user["name"] = self.full_name
+      user["profile_pic"] = self.profile_pic
+      return user
+  end
+
   def full_name
-    self.first_name + " " + self.last_name
+    return self.first_name + " " + self.last_name
   end
 
 end
