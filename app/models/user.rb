@@ -8,28 +8,15 @@ class User < ActiveRecord::Base
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, through: :inverse_friendships, :source => :user
 
+  #User.followed_users = users User is following
+  #User.following_users = users following User
+  has_many :followed_users, :class_name => 'Followings', :foreign_key => 'follower_id'
+  has_many :following_users, :class_name => 'Followings', :foreign_key => 'followed_id'
+
   validates_presence_of :first_name
   validates_presence_of :last_name
   validates_presence_of :fb_uid
   validates_uniqueness_of :fb_uid
-
-  def followed_users
-    #to find all current user is following
-    followings = []
-    Following.where(follower_id: self.id).each do |following|
-      followings << following.followed_id
-    end
-    User.where(id: followings)
-  end
-
-  def following_users
-    #to find all following current user
-    followings = []
-    Following.where(followed_id: self.id).each do |following|
-      followings << following.follower_id
-    end
-    User.where(id: followings)
-  end
 
 
   def following?(followed_id)
@@ -43,7 +30,9 @@ class User < ActiveRecord::Base
 
   def follow!(followed_id)
     if @following = Following.create!(follower_id: self.id, followed_id: followed_id)
+      #You are now following
       FollowingActivity.create!(notified_user_id: self.id, other_user_id: followed_id, followed_type: "follower", following_id: @following.id)
+      #Now following you
       FollowingActivity.create!(notified_user_id: followed_id, other_user_id: self.id, followed_type: "followed", following_id: @following.id)
     end
   end
