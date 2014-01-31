@@ -96,11 +96,8 @@ class User < ActiveRecord::Base
   def as_json(options={})
     {
       #just id's of followed_users and thumbnails
-      :id => id,
-      :first_name => first_name,
-      :last_name => last_name,
-      :description => description,
-      :profile_pic => profile_pic,
+      :user_info => self.assemble_user,
+      :user_description => description,
       :followed_users => assemble_users(self.followed_users),
       :following_users => assemble_users(self.following_users),
       :friends => assemble_users(self.friends),
