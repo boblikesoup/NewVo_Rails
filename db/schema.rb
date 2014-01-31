@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140131231141) do
+ActiveRecord::Schema.define(version: 20140131231548) do
 
   create_table "comment_activities", force: true do |t|
     t.integer  "notified_user_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140131231141) do
     t.integer  "comment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status",           default: 0
   end
 
   create_table "comment_activity_tables", force: true do |t|
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140131231141) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status",     default: 0
   end
 
   create_table "following_activities", force: true do |t|
@@ -44,6 +46,7 @@ ActiveRecord::Schema.define(version: 20140131231141) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "followed_type"
+    t.integer  "status",           default: 0
   end
 
   create_table "followings", force: true do |t|
@@ -63,6 +66,7 @@ ActiveRecord::Schema.define(version: 20140131231141) do
     t.integer  "friendship_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status",           default: 0
   end
 
   create_table "friendships", force: true do |t|
@@ -89,6 +93,7 @@ ActiveRecord::Schema.define(version: 20140131231141) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "global",             default: false
+    t.integer  "status",             default: 0
   end
 
   create_table "users", force: true do |t|
@@ -101,6 +106,7 @@ ActiveRecord::Schema.define(version: 20140131231141) do
     t.string   "profile_pic"
     t.string   "newvo_token"
     t.string   "facebook_username"
+    t.integer  "status",            default: 0
   end
 
   create_table "vote_activities", force: true do |t|
@@ -109,6 +115,7 @@ ActiveRecord::Schema.define(version: 20140131231141) do
     t.integer  "vote_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status",           default: 0
   end
 
   create_table "votes", force: true do |t|
@@ -119,6 +126,7 @@ ActiveRecord::Schema.define(version: 20140131231141) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "post_id"
+    t.integer  "status",       default: 0
   end
 
 end
