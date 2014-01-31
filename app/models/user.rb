@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
 
   #User.followed_users = users User is following
   #User.following_users = users following User
-  has_many :followed_users, :class_name => 'Followings', :foreign_key => 'follower_id'
-  has_many :following_users, :class_name => 'Followings', :foreign_key => 'followed_id'
+  has_many :followed_users, :class_name => 'Following', :foreign_key => 'follower_id'
+  has_many :following_users, :class_name => 'Following', :foreign_key => 'followed_id'
 
   validates_presence_of :first_name
   validates_presence_of :last_name
