@@ -34,11 +34,11 @@ class User < ActiveRecord::Base
   end
 
   def follow!(followed_id)
-    if @following = Following.create!(follower_id: self.id, followed_id: followed_id)
+    if following = Following.create!(follower_id: self.id, followed_id: followed_id)
       #You are now following
-      FollowingActivity.create!(notified_user_id: self.id, other_user_id: followed_id, followed_type: "follower", following_id: @following.id)
+      FollowingActivity.create!(notified_user_id: self.id, other_user_id: followed_id, followed_type: "follower", following_id: following.id)
       #Now following you
-      FollowingActivity.create!(notified_user_id: followed_id, other_user_id: self.id, followed_type: "followed", following_id: @following.id)
+      FollowingActivity.create!(notified_user_id: followed_id, other_user_id: self.id, followed_type: "followed", following_id: following.id)
     end
   end
 
@@ -53,13 +53,19 @@ class User < ActiveRecord::Base
   end
 
   def create_friendship(followed_id)
-    if @friender = Friendship.create(user_id: self.id, friend_id: followed_id) && @friended = Friendship.create(user_id: followed_id, friend_id: self.id)
-      FriendshipActivity.create!(notified_user_id: self.id, other_user_id: followed_id, friendship_id: @friender.id)
-      FriendshipActivity.create!(notified_user_id: followed_id, other_user_id: self.id, friendship_id: @friended.id)
+    if friender = Friendship.create(user_id: self.id, friend_id: followed_id) && friended = Friendship.create(user_id: followed_id, friend_id: self.id)
+      FriendshipActivity.create!(notified_user_id: self.id, other_user_id: followed_id, friendship_id: friender.id)
+      FriendshipActivity.create!(notified_user_id: followed_id, other_user_id: self.id, friendship_id: friended.id)
     end
   end
 
   def destroy_friendship(followed_id)
+    following = Following.find_by(follower_id: self.id, followed_id: followed_id, status: FriendshipActivity::STATUS_PUBLISHED)
+    FollowingActivity.find_by(notified_user_id: self.id, following_id: following.id, status: FollowingActivity::STATUS_PUBLISHED).status = FollowingActivity::STATUS_UNPUBLISHED
+    FollowingActivity.find_by(notified_user_id: followed_id, following_id: following.id, status: FollowingActivity::STATUS_PUBLISHED).status = FollowingActivity::STATUS_UNPUBLISHED
+    following.destroy
+    FriendshipActivity.find_by(notified_user_id: self.id, other_user_id: User.find(followed_id), status: FriendshipActivity::STATUS_PUBLISHED).status = FriendshipActivity::STATUS_UNPUBLISHED
+    FriendshipActivity.find_by(notified_user_id: User.find(followed_id), other_user_id: self.id, status: FriendshipActivity::STATUS_PUBLISHED).status = FriendshipActivity::STATUS_UNPUBLISHED
     Friendship.find_by(user_id: self.id, friend_id: followed_id).destroy
     Friendship.find_by(user_id: followed_id, friend_id: self.id).destroy
   end

@@ -6,7 +6,9 @@ class CommentsController < ApplicationController
     comment = Comment.new( comment_params )
     post.comments << comment
     current_user.comments << comment
-    comment.save
+    if comment.save
+      CommentActivity.create!(notified_user_id: Post.find(post_id).user_id, other_user_id: comment.user_id, comment_id: comment.id)
+    end
     respond_with post
   end
 
@@ -26,7 +28,9 @@ class CommentsController < ApplicationController
   def destroy
     post = Post.find(params[:post_id])
     comment = Comment.find(params[:id])
-    comment.destroy!
+    if comment.destroy!
+      CommentActivity.where(comment_id: params[:id]).update_all(status: CommentActivity::STATUS_UNPUBLISHED)
+    end
     respond_with post
   end
 
