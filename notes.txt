@@ -1,28 +1,33 @@
-# App Access Token
+# To get app access token
 https://graph.facebook.com/oauth/access_token?grant_type=client_credentials&client_id=650360678349775&client_secret=f328dd02b38f0911c1fafa1ba2c09bce
-# access_token=650360678349775|4AMi2eAfkGTyVd-t2SrWduEGfAU
+
+# App Access Token
+access_token=650360678349775|4AMi2eAfkGTyVd-t2SrWduEGfAU
 
 # Working mobile route with facebook User Access Token (these expire quickly)
 /auth/mobile?fbtoken=CAACEdEose0cBAAZAkj94W40FXo4ZCeZCZAcaMSnNdyrqyo1uTjboxTSwdHRZBlClYLIZAPuLROh6UZCYzzW1QPg9NBvxSweIhuWt2IJrn1wKVNTZASIEkdhclCZBkWFU0q9Frhj5UVYZANyZCm8gf5rNMJPXsHenvfGAp2CrJh3jsJLwLjKUOsTVNLClMuDfYLXaXYZD&device_id=device_id&time_zone=+0800&os_type=ios
 
-D
+# Test users
 
-# Why won't these associations work in user.rb? Shouldn't have to hard code them.
-has_many :followings, foreign_key: "follower_id", dependent: :destroy
-has_many :followings, foreign_key: "followed_id", dependent: :destroy
-has_many :followed_users, through: :followings, source: :followed
-has_many :following_users, through: :followings, source: :follower
+https://graph.facebook.com/650360678349775/accounts/test-users?
+  installed=true
+  &name=FULL_NAME
+  &locale=en_US
+  &permissions=read_stream
+  &method=post
+  &access_token=650360678349775|4AMi2eAfkGTyVd-t2SrWduEGfAU
+
+# Paperclip settings information for s3 photo storage
+http://rdoc.info/github/thoughtbot/paperclip/master/Paperclip/Storage/S3#s3_credentials-instance_method
 
 # for binding.pry (similar to debugger)
 xit "should allow guest to view post", :js => true do
 
-Testing Notes:
+#Testing Notes:
 
 require 'spec_helper'
 
 describe Api::V1::EmployeesController do
-  # optional (for rabl)
-  render_views
   # makes variable available to each test case
   let(:auth_token) { "sYiHGuxbznOwqPuQrMR2tA"}
   # Setting up HTTP headers for environment

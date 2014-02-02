@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'Login User' do
+feature '/auth/facebook' do
 before(:each) do
     web_login
   end
