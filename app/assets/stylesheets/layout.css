@@ -166,6 +166,48 @@ input[type=submit] {
   text-decoration: none;
 }
 
+/* Ask/post area */
+
+.ask_button {
+  background-color: #00CCFF;
+  width: 55%;
+  max-width: 75px;
+  height: auto;
+  border-radius: 1.5em;
+  border: 3px solid green;
+  padding: 3%;
+  margin: 5%;
+  display: inline-block;
+}
+
+.ask-left {
+  width: 65%;
+  height: auto;
+  display: inline-block;
+}
+
+.ask-right {
+  width: 25%;
+  height: auto;
+  display: inline-block;
+}
+
+.ask-main {
+  background-color: black;
+  color: white;
+  border-radius: 0.5em;
+  margin: 100px 2% 2% 2%;
+  padding: 2%;
+}
+
+/*.nv-create-post-box {
+  background-color: black;
+  color: white;
+  border-radius: 0.5em;
+  margin: 100px 2% 2% 2%;
+  padding: 2%;
+}*/
+
 /* images and logos */
 
 .title {
@@ -399,6 +441,16 @@ img {
 
   .nv-create-post-box {
     margin-top: 75px;
+  }
+
+  .ask-left {
+    width: 100%;
+    padding: 5%;
+  }
+
+  .ask-right {
+    width: 100%;
+    text-align: center;
   }
 }
 
