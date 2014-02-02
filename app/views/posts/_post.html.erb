@@ -4,7 +4,7 @@
       <div class='post-title'>
         <%= post.description %>
         <% if signed_in? && current_user.id == post.user_id %>
-          <%= button_to "Delete", post_path(post), method: :delete %>
+          <%= link_to image_tag("icons/delete.png", class: "delete_button"), post_path(post), method: :delete %>
         <% end %>
       </div>
       <div class='asked-by'>Asked by <%= post.user.first_name %> <%= post.user.last_name %> on
@@ -35,7 +35,7 @@
       <div class='post-title'>
         <%= post.description %>
         <% if signed_in? && current_user.id == post.user_id %>
-        <%= button_to "Delete", post_path(post), method: :delete %>
+          <%= link_to image_tag("icons/delete.png", class: "delete_button"), post_path(post), method: :delete %>
         <% end %>
       </div>
       <div class='asked-by'>Asked by <%= post.user.first_name %> <%= post.user.last_name %> on
