@@ -200,14 +200,6 @@ input[type=submit] {
   padding: 2%;
 }
 
-/*.nv-create-post-box {
-  background-color: black;
-  color: white;
-  border-radius: 0.5em;
-  margin: 100px 2% 2% 2%;
-  padding: 2%;
-}*/
-
 /* images and logos */
 
 .title {
@@ -315,6 +307,7 @@ input[type=submit] {
   margin: 2% 2%;
   padding: 2%;
   width: 45%;
+  color: white;
 }
 
 .nv-two-images-box {
@@ -364,6 +357,20 @@ img {
 .cells {
   border: 1px solid white;
   padding: 5%;
+}
+
+/* icon buttons */
+
+.like_button {
+  background-color: #00CCFF;
+  width: 55%;
+  max-width: 75px;
+  height: auto;
+  border-radius: 1.5em;
+  border: 3px solid green;
+  padding: 3%;
+  margin: 5%;
+  display: inline-block;
 }
 
 /* media queries */
