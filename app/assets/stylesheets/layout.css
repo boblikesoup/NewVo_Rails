@@ -299,6 +299,7 @@ input[type=submit] {
   padding: 2%;
   width: 45%;
   text-align: center;
+  position: relative;
 }
 
 .nv-two-images-vote {
@@ -317,6 +318,7 @@ input[type=submit] {
   background-color: green;
   border-radius: 0.5em;
   padding: 1%;
+  position: relative;
 }
 
 .nv-two-image-holder {
@@ -361,7 +363,7 @@ img {
 
 /* icon buttons */
 
-.like_button {
+/*.like_button {
   background-color: #00CCFF;
   width: 55%;
   max-width: 75px;
@@ -371,6 +373,22 @@ img {
   padding: 3%;
   margin: 5%;
   display: inline-block;
+}*/
+
+.upvote_button, .downvote_button, .like_button,  {
+  border-radius: 0.5em;
+  background: light-grey;
+  width: 50px;
+}
+
+.delete_button {
+  border-radius: 0.5em;
+  background: pink;
+  border: 2px solid red;
+  width: 30px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 /* media queries */
