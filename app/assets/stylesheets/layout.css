@@ -322,7 +322,7 @@ input[type=submit] {
   padding: 1%;
   position: relative;
   color: white;
-  border: 3px solid rgba(230, 245, 221, 0.5);;
+  border: 3px solid rgba(230, 245, 221, 0.5);
 }
 
 .nv-two-image-holder {
@@ -335,9 +335,14 @@ input[type=submit] {
   float: left;
 }
 
-.nv-two-images img {
+.nv-two-images > img {
   width: 300px;
   height: 320px%;
+  border: 3px solid rgba(230, 245, 221, 0.5);
+  border-radius: 0.5em;
+}
+
+.nv-single-image > img {
   border: 3px solid rgba(230, 245, 221, 0.5);
   border-radius: 0.5em;
 }
