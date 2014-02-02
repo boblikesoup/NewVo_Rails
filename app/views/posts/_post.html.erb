@@ -4,7 +4,7 @@
       <div class='post-title'>
         <%= post.description %>
         <% if signed_in? && current_user.id == post.user_id %>
-          <%= button_to "Delete", post_path(post), method: :delete %>
+          <%= link_to image_tag("icons/delete.png", class: "delete_button"), post_path(post), method: :delete %>
         <% end %>
       </div>
       <div class='asked-by'>Asked by <%= post.user.first_name %> <%= post.user.last_name %> on
@@ -17,11 +17,13 @@
       <div class="vote-box">
       <table class='vote-table'>
         <tr>
-        <td class='cells'><%= button_to "Upvote", votes_path(:photo => photo.id, :value => 1), method: :post %></td>
+        <td class='cells'>
+          <div class='button_holder'><%= link_to image_tag("icons/thumbs.png", class: "upvote_button"), votes_path(:photo => photo.id, :value => 1), method: :post %></div></td>
         <td class='cells'><%= photo.upvotes %></td>
-        </tr>
-        <td class='cells'><%= button_to "Downvote", votes_path(:photo => photo.id, :value => -1), method: :post %></td>
+        <td class='cells'>
+          <div class='button_holder'><%= link_to image_tag("icons/fire.png", class: "downvote_button"), votes_path(:photo => photo.id, :value => -1), method: :post %></div></td>
         <td class='cells'><%= photo.downvotes %></td>
+        </tr>
       </table>
       </div>
   <% end %>
@@ -35,7 +37,7 @@
       <div class='post-title'>
         <%= post.description %>
         <% if signed_in? && current_user.id == post.user_id %>
-        <%= button_to "Delete", post_path(post), method: :delete %>
+          <%= link_to image_tag("icons/delete.png", class: "delete_button"), post_path(post), method: :delete %>
         <% end %>
       </div>
       <div class='asked-by'>Asked by <%= post.user.first_name %> <%= post.user.last_name %> on
@@ -45,10 +47,12 @@
   <% post.photos.each do |photo| %>
   <div class='nv-two-images'>
     <%= image_tag photo.photo.url :medium %>
-    <div class='nv-two-images-vote'>
-      <%= photo.upvotes %>
-      <%= button_to "Like", votes_path(:photo => photo.id, :value => 1), method: :post %>
-    </div>
+    <table class="vote-table">
+      <tr>
+        <td><%= photo.upvotes %></td>
+        <td><div class='button_holder'><%= link_to image_tag("icons/thumbs.png", class: "like_button"), votes_path(:photo => photo.id, :value => 1), method: :post %></div></td>
+      </tr>
+    </table>
   </div>
   <% end %>
   <br>
