@@ -1,17 +1,19 @@
-<div class='nv-create-post-box'>
-  <div class='nv-block'>
-    <p>Not sure if this matches you?</p>
-    <p>Can't decide between what to wear or buy?</p>
-    <p>Ask away!</p>
-    <%= form_for @post, :html => {:multipart => true} do |f| %>
-      <%= f.label :description %>
-      <%= f.text_field :description %>
-      <%= f.fields_for :photos do |builder| %>
-        <% if builder.object.new_record? %>
-        <%= builder.file_field :photo %>
-        <% end %>
+<div class='ask-main'>
+  <div class='ask-left'>
+  <p>Not sure if this matches you?</p>
+  <p>Can't decide between what to wear or buy?</p>
+  <p>Ask away!</p>
+  <%= form_for @post, :html => {:multipart => true} do |f| %>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+    <%= f.fields_for :photos do |builder| %>
+      <% if builder.object.new_record? %>
+      <%= builder.file_field :photo %>
       <% end %>
-      <%= f.submit %>
     <% end %>
+  </div>
+  <div class='ask-right'>
+    <%= image_submit_tag("icons/megaphone.png", class: "ask_button") %>
+  <% end %>
   </div>
 </div>
