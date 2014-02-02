@@ -47,7 +47,7 @@
     <%= image_tag photo.photo.url :medium %>
     <div class='nv-two-images-vote'>
       <%= photo.upvotes %>
-      <%= button_to "Like", votes_path(:photo => photo.id, :value => 1), method: :post %>
+      <%= link_to image_tag("icons/thumbs.png", class: "like_button"), votes_path(:photo => photo.id, :value => 1), method: :post %>
     </div>
   </div>
   <% end %>
