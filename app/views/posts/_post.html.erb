@@ -18,11 +18,11 @@
       <table class='vote-table'>
         <tr>
         <td class='cells'>
-          <%= link_to image_tag("icons/thumbs.png", class: "upvote_button"), votes_path(:photo => photo.id, :value => 1), method: :post %></td>
+          <div class='button_holder'><%= link_to image_tag("icons/thumbs.png", class: "upvote_button"), votes_path(:photo => photo.id, :value => 1), method: :post %></div></td>
         <td class='cells'><%= photo.upvotes %></td>
         </tr>
         <td class='cells'>
-          <%= link_to image_tag("icons/fire.png", class: "downvote_button"), votes_path(:photo => photo.id, :value => -1), method: :post %></td>
+          <div class='button_holder'><%= link_to image_tag("icons/fire.png", class: "downvote_button"), votes_path(:photo => photo.id, :value => -1), method: :post %></div></td>
         <td class='cells'><%= photo.downvotes %></td>
       </table>
       </div>
@@ -47,10 +47,12 @@
   <% post.photos.each do |photo| %>
   <div class='nv-two-images'>
     <%= image_tag photo.photo.url :medium %>
-    <div class='nv-two-images-vote'>
-      <%= photo.upvotes %>
-      <%= link_to image_tag("icons/thumbs.png", class: "like_button"), votes_path(:photo => photo.id, :value => 1), method: :post %>
-    </div>
+    <table class="vote-table">
+      <tr>
+        <td><%= photo.upvotes %></td>
+        <td><div class='button_holder'><%= link_to image_tag("icons/thumbs.png", class: "like_button"), votes_path(:photo => photo.id, :value => 1), method: :post %></div></td>
+      </tr>
+    </table>
   </div>
   <% end %>
   <br>
