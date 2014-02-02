@@ -17,10 +17,12 @@
       <div class="vote-box">
       <table class='vote-table'>
         <tr>
-        <td class='cells'><%= button_to "Upvote", votes_path(:photo => photo.id, :value => 1), method: :post %></td>
+        <td class='cells'>
+          <%= link_to image_tag("icons/thumbs.png", class: "upvote_button"), votes_path(:photo => photo.id, :value => 1), method: :post %></td>
         <td class='cells'><%= photo.upvotes %></td>
         </tr>
-        <td class='cells'><%= button_to "Downvote", votes_path(:photo => photo.id, :value => -1), method: :post %></td>
+        <td class='cells'>
+          <%= link_to image_tag("icons/fire.png", class: "downvote_button"), votes_path(:photo => photo.id, :value => -1), method: :post %></td>
         <td class='cells'><%= photo.downvotes %></td>
       </table>
       </div>
