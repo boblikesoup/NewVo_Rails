@@ -7,16 +7,6 @@ access_token=650360678349775|4AMi2eAfkGTyVd-t2SrWduEGfAU
 # Working mobile route with facebook User Access Token (these expire quickly)
 /auth/mobile?fbtoken=CAACEdEose0cBAAZAkj94W40FXo4ZCeZCZAcaMSnNdyrqyo1uTjboxTSwdHRZBlClYLIZAPuLROh6UZCYzzW1QPg9NBvxSweIhuWt2IJrn1wKVNTZASIEkdhclCZBkWFU0q9Frhj5UVYZANyZCm8gf5rNMJPXsHenvfGAp2CrJh3jsJLwLjKUOsTVNLClMuDfYLXaXYZD&device_id=device_id&time_zone=+0800&os_type=ios
 
-# Test users
-
-https://graph.facebook.com/650360678349775/accounts/test-users?
-  installed=true
-  &name=FULL_NAME
-  &locale=en_US
-  &permissions=read_stream
-  &method=post
-  &access_token=650360678349775|4AMi2eAfkGTyVd-t2SrWduEGfAU
-
 # Paperclip settings information for s3 photo storage
 http://rdoc.info/github/thoughtbot/paperclip/master/Paperclip/Storage/S3#s3_credentials-instance_method
 

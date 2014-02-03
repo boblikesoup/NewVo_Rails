@@ -10,7 +10,10 @@ FactoryGirl.define do
 
   factory :post do
     description "word"
-    user_id 1
+    user_id 1..70
+    has_single_picture true
+    published true
+    global true
   end
 end
 
