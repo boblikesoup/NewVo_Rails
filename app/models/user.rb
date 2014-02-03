@@ -147,7 +147,7 @@ class User < ActiveRecord::Base
   def sort_following (relationships)
     user_array = []
     relationships.each do |relationship|
-      user = User.find(relationship.following_id)
+      user = User.find(relationship.follower_id)
       user_array << user
     end
     return user_array

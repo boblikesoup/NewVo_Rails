@@ -30,7 +30,7 @@ class API::V1::PostsController < API::V1::ApplicationController
     end
     @posts = post_retrieval(params[:query], used_post_ids)
     dictionary = {}
-    dictionary["status"] = "success"
+    dictionary["success"] = true
     dictionary["result"] = @posts
     respond_with(dictionary)
   end

@@ -2,11 +2,17 @@ class API::V1::UsersController < API::V1::ApplicationController
   respond_to :json
 
   def index
-    respond_with(@current_user)
+    response = {}
+    response["success"] = true
+    response["result"] = @current_user
+    respond_with(response)
   end
 
   def show
-    respond_with(User.find(params[:id]))
+    response = {}
+    response["success"] = true
+    response["result"] = User.find(params[:id])
+    respond_with(response)
   end
 end
 
