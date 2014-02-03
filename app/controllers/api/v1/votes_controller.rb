@@ -13,11 +13,10 @@ class API::V1::VotesController < API::V1::ApplicationController
     #   post = Post.find(current_comment.post_id)
     #   current_comment.votes << vote
     end
-    if @vote = vote.save
-      notified_user_post = Post.find(@vote.post_id)
-      notified_user = notified_user_post.user_id
-      VoteActivity.create!(notified_user_id: notified_user, other_user_id: @vote.user_id, vote_id: @vote.id)
+    if vote.save
+      VoteActivity.create!(notified_user_id: Post.find(vote.post_id).user_id, other_user_id: vote.user_id, vote_id: vote.id)
     end
   end
 
+  #do we want to destroy votes?  right now can't change votes
 end

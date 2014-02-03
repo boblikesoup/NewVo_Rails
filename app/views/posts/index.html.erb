@@ -8,7 +8,7 @@
 
 <% if @posts %>
   <% @posts.each do |post| %>
-    <% if post.published == true %>
+    <% if post.status == Post::STATUS_PUBLISHED %>
     <%= render partial: 'post', object: post %>
     <% end %>
   <% end %>

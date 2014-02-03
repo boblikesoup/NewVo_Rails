@@ -10,6 +10,10 @@ class Post < ActiveRecord::Base
   validates_presence_of :user_id
   validates_presence_of :photos
   scope :recent, ->{order(created_at: :desc)}
+  scope :published, ->{where(status: self::STATUS_PUBLISHED)}
+
+  STATUS_PUBLISHED = 0
+  STATUS_UNPUBLISHED = 1
 
   def self.not_seen(used_post_ids)
       if used_post_ids.empty?
