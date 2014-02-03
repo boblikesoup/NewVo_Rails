@@ -29,7 +29,10 @@ class API::V1::PostsController < API::V1::ApplicationController
       used_post_ids = params[:used_post_ids][1..-2].split(',').collect! {|n| n.to_i}
     end
     @posts = post_retrieval(params[:query], used_post_ids)
-    respond_with(@posts)
+    dictionary = {}
+    dictionary["status"] = "success"
+    dictionary["result"] = @posts
+    respond_with(dictionary)
   end
 
 
