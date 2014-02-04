@@ -1,5 +1,10 @@
 class VoteActivity < ActiveRecord::Base
 
+  scope :published, ->{where(status: self::STATUS_PUBLISHED)}
+
+  STATUS_PUBLISHED = 0
+  STATUS_UNPUBLISHED = 1
+
   def assemble_json
     vote_activity = {}
     vote_activity[:id] = self.id

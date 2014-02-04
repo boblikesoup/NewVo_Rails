@@ -4,6 +4,11 @@ class Vote < ActiveRecord::Base
   validates_uniqueness_of :user_id, scope: [:votable_id, :votable_type, :value]
   after_save :destroy_previous_vote
 
+  scope :published, ->{where(status: self::STATUS_PUBLISHED)}
+
+  STATUS_PUBLISHED = 0
+  STATUS_UNPUBLISHED = 1
+
   private
 
   def destroy_previous_vote

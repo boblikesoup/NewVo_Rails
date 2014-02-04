@@ -21,15 +21,31 @@ class API::V1::PostsController < API::V1::ApplicationController
 
   # test with (Juke db token): curl -s "http://localhost:3000/api/v1/posts/search/?newvo_token=1L6zRtt5SJJ8iZuY0XZ3Xd6StdPOpDkk&used_post_ids=1,2&query=global" | json
   # online test (Juke's) token: OLmeNSbGdgtZEr4nBnRZSYvgc7Hi1hHH
+
   def search
-    if params[:used_post_ids].blank?
+    if params[:used_post_ids].strip == "[]" || params[:used_post_ids].strip == "" || params[:used_post_ids].blank?
       used_post_ids = []
     else
-      used_post_ids = params[:used_post_ids].strip.split(',').map(&:strip).map(&:to_i) unless params[:used_post_ids]
+      used_post_ids = params[:used_post_ids][1..-2].split(',').collect! {|n| n.to_i}
     end
     @posts = post_retrieval(params[:query], used_post_ids)
-    respond_with(@posts)
+    response = {}
+    response["success"] = true
+    response["data"] = @posts
+    respond_with(response)
   end
+
+
+#Method that works taking params like used_post_ids = 1,2,3,4
+  # def search
+  #   if params[:used_post_ids].empty?
+  #     used_post_ids = []
+  #   else
+  #     used_post_ids = params[:used_post_ids].strip.split(',').map(&:strip).map(&:to_i)
+  #   end
+  #   @posts = post_retrieval(params[:query], used_post_ids)
+  #   respond_with(@posts)
+  # end
 
   def index
     @posts = Post.recent
@@ -48,14 +64,17 @@ class API::V1::PostsController < API::V1::ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    respond_with @post
+    response = {}
+    response["success"] = true
+    response["data"] = @post
+    respond_with(response)
   end
 
 
   def destroy
     post = Post.find(params[:id])
     #post.destroy!
-    post.update_attribute(:published, false)
+    post.update_attribute(status: Post::STATUS_UNPUBLISHED)
   end
 
   private

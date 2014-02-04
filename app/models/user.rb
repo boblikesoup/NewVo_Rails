@@ -18,6 +18,11 @@ class User < ActiveRecord::Base
   validates_presence_of :fb_uid
   validates_uniqueness_of :fb_uid
 
+  scope :published, ->{where(status: self::STATUS_PUBLISHED)}
+
+  STATUS_PUBLISHED = 0
+  STATUS_UNPUBLISHED = 1
+
 
   def following?(followed_id)
     #tells whether current use is following user B
@@ -29,18 +34,18 @@ class User < ActiveRecord::Base
   end
 
   def follow!(followed_id)
-    if @following = Following.create!(follower_id: self.id, followed_id: followed_id)
+    if following = Following.create!(follower_id: self.id, followed_id: followed_id)
       #You are now following
-      FollowingActivity.create!(notified_user_id: self.id, other_user_id: followed_id, followed_type: "follower", following_id: @following.id)
+      FollowingActivity.create!(notified_user_id: self.id, other_user_id: followed_id, followed_type: "follower", following_id: following.id)
       #Now following you
-      FollowingActivity.create!(notified_user_id: followed_id, other_user_id: self.id, followed_type: "followed", following_id: @following.id)
+      FollowingActivity.create!(notified_user_id: followed_id, other_user_id: self.id, followed_type: "followed", following_id: following.id)
     end
   end
 
 #friendships
   def both_following?(followed_id)
     #tells whether two users are following each other
-    if User.find(followed_id).following?(self.id)
+    if User.find(followed_id).following?(self.id) && self.following?(followed_id)
       return true
     else
       return false
@@ -48,13 +53,19 @@ class User < ActiveRecord::Base
   end
 
   def create_friendship(followed_id)
-    if @friender = Friendship.create(user_id: self.id, friend_id: followed_id) && @friended = Friendship.create(user_id: followed_id, friend_id: self.id)
-      FriendshipActivity.create!(notified_user_id: self.id, other_user_id: followed_id, friendship_id: @friender.id)
-      FriendshipActivity.create!(notified_user_id: followed_id, other_user_id: self.id, friendship_id: @friended.id)
+    if friender = Friendship.create(user_id: self.id, friend_id: followed_id) && friended = Friendship.create(user_id: followed_id, friend_id: self.id)
+      FriendshipActivity.create!(notified_user_id: self.id, other_user_id: followed_id, friendship_id: friender.id)
+      FriendshipActivity.create!(notified_user_id: followed_id, other_user_id: self.id, friendship_id: friended.id)
     end
   end
 
   def destroy_friendship(followed_id)
+    following = Following.find_by(follower_id: self.id, followed_id: followed_id, status: FriendshipActivity::STATUS_PUBLISHED)
+    FollowingActivity.find_by(notified_user_id: self.id, following_id: following.id, status: FollowingActivity::STATUS_PUBLISHED).status = FollowingActivity::STATUS_UNPUBLISHED
+    FollowingActivity.find_by(notified_user_id: followed_id, following_id: following.id, status: FollowingActivity::STATUS_PUBLISHED).status = FollowingActivity::STATUS_UNPUBLISHED
+    following.destroy
+    FriendshipActivity.find_by(notified_user_id: self.id, other_user_id: User.find(followed_id), status: FriendshipActivity::STATUS_PUBLISHED).status = FriendshipActivity::STATUS_UNPUBLISHED
+    FriendshipActivity.find_by(notified_user_id: User.find(followed_id), other_user_id: self.id, status: FriendshipActivity::STATUS_PUBLISHED).status = FriendshipActivity::STATUS_UNPUBLISHED
     Friendship.find_by(user_id: self.id, friend_id: followed_id).destroy
     Friendship.find_by(user_id: followed_id, friend_id: self.id).destroy
   end
@@ -95,37 +106,53 @@ class User < ActiveRecord::Base
 
   def as_json(options={})
     {
-      #just id's of followed_users and thumbnails
-      :id => id,
-      :first_name => first_name,
-      :last_name => last_name,
-      :description => description,
-      :profile_pic => profile_pic,
-      :followed_users => assemble_users(self.followed_users),
-      :following_users => assemble_users(self.following_users),
-      :friends => assemble_users(self.friends),
-      :posts => posts.order("created_at desc").limit(6)
+      :user_info => assemble_user(self.id),
+      :user_description => description,
+      :followed_users => sort_followed(self.followed_users),
+      :following_users => sort_following(self.following_users),
+      :friends => sort_friends(self.friends),
+      :posts => posts.recent.limit(6)
     }
   end
 
-  def assemble_users(users)
-    users_info = []
-    users.each do |user|
-      users_info << user.assemble_user
-    end
-    return users_info
-  end
-
-  def assemble_user
-    user = {}
-    user["id"] = self.id
-    user["name"] = self.full_name
-    user["profile_pic"] = self.profile_pic
-    return user
+  def assemble_user(user_id)
+    user = User.find(user_id)
+    user_hash = {}
+    user_hash["id"] = user.id
+    user_hash["name"] = user.full_name
+    user_hash["profile_pic"] = user.profile_pic
+    return user_hash
   end
 
   def full_name
     return self.first_name + " " + self.last_name
+  end
+
+  def sort_followed (relationships)
+    user_array = []
+    relationships.each do |relationship|
+      user = assemble_user(relationship.followed_id)
+      user_array << user
+    end
+    return user_array
+  end
+
+  def sort_following (relationships)
+    user_array = []
+    relationships.each do |relationship|
+      user = assemble_user(relationship.follower_id)
+      user_array << user
+    end
+    return user_array
+  end
+
+  def sort_friends (relationships)
+    user_array = []
+    relationships.each do |relationship|
+      user = assemble_user(relationship.friend_id)
+      user_array << user
+    end
+    return user_array
   end
 
 end
