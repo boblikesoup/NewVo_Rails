@@ -29,10 +29,10 @@ class API::V1::PostsController < API::V1::ApplicationController
       used_post_ids = params[:used_post_ids][1..-2].split(',').collect! {|n| n.to_i}
     end
     @posts = post_retrieval(params[:query], used_post_ids)
-    dictionary = {}
-    dictionary["success"] = true
-    dictionary["result"] = @posts
-    respond_with(dictionary)
+    response = {}
+    response["success"] = true
+    response["data"] = @posts
+    respond_with(response)
   end
 
 
@@ -64,7 +64,10 @@ class API::V1::PostsController < API::V1::ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    respond_with @post
+    response = {}
+    response["success"] = true
+    response["data"] = @post
+    respond_with(response)
   end
 
 

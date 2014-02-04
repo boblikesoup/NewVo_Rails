@@ -4,14 +4,14 @@ class API::V1::UsersController < API::V1::ApplicationController
   def index
     response = {}
     response["success"] = true
-    response["result"] = @current_user
+    response["data"] = @current_user
     respond_with(response)
   end
 
   def show
     response = {}
     response["success"] = true
-    response["result"] = User.find(params[:id])
+    response["data"] = User.find(params[:id])
     respond_with(response)
   end
 end
