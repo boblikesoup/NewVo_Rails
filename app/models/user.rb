@@ -8,10 +8,13 @@ class User < ActiveRecord::Base
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, through: :inverse_friendships, :source => :user
 
+  has_many :followed_users
+  has_many :following_users
   #User.followed_users = users User is following
   #User.following_users = users following User
   has_many :followed_users, :class_name => 'Following', :foreign_key => 'follower_id'
   has_many :following_users, :class_name => 'Following', :foreign_key => 'followed_id'
+
 
   validates_presence_of :first_name
   validates_presence_of :last_name
@@ -119,11 +122,12 @@ class User < ActiveRecord::Base
     user = User.find(user_id)
     user_hash = {}
     user_hash["id"] = user.id
-    user_hash["name"] = user.full_name
+    user_hash["name"] = user.first_name
     user_hash["profile_pic"] = user.profile_pic
     return user_hash
   end
 
+#using just first name for now
   def full_name
     return self.first_name + " " + self.last_name
   end
