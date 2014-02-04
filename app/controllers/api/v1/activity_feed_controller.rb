@@ -19,8 +19,10 @@ class API::V1::ActivityFeedController < API::V1::ApplicationController
     @activity["comment_activities"] = join_activity(CommentActivity)
     @activity["following_activities"] = join_activity(FollowingActivity)
     @activity["friendship_activities"] = join_activity(FriendActivity)
-
-    respond_with(@activity)
+    response = {}
+    response["success"] = true
+    response["data"] = @activity
+    respond_with(response)
   end
 
 end
