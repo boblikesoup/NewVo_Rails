@@ -1,4 +1,5 @@
 require 'spec_helper'
+
 #Need to update tests to validate Type
 #Need tests for dependent destruction of comments, photos, votes
 

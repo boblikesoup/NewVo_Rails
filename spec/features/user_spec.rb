@@ -11,6 +11,13 @@ describe "When user is logged in", :type => :feature, :js => true do
     expect(page).to have_content "Brent"
   end
 
+feature '/posts' do
+  it "should be success" do
+    visit "/posts"
+    #make post here
+    expect(page).to have_content "Brent"
+  end
+
   # xit "should allow user to create a post with a picture" do
   # end
 
@@ -37,5 +44,11 @@ describe "When user is logged in", :type => :feature, :js => true do
 
   # xit "should not allow user to downvote the same comment more than once" do
   # end
+
+  def do_get
+      get :index #, :format => :json, :newvo_token => newvo_token
+  end
+
+end
 end
 end
