@@ -17,9 +17,9 @@ class Post < ActiveRecord::Base
 
   def self.not_seen(used_post_ids)
       if used_post_ids.empty?
-        Post.recent.published.limit(10)
+        Post.recent.published.limit(6)
       else
-        Post.recent.published.where.not(id: used_post_ids).limit(10)
+        Post.recent.published.where.not(id: used_post_ids).limit(6)
       end
   end
 
