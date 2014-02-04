@@ -11,17 +11,15 @@ class API::V1::PostsController < API::V1::ApplicationController
       if query == "global"
         Post.not_seen(used_post_ids)
       elsif query == "friends"
-        #refactor to create array of friend_id and specify where User.id = that
-        @current_user.friends.not_seen(used_post_ids)
+        Post.not_seen_friends(used_post_ids, @current_user)
       elsif query == "following"
-        #refactor to create array of friend_id and specify where User.id = that
-        @current_user.followed_users.not_seen(used_post_ids)
+        Post.not_seen_following(used_post_ids, @current_user)
       else
-        return "Invalid params or already returned all 100 most recent posts."
+        return "Invalid params or server error."
       end
     end
 
-  # test with (Juke db token): curl -s "http://localhost:3000/api/v1/posts/search/?newvo_token=1L6zRtt5SJJ8iZuY0XZ3Xd6StdPOpDkk&used_post_ids=1,2&query=global" | json
+  # test with (Juke db token): curl -s "http://localhost:3000/api/v1/posts/search/?newvo_token=1L6zRtt5SJJ8iZuY0XZ3Xd6StdPOpDkk&used_post_ids=[1,2]&query=global" | json
   # online test (Juke's) token: OLmeNSbGdgtZEr4nBnRZSYvgc7Hi1hHH
 
   def search
