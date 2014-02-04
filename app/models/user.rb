@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
 #friendships
   def both_following?(followed_id)
     #tells whether two users are following each other
-    if User.find(followed_id).following?(self.id)
+    if User.find(followed_id).following?(self.id) && self.following?(followed_id)
       return true
     else
       return false
