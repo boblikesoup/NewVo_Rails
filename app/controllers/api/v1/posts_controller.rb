@@ -11,9 +11,11 @@ class API::V1::PostsController < API::V1::ApplicationController
       if query == "global"
         Post.not_seen(used_post_ids)
       elsif query == "friends"
-        @current_user.friends.recent.not_seen(used_post_ids)
+        #refactor to create array of friend_id and specify where User.id = that
+        @current_user.friends.not_seen(used_post_ids)
       elsif query == "following"
-        @current_user.followed_users.recent.not_seen(used_post_ids)
+        #refactor to create array of friend_id and specify where User.id = that
+        @current_user.followed_users.not_seen(used_post_ids)
       else
         return "Invalid params or already returned all 100 most recent posts."
       end
