@@ -9,14 +9,14 @@ class API::V1::FollowingsController < API::V1::ApplicationController
   end
 
   def destroy
-    following = Following.find(params[:id])
-    #refactor this to clean methods and figure out if passing in id of user or following
+    #id = other user's id NOT id of relationship
+    other_user = User.find(params[:id])
+    following = Following.find_by(follower_id: @current_user.id, followed_id: params[:id])
     if @current_user.both_following?(following.followed_id)
       @current_user.destroy_friendship(following.followed_id)
     else
-      following = Following.find_by(follower_id: self.id, followed_id: followed_id, status: FriendshipActivity::STATUS_PUBLISHED)
-      FollowingActivity.find_by(notified_user_id: self.id, following_id: following.id, status: FollowingActivity::STATUS_PUBLISHED).status = FollowingActivity::STATUS_UNPUBLISHED
-      FollowingActivity.find_by(notified_user_id: followed_id, following_id: following.id, status: FollowingActivity::STATUS_PUBLISHED).status = FollowingActivity::STATUS_UNPUBLISHED
+      FollowingActivity.find_by(notified_user_id: @current_user.id, following_id: other_user.id, status: FollowingActivity::STATUS_PUBLISHED).status = FollowingActivity::STATUS_UNPUBLISHED
+      FollowingActivity.find_by(notified_user_id: other_user.id, following_id: @current_user.id, status: FollowingActivity::STATUS_PUBLISHED).status = FollowingActivity::STATUS_UNPUBLISHED
     end
 
     following.destroy!
