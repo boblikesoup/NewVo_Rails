@@ -4,10 +4,10 @@ class API::V1::ActivityFeedController < API::V1::ApplicationController
   def index
     #destroy irrelevnt activities
     activity = {}
-    two_weeks_ago = Time.now - 2.weeks
+    @two_weeks_ago = Time.now - 2.weeks
 
     def join_activity(model)
-      activity_queries = model.where("notified_user_id = ?", @current_user.id).where("created_at > ?", two_weeks_ago).published
+      activity_queries = model.where("notified_user_id = ?", @current_user.id).where("created_at > ?", @two_weeks_ago).published
       activities = []
       activity_queries.each do |activity|
         activities << activity.assemble_json
