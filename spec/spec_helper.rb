@@ -7,6 +7,7 @@ require 'uri'
 require "paperclip/matchers"
 require 'factory_girl_rails'
 
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
@@ -21,7 +22,8 @@ RSpec.configure do |config|
   config.include Paperclip::Shoulda::Matchers
 
   config.include FactoryGirl::Syntax::Methods
-  include CapybaraHelpers
+
+  config.include CapybaraHelpers
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

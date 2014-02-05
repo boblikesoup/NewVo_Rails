@@ -5,7 +5,6 @@ before(:each) do
     web_login
   end
 
-
 describe "When user is logged in", :type => :feature, :js => true do
   it "should allow user to sign in" do
     expect(page).to have_content "Brent"
@@ -15,11 +14,8 @@ feature '/posts' do
   it "should be success" do
     visit "/posts"
     #make post here
-    expect(page).to have_content "Brent"
+    expect(page).to have_content "Ask"
   end
-
-  # xit "should allow user to create a post with a picture" do
-  # end
 
   # xit "should allow user to set post as public for anyone to see" do
   # end
