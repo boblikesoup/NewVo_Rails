@@ -27,14 +27,6 @@ class API::V1::SessionsController < API::V1::ApplicationController
     end
   end
 
-
-
-  def destroy
-    session[:user_id] = nil
-    #might need to redirect here to api_v1
-    redirect_to root_path
-  end
-
   private
 
   def auth_hash

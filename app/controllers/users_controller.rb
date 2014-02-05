@@ -10,6 +10,6 @@ respond_to :html, :json
     @user = User.find(params[:id])
     @profile = true
     @posts_page = false
-    respond_with(User.find(params[:id]))
+    respond_with(@user)
   end
 end
