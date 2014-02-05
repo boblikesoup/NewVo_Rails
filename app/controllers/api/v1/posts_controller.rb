@@ -2,8 +2,6 @@ class API::V1::PostsController < API::V1::ApplicationController
   respond_to :json
 
   # TODO
-  # Get shit out of controllers
-  # Refactor into scopes? read rails 4 design patterns on scopes.
   # tests using factory girl (possibly factories in factories creating posts and then testing search or something)
   # have each as own route (gets rid of if statement)
 
@@ -20,7 +18,7 @@ class API::V1::PostsController < API::V1::ApplicationController
     end
 
   # test with (Juke db token): curl -s "http://localhost:3000/api/v1/posts/search/?newvo_token=1L6zRtt5SJJ8iZuY0XZ3Xd6StdPOpDkk&used_post_ids=[1,2]&query=global" | json
-  # online test (Juke's) token: OLmeNSbGdgtZEr4nBnRZSYvgc7Hi1hHH
+  # online test (Juke's) token: newvo.herokuapp.com/api/v1/posts/search/?newvo_token=OLmeNSbGdgtZEr4nBnRZSYvgc7Hi1hHH&used_post_ids=[1,2]&query=global
 
   def search
     if params[:used_post_ids].strip == "[]" || params[:used_post_ids].strip == "" || params[:used_post_ids].blank?

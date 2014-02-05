@@ -20,20 +20,12 @@ class Post < ActiveRecord::Base
   end
 
   def self.not_seen_friends(used_post_ids, user)
-    friends = user.friends
-    friend_ids = []
-    friends.each do |friend|
-      friend_ids << friend.id
-    end
+    friend_ids = user.friends.pluck(:id)
     Post.recent.published.where.not(id: used_post_ids).where("user_id IN (?)", friend_ids).limit(6)
   end
 
   def self.not_seen_following(used_post_ids, user)
-    followed_relationships = user.followed_users
-    followed_user_ids = []
-    followed_relationships.each do |relationship|
-      followed_user_ids << relationship.followed_id
-    end
+    followed_relationships = user.followed_users.pluck(:followed_id)
     Post.recent.published.where.not(id: used_post_ids).where("user_id IN (?)", followed_user_ids).limit(6)
   end
 
