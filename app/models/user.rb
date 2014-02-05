@@ -109,51 +109,52 @@ class User < ActiveRecord::Base
 
   def as_json(options={})
     {
-      :user_info => assemble_user(self.id),
+      :user_info => self.assemble_user,
       :user_description => description,
-      :followed_users => sort_followed(self.followed_users),
-      :following_users => sort_following(self.following_users),
+      :followed_users => sort_followed(User.where(id: self.followed_users.pluck(:followed_id))),
+      :following_users => sort_following(User.where(id: self.following_users.pluck(:follower_id))),
       :friends => sort_friends(self.friends),
       :posts => posts.recent.limit(6)
     }
   end
-
-  def assemble_user(user_id)
-    user = User.find(user_id)
+#called on like .assemble_user (refactor where search by id)
+  def assemble_user
     user_hash = {}
-    user_hash["id"] = user.id
-    user_hash["name"] = user.first_name
-    user_hash["profile_pic"] = user.profile_pic
+    user_hash["id"] = self.id
+    user_hash["name"] = self.first_name
+    user_hash["profile_pic"] = self.profile_pic
     return user_hash
   end
 
 #using just first name for now
-  def full_name
-    return self.first_name + " " + self.last_name
-  end
+  # def full_name
+  #   return self.first_name + " " + self.last_name
+  # end
 
-  def sort_followed (relationships)
+
+#refactor these into 1 method
+  def sort_followed (followed_users)
     user_array = []
-    relationships.each do |relationship|
-      user = assemble_user(relationship.followed_id)
+    followed_users.each do |followed_user|
+      user = followed_user.assemble_user
       user_array << user
     end
     return user_array
   end
 
-  def sort_following (relationships)
+  def sort_following (following_users)
     user_array = []
-    relationships.each do |relationship|
-      user = assemble_user(relationship.follower_id)
+    following_users.each do |following_user|
+      user = following_user.assemble_user
       user_array << user
     end
     return user_array
   end
 
-  def sort_friends (relationships)
+  def sort_friends (friends)
     user_array = []
-    relationships.each do |relationship|
-      user = assemble_user(relationship.friend_id)
+    friends.each do |friend|
+      user = friend.assemble_user
       user_array << user
     end
     return user_array
