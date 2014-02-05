@@ -23,10 +23,9 @@ class API::V1::CommentsController < API::V1::ApplicationController
   end
 
   def destroy
-    post = Post.find(params[:post_id])
     comment = Comment.find(params[:id])
-    if comment.destroy!
-      CommentActivity.where(comment_id: params[:id]).update_all(status: CommentActivity::STATUS_UNPUBLISHED)
+    if comment.update_attributes(status: Comment::STATUS_UNPUBLISHED)
+      CommentActivity.where(comment_id: params[:id]).update_attributes(status: CommentActivity::STATUS_UNPUBLISHED)
     end
   end
 
