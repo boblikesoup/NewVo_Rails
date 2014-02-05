@@ -13,7 +13,7 @@ describe API::V1::PostsController, type: :controller do
       JSON.parse(response.body).size.should == 2
     end
 
-    it "should return id, name and description of each post" do
+    it "should return success: true" do
       post_show(stub_post)
       expect(JSON.parse(response.body)["success"]).to eq(true)
     end

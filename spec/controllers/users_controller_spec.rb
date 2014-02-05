@@ -8,7 +8,7 @@ describe API::V1::UsersController, type: :controller do
       response.should be_success
     end
 
-    it "should return status and a post" do
+    it "should return status and a user" do
       user_show
       JSON.parse(response.body).size.should == 2
     end
