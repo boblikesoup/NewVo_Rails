@@ -444,6 +444,12 @@ img {
   height: 100%;
 }
 
+.friend-followers-following {
+  border: 2px solid yellow;
+  height: 30%;
+}
+
+
 /* media queries */
 
 @media only screen and (max-width: 480px) {
