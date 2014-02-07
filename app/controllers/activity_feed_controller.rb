@@ -1,5 +1,5 @@
-class API::V1::ActivityFeedController < API::V1::ApplicationController
-  respond_to :json
+class ActivityFeedController < ApplicationController
+  respond_to :html, :json
 
   def index
     #destroy irrelevnt activities
@@ -7,7 +7,7 @@ class API::V1::ActivityFeedController < API::V1::ApplicationController
 
 
     def join_activity(model)
-      activity_queries = model.where("notified_user_id = ?", @current_user.id).where("created_at > ?", @two_weeks_ago).published
+      activity_queries = model.where("notified_user_id = ?", current_user.id).where("created_at > ?", @two_weeks_ago).published
       activities = []
       activity_queries.each do |activity|
         activities << activity.assemble_json

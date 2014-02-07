@@ -8,10 +8,13 @@ class User < ActiveRecord::Base
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, through: :inverse_friendships, :source => :user
 
+  has_many :followed_users
+  has_many :following_users
   #User.followed_users = users User is following
   #User.following_users = users following User
   has_many :followed_users, :class_name => 'Following', :foreign_key => 'follower_id'
   has_many :following_users, :class_name => 'Following', :foreign_key => 'followed_id'
+
 
   validates_presence_of :first_name
   validates_presence_of :last_name
@@ -60,12 +63,12 @@ class User < ActiveRecord::Base
   end
 
   def destroy_friendship(followed_id)
-    following = Following.find_by(follower_id: self.id, followed_id: followed_id, status: FriendshipActivity::STATUS_PUBLISHED)
-    FollowingActivity.find_by(notified_user_id: self.id, following_id: following.id, status: FollowingActivity::STATUS_PUBLISHED).status = FollowingActivity::STATUS_UNPUBLISHED
-    FollowingActivity.find_by(notified_user_id: followed_id, following_id: following.id, status: FollowingActivity::STATUS_PUBLISHED).status = FollowingActivity::STATUS_UNPUBLISHED
+    following = Following.find_by(follower_id: self.id, followed_id: followed_id)
+    FollowingActivity.find_by(notified_user_id: self.id, following_id: following.id, followed_type: "follower", status: FollowingActivity::STATUS_PUBLISHED).status = FollowingActivity::STATUS_UNPUBLISHED
+    FollowingActivity.find_by(notified_user_id: followed_id, following_id: following.id, followed_type: "followed", status: FollowingActivity::STATUS_PUBLISHED).status = FollowingActivity::STATUS_UNPUBLISHED
     following.destroy
-    FriendshipActivity.find_by(notified_user_id: self.id, other_user_id: User.find(followed_id), status: FriendshipActivity::STATUS_PUBLISHED).status = FriendshipActivity::STATUS_UNPUBLISHED
-    FriendshipActivity.find_by(notified_user_id: User.find(followed_id), other_user_id: self.id, status: FriendshipActivity::STATUS_PUBLISHED).status = FriendshipActivity::STATUS_UNPUBLISHED
+    FriendshipActivity.published.find_by(notified_user_id: self.id, other_user_id: User.find(followed_id)).status = FriendshipActivity::STATUS_UNPUBLISHED
+    FriendshipActivity.published.find_by(notified_user_id: User.find(followed_id), other_user_id: self.id).status = FriendshipActivity::STATUS_UNPUBLISHED
     Friendship.find_by(user_id: self.id, friend_id: followed_id).destroy
     Friendship.find_by(user_id: followed_id, friend_id: self.id).destroy
   end
@@ -106,50 +109,52 @@ class User < ActiveRecord::Base
 
   def as_json(options={})
     {
-      :user_info => assemble_user(self.id),
+      :user_info => self.assemble_user,
       :user_description => description,
-      :followed_users => sort_followed(self.followed_users),
-      :following_users => sort_following(self.following_users),
+      :followed_users => sort_followed(User.where(id: self.followed_users.pluck(:followed_id))),
+      :following_users => sort_following(User.where(id: self.following_users.pluck(:follower_id))),
       :friends => sort_friends(self.friends),
       :posts => posts.recent.limit(6)
     }
   end
-
-  def assemble_user(user_id)
-    user = User.find(user_id)
+#called on like .assemble_user (refactor where search by id)
+  def assemble_user
     user_hash = {}
-    user_hash["id"] = user.id
-    user_hash["name"] = user.full_name
-    user_hash["profile_pic"] = user.profile_pic
+    user_hash["id"] = self.id
+    user_hash["name"] = self.first_name
+    user_hash["profile_pic"] = self.profile_pic
     return user_hash
   end
 
-  def full_name
-    return self.first_name + " " + self.last_name
-  end
+#using just first name for now
+  # def full_name
+  #   return self.first_name + " " + self.last_name
+  # end
 
-  def sort_followed (relationships)
+
+#refactor these into 1 method
+  def sort_followed (followed_users)
     user_array = []
-    relationships.each do |relationship|
-      user = assemble_user(relationship.followed_id)
+    followed_users.each do |followed_user|
+      user = followed_user.assemble_user
       user_array << user
     end
     return user_array
   end
 
-  def sort_following (relationships)
+  def sort_following (following_users)
     user_array = []
-    relationships.each do |relationship|
-      user = assemble_user(relationship.follower_id)
+    following_users.each do |following_user|
+      user = following_user.assemble_user
       user_array << user
     end
     return user_array
   end
 
-  def sort_friends (relationships)
+  def sort_friends (friends)
     user_array = []
-    relationships.each do |relationship|
-      user = assemble_user(relationship.friend_id)
+    friends.each do |friend|
+      user = friend.assemble_user
       user_array << user
     end
     return user_array
