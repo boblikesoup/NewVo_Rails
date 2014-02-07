@@ -426,6 +426,11 @@ img {
   height: 100%;
 }
 
+.profile-name {
+  border: 2px solid gold;
+  height: 25%
+}
+
 .profile-right {
   border: 2px solid red;
   display: inline-block;
