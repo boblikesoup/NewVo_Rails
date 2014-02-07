@@ -15,24 +15,14 @@ FactoryGirl.define do
       has_single_picture true
       status 0
       global true
-      after(:create) do |post|
-      post.photos << create(:photo, post: post)
-    end
+      photos {
+      Array(1).sample.times.map do
+        FactoryGirl.create(:photo)
+      end    }
   end
-
-  # for photo attachment?
-  # password_confirmation "password1"
-  #     handle
-  #     tags {
-  #       Array(10).sample.times.map do
-  #         FactoryGirl.create(:tag)
-  #       end
-  #     }
-  #  end
 
   factory :photo do
     photo { fixture_file_upload(Rails.root.join('spec', 'photos', 'test.jpg'), 'image/jpg') }
-    # post_id 1
   end
 end
 

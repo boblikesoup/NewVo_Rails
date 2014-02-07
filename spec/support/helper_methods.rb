@@ -29,10 +29,17 @@ module CapybaraHelpers
     get :show, :format => :json, :id => user.id, :newvo_token => user.newvo_token
   end
 
-  def stub_post
-    post = FactoryGirl.build(:post)
-    post.save(:validate => false)
-    return post
+  def user_show_fail
+    # params = {}
+    # params['newvo_token'] = user.newvo_token
+    # get "/api/v1/users/#{user.id}", params, :format => :json
+    get :show, :format => :json, :id => user.id
+  end
+
+  def post_show_fail(post)
+    params = {}
+    get "/api/v1/posts/#{post.id}", params, :format => :json
+    # get :show, :format => :json, :id => post.id, :newvo_token => user.newvo_token
   end
 
 end
