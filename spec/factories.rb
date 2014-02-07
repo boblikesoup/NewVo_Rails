@@ -40,6 +40,22 @@ FactoryGirl.define do
     trait :double do
       photo { fixture_file_upload(Rails.root.join('spec', 'photos', 'test2.jpg'), 'image/jpg') }
   end
+
+  factory :comment do
+  end
+
+  factory :comment do
+  end
+
+  factory :user_with_post do
+  end
+
+  factory :post_with_comments
+  end
+
+  factory :post_with_votes do
+  end
+
 end
 
 # attributes_for method generates a hash of attributes instead of a ruby object
