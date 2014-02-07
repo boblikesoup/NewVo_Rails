@@ -475,6 +475,8 @@ img {
   border: 2px solid orange;
   height: 55%;
   position: absolute;
+  padding: 0 25%;
+  text-align: left;
 }
 
 /* media queries */
