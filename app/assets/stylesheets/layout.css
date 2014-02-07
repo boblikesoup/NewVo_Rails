@@ -449,6 +449,10 @@ img {
   height: 30%;
 }
 
+.user-description {
+  border: 2px solid orange;
+  height: 55%;
+}
 
 /* media queries */
 
