@@ -19,6 +19,8 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
 
+  config.include ActionDispatch::TestProcess
+
   config.include Paperclip::Shoulda::Matchers
 
   config.include FactoryGirl::Syntax::Methods

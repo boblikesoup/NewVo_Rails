@@ -17,9 +17,13 @@ feature '/posts' do
     expect(page).to have_content "Ask"
   end
 
-  # xit "should allow user to set post as public for anyone to see" do
-  # end
+  it "should have valid factory" do
+    FactoryGirl.build(:user).should be_valid
+  end
 
+  it "should require a username" do
+    FactoryGirl.build(:user, :first_name => "").should_not be_valid
+  end
   # xit "should allow user to respond to post" do
   # end
 
@@ -40,11 +44,6 @@ feature '/posts' do
 
   # xit "should not allow user to downvote the same comment more than once" do
   # end
-
-  def do_get
-      get :index #, :format => :json, :newvo_token => newvo_token
-  end
-
 end
 end
 end

@@ -13,4 +13,9 @@ describe API::V1::UsersController, type: :controller do
       JSON.parse(response.body).size.should == 2
     end
 
+    it "fails without valid credentials" do
+      user_show_fail
+      expect(response.status).to eq(401)
+    end
+
   end

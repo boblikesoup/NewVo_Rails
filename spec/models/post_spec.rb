@@ -1,22 +1,17 @@
 require 'spec_helper'
-
 #Need to update tests to validate Type
-#Need tests for dependent destruction of comments, photos, votes
 
-# describe Post do
-#   let(:post_template) { build(:post) }
-#   let(:post) { create(:post) }
+describe Post do
 
-#   it "should save with valid attributes" do
-#     expect {
-#       post
-#     }.to change{Post.count}.from(0).to(1)
-#   end
+  it "has a valid factory" do
+    FactoryGirl.create(:post)
+  end
 
-#   it "should not save without a user_id" do
-#     expect{
-#             post_template.user_id = ""
-#             post_template.save
-#     }.to change{Post.count}.by(0)
-#   end
-# end
+  it "returns an error without photos" do
+      FactoryGirl.build(:post, :photos => []).should_not be_valid
+  end
+
+  it "should not save without a user_id" do
+      FactoryGirl.build(:post, :user_id => "").should_not be_valid
+  end
+end
