@@ -9,7 +9,20 @@ FactoryGirl.define do
       newvo_token "sYiHGuxbznOwqPuQrMR2tA"
     end
 
-    factory :post do
+    factory :double_post, class: 'post' do
+      description "word"
+      user_id 1
+      has_single_picture false
+      status 0
+      global true
+      photos {
+      Array(2).sample.times.map do
+        FactoryGirl.create(:photo)
+        FactoryGirl.create(:photo, :double)
+      end    }
+    end
+
+    factory :single_post, class: 'post' do
       description "word"
       user_id 1
       has_single_picture true
@@ -19,10 +32,13 @@ FactoryGirl.define do
       Array(1).sample.times.map do
         FactoryGirl.create(:photo)
       end    }
-  end
+    end
 
   factory :photo do
     photo { fixture_file_upload(Rails.root.join('spec', 'photos', 'test.jpg'), 'image/jpg') }
+  end
+    trait :double do
+      photo { fixture_file_upload(Rails.root.join('spec', 'photos', 'test2.jpg'), 'image/jpg') }
   end
 end
 
