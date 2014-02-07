@@ -13,6 +13,7 @@ Newvo::Application.routes.draw do
     resources :comments, only: [:create, :update, :edit, :destroy]
   end
 
+  resources :activity_feed, only: :index
   resources :votes, only: :create
   resources :followings, only: [:create, :destroy, :show]
   resources :users, only: [:index, :show]
@@ -20,7 +21,7 @@ Newvo::Application.routes.draw do
   namespace :api, :defaults => {:format => :json} do
    namespace :v1 do
     resources :users, only: [:index, :show]
-    resources :activity_feed
+    resources :activity_feed, only: :create
     get '/posts/search', to: 'posts#search'
     resources :posts, only: [:index, :create, :show, :destroy] do
      #  member do
