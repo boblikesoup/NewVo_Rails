@@ -431,6 +431,12 @@ img {
   height: 25%
 }
 
+.profile-pic {
+  border: 2px solid orange;
+  margin-top: 5%;
+  height: 55%;
+}
+
 .profile-right {
   border: 2px solid red;
   display: inline-block;
