@@ -424,6 +424,8 @@ img {
   display: inline-block;
   width: 30%;
   height: 100%;
+  color: white;
+  position: relative;
 }
 
 .profile-name {
@@ -435,6 +437,7 @@ img {
   border: 2px solid orange;
   margin-top: 5%;
   height: 55%;
+  position: absolute;
 }
 
 .profile-right {
@@ -442,6 +445,8 @@ img {
   display: inline-block;
   width: 65%;
   height: 100%;
+  color: white;
+  position: relative;
 }
 
 .friend-followers-following {
@@ -469,6 +474,7 @@ img {
 .user-description {
   border: 2px solid orange;
   height: 55%;
+  position: absolute;
 }
 
 /* media queries */
