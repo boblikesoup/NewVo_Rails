@@ -44,16 +44,19 @@ FactoryGirl.define do
   factory :comment do
   end
 
-  factory :comment do
+  factory :vote do
   end
 
   factory :user_with_post do
+    post
   end
 
   factory :post_with_comments
+    comment
   end
 
   factory :post_with_votes do
+    vote
   end
 
 end
