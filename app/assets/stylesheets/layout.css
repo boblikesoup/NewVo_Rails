@@ -415,8 +415,23 @@ img {
   margin: 0 auto;
   margin-top: 150px;
   background-color: black;
+  text-align: center;
+  padding: 3px;
 }
 
+.profile-left {
+  border: 2px solid blue;
+  display: inline-block;
+  width: 30%;
+  height: 100%;
+}
+
+.profile-right {
+  border: 2px solid red;
+  display: inline-block;
+  width: 65%;
+  height: 100%;
+}
 
 /* media queries */
 
