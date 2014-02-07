@@ -1,5 +1,5 @@
 class ActivityFeedController < ApplicationController
-  respond_to :json
+  respond_to :html, :json
 
   def index
     #destroy irrelevnt activities
@@ -16,11 +16,11 @@ class ActivityFeedController < ApplicationController
     end
 
     @two_weeks_ago = Time.now - 2.weeks
-    activity = {}
+    @activity = {}
     @activity["vote_activities"] = join_activity(VoteActivity)
     @activity["comment_activities"] = join_activity(CommentActivity)
     @activity["following_activities"] = join_activity(FollowingActivity)
-    @activity["friendship_activities"] = join_activity(FriendActivity)
+    @activity["friendship_activities"] = join_activity(FriendshipActivity)
     response = {}
     response["success"] = true
     response["data"] = @activity
