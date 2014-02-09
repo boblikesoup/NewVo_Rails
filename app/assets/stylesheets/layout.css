@@ -416,43 +416,42 @@ img {
   background-color: black;
   text-align: center;
   padding: 3px;
+  position: relative;
 }
 
 .profile-left {
   border: 2px solid blue;
   display: inline-block;
-  width: 30%;
-  height: 100%;
+  width: 350px;
+  height: 225px;
   color: white;
+  vertical-align: top;
   position: relative;
 }
 
 .profile-name {
   border: 2px solid gold;
   height: 25%;
-  position: relative;
 }
 
 .profile-pic {
   border: 2px solid orange;
   margin-top: 5%;
-  height: 55%;
-  position: relative;
 }
 
 .profile-right {
   border: 2px solid red;
   display: inline-block;
-  width: 65%;
-  height: 100%;
+  width: 525px;
+  height: 220px;
   color: white;
+  vertical-align: top;
   position: relative;
 }
 
 .friend-followers-following {
   border: 2px solid yellow;
   height: 30%;
-  position: relative;
 }
 
 .fff {
@@ -464,15 +463,16 @@ img {
 
 .fff td {
   border: 1px solid white;
-  padding: 10px;
+  padding: 5px;
 }
 
 .user-description {
   border: 2px solid orange;
-  height: 55%;
   position: relative;
-  padding: 0 25%;
   text-align: left;
+  padding: 2%;
+  margin-top: 20px;
+  height: 100px;
 }
 
 /* media queries */
