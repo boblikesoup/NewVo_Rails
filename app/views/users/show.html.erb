@@ -22,9 +22,9 @@
           <td>Following</td>
         </tr>
         <tr>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
+          <td><%= @user.friendships.count %></td>
+          <td><%= @user.followed_users.count %></td>
+          <td><%= @user.following_users.count %></td>
         </tr>
       </table>
     </div>
