@@ -432,6 +432,8 @@ img {
 .profile-name {
   border: 2px solid gold;
   height: 25%;
+  font-size: 1.5em;
+  padding: 2%;
 }
 
 .profile-pic {
