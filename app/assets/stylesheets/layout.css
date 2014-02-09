@@ -410,8 +410,7 @@ img {
 /* profile */
 
 .profile-box {
-  height: 300px;
-  width: 80%;
+  width: 1000px;
   margin: 0 auto;
   margin-top: 150px;
   background-color: black;
@@ -430,14 +429,15 @@ img {
 
 .profile-name {
   border: 2px solid gold;
-  height: 25%
+  height: 25%;
+  position: relative;
 }
 
 .profile-pic {
   border: 2px solid orange;
   margin-top: 5%;
   height: 55%;
-  position: absolute;
+  position: relative;
 }
 
 .profile-right {
@@ -452,6 +452,7 @@ img {
 .friend-followers-following {
   border: 2px solid yellow;
   height: 30%;
+  position: relative;
 }
 
 .fff {
@@ -474,7 +475,7 @@ img {
 .user-description {
   border: 2px solid orange;
   height: 55%;
-  position: absolute;
+  position: relative;
   padding: 0 25%;
   text-align: left;
 }
