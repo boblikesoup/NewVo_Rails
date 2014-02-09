@@ -298,7 +298,7 @@ input[type=submit] {
   border-radius: 0.5em;
   margin: 2% auto;
   padding: 2%;
-  width: 45%;
+  width: 600px;
   text-align: center;
   position: relative;
   border: 3px solid rgba(230, 245, 221, 0.5);
@@ -325,8 +325,8 @@ input[type=submit] {
   border: 3px solid rgba(230, 245, 221, 0.5);
 }
 
-.nv-two-image-holder {
-  width: auto;
+.nv-single-image-holder, .nv-two-image-holder {
+  width: 650px;
   text-align: center;
   margin: auto;
 }
@@ -533,7 +533,7 @@ background-image: radial-gradient(50% 10%, ellipse contain, rgba(255, 255, 255, 
     height: 3.5em;
   }
 
-  .nv-two-image-holder {
+  .nv-single-image-holder, .nv-two-image-holder {
     width: auto;
     margin: 2%;
   }
