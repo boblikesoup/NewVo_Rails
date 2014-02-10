@@ -12,7 +12,11 @@ module CapybaraHelpers
   def photo_create
     photo = FactoryGirl.create(:photo)
     return photo
-    #<Photo id: 1, post_id: nil, created_at: "2014-02-04 20:05:22", updated_at: "2014-02-04 20:05:22", photo_file_name: "test.jpg", photo_content_type: "image/jpg", photo_file_size: 37077, photo_updated_at: "2014-02-04 20:05:21">
+  end
+
+  def double_photo_create
+    photo = FactoryGirl.create(:photo, :double)
+    return photo
   end
 
   def post_show(post)
