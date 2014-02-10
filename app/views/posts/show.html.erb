@@ -1,5 +1,5 @@
 
-<% if @post.published == true %>
+<% if @post.status == User::STATUS_PUBLISHED %>
   <%= render partial: 'post', object: @post %>
 <% end %>
 
