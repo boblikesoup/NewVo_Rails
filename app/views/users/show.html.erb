@@ -4,6 +4,34 @@
   Please sign in to get better results and to be able to post.
 <% end %>
 
-<div class='nv-main'>
-  <% p params %>
-</div>
+<section class='profile-box'>
+  <div class='profile-left'>
+    <div class='profile-name'>
+      <%= @user.first_name %> <%= @user.last_name %>
+    </div>
+    <div class='profile-pic'>
+      <%= image_tag current_user.profile_pic %>
+    </div>
+  </div>
+  <div class='profile-right'>
+    <div class='friend-followers-following'>
+      <table class='fff'>
+        <tr>
+          <td>Friends</td>
+          <td>Followers</td>
+          <td>Following</td>
+        </tr>
+        <tr>
+          <td><%= @user.friendships.count %></td>
+          <td><%= @user.followed_users.count %></td>
+          <td><%= @user.following_users.count %></td>
+        </tr>
+      </table>
+    </div>
+    <div class='user-description'>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </p>
+    </div>
+  </div>
+</section>
