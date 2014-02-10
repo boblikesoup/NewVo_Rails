@@ -7,7 +7,7 @@ class API::V1::CommentsController < API::V1::ApplicationController
     post.comments << comment
     @current_user.comments << comment
     if comment.save
-      CommentActivity.create!(notified_user_id: Post.find(post_id).user_id, other_user_id: comment.user_id, comment_id: comment.id)
+      CommentActivity.create!(notified_user_id: Post.find(params[:post_id]).user_id, other_user_id: comment.user_id, comment_id: comment.id)
     end
   end
 

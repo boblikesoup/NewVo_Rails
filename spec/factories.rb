@@ -51,9 +51,14 @@ FactoryGirl.define do
     post
   end
 
-  factory :post_with_comments
+  factory :post_with_comments do
     comment
   end
+
+  # trait :with_comments do
+  #   after :create do |post|
+  #     FactoryGirl.create_list :comment, 3, :post => post
+  #   end
 
   factory :post_with_votes do
     vote
