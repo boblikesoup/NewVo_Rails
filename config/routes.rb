@@ -12,7 +12,6 @@ Newvo::Application.routes.draw do
   resources :posts, only: [:index, :create, :show, :destroy] do
     resources :comments, only: [:create, :update, :edit, :destroy]
   end
-
   resources :activity_feed, only: :index
   resources :votes, only: :create
   resources :followings, only: [:create, :destroy, :show]
@@ -24,12 +23,8 @@ Newvo::Application.routes.draw do
     resources :activity_feed, only: :index
     get '/posts/search', to: 'posts#search'
     resources :posts, only: [:index, :create, :show, :destroy] do
-     #  member do
-     #    post 'search', path: 'posts/search'
-     # end
       resources :comments, only: [:create, :update, :edit, :destroy]
     end
-    # match 'posts/search' => 'posts#search', :via => :get
     resources :votes, only: :create
     resources :followings, only: [:create, :destroy, :show]
     end
