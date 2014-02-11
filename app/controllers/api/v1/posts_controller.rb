@@ -42,7 +42,7 @@ class API::V1::PostsController < API::V1::ApplicationController
     post = Post.new(post_params)
     @current_user.posts << post
     post.save
-    respond_with @post, :location => api_v1_posts_path
+    respond_with post, :location => api_v1_posts_path
     # TODO
     # display errors and prevent cookie overflow when content type is not an image
     # handle error when save is not successful

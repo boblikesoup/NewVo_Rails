@@ -2,24 +2,25 @@ class API::V1::CommentsController < API::V1::ApplicationController
   respond_to :json
 
   def create
-    post = Post.find(params[:post_id])
-    comment = Comment.new( comment_params )
-    post.comments << comment
-    @current_user.comments << comment
-    if comment.save
-      CommentActivity.create!(notified_user_id: Post.find(params[:post_id]).user_id, other_user_id: comment.user_id, comment_id: comment.id)
+    @comment = Comment.new(body: params[:body], post_id: params[:post_id], user_id: @current_user.id)
+    response = {}
+    if @comment.save
+      CommentActivity.create!(notified_user_id: Post.find(params[:post_id]).user_id, other_user_id: @comment.user_id, comment_id: @comment.id)
+      response["success"] = true
+      response["data"] = @comment
     end
+    render json: response
   end
 
   def edit
-    @comment = Comment.find(params[:id])
+    comment = Comment.find(params[:id])
     @post = Post.find(params[:post_id])
   end
 
   def update
     comment = Comment.find(params[:id])
     post = Post.find(params[:post_id])
-    comment.update_attributes!( comment_params )
+    comment.update_attributes!(comment_params)
   end
 
   def destroy
@@ -30,11 +31,11 @@ class API::V1::CommentsController < API::V1::ApplicationController
   end
 
 
-  private
+  # private
 
-  def comment_params
-    params.require( :comment ).permit( :body )
-  end
+  # def comment_params
+  #   params.require(:comment)#.permit( :body )
+  # end
 
 
 end
