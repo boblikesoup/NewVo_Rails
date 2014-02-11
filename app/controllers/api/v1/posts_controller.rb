@@ -72,7 +72,7 @@ class API::V1::PostsController < API::V1::ApplicationController
   def destroy
     post = Post.find(params[:id])
     #post.destroy!
-    post.update_attribute(status: Post::STATUS_UNPUBLISHED)
+    post.update_attributes(status: Post::STATUS_UNPUBLISHED)
   end
 
   private

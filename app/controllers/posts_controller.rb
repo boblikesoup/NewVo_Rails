@@ -31,7 +31,7 @@ class PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     #post.destroy!
-    post.update_attribute(status: Post::STATUS_UNPUBLISHED)
+    post.update_attributes(status: Post::STATUS_UNPUBLISHED)
     respond_with post, :location => posts_path
   end
 
