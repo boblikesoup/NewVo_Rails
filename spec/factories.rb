@@ -1,5 +1,11 @@
 include ActionDispatch::TestProcess
 
+  # In future, refactor traits for testing associations (post with comments, etc..)
+  # trait :with_comments do
+  #   after :create do |post|
+  #     FactoryGirl.create_list :comment, 3, :post => post
+  #   end
+
 FactoryGirl.define do
     factory :user do
       id 1
@@ -42,29 +48,23 @@ FactoryGirl.define do
   end
 
   factory :comment do
+      id 1
+      body "They have nothing to look forward to except for the eternal manipulation by forces they never cared to understand"
+      user_id 1
+      post_id 1
   end
 
   factory :vote do
+    id 1
+    votable_id 1
+    user_id 1
+    post_id 1
   end
 
-  factory :user_with_post do
-    post
-  end
-
-  factory :post_with_comments do
-    comment
-  end
-
-  # trait :with_comments do
-  #   after :create do |post|
-  #     FactoryGirl.create_list :comment, 3, :post => post
-  #   end
-
-  factory :post_with_votes do
-    vote
+  factory :following do
+    id 1
+    follower_id 1
+    followed_id 1
   end
 
 end
-
-# attributes_for method generates a hash of attributes instead of a ruby object
-# record.reload variables must be reloaded from the database, attributes won't update unless

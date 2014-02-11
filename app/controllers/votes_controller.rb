@@ -1,7 +1,6 @@
 class VotesController < ApplicationController
   respond_to :html, :json
-  # TODO
-  # use metaprogramming!
+
   def create
 
     if params[:photo]
@@ -21,6 +20,5 @@ class VotesController < ApplicationController
     end
     respond_with post, :location => posts_path
   end
-
 
 end

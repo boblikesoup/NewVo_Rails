@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+
+  STATUS_PUBLISHED = 0
+  STATUS_UNPUBLISHED = 1
+
   has_many :posts
   has_many :comments
   has_many :votes
@@ -8,13 +12,15 @@ class User < ActiveRecord::Base
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, through: :inverse_friendships, :source => :user
 
+  #What is the difference between these
   has_many :followed_users
   has_many :following_users
-  #User.followed_users = users User is following
-  #User.following_users = users following User
+
+  #and these???
   has_many :followed_users, :class_name => 'Following', :foreign_key => 'follower_id'
   has_many :following_users, :class_name => 'Following', :foreign_key => 'followed_id'
-
+  #User.followed_users = users User is following
+  #User.following_users = users following User
 
   validates_presence_of :first_name
   validates_presence_of :last_name
@@ -23,12 +29,8 @@ class User < ActiveRecord::Base
 
   scope :published, ->{where(status: self::STATUS_PUBLISHED)}
 
-  STATUS_PUBLISHED = 0
-  STATUS_UNPUBLISHED = 1
-
-
   def following?(followed_id)
-    #tells whether current use is following user B
+    #tells whether current user is following user B
     if Following.exists?(follower_id: self.id, followed_id: followed_id)
       return true
     else
@@ -86,8 +88,6 @@ class User < ActiveRecord::Base
     user
   end
 
-
-  # Sign in mobile
   def self.find_or_create_from_user_info (user_info, picture_info)
       user = self.find_or_create_by(fb_uid: user_info["id"])
       user.generate_newvo_token

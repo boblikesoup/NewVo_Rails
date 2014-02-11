@@ -1,29 +1,19 @@
 require 'spec_helper'
 
-feature '/auth/facebook' do
-before(:each) do
-    web_login
-  end
+feature 'login' do
 
 describe "When user is logged in", :type => :feature, :js => true do
   it "should allow user to sign in" do
+    web_login
     expect(page).to have_content "Brent"
   end
 
-feature '/posts' do
   it "should be success" do
-    visit "/posts"
+     visit '/posts'
     #make post here
     expect(page).to have_content "Ask"
   end
 
-  it "should have valid factory" do
-    FactoryGirl.build(:user).should be_valid
-  end
-
-  it "should require a username" do
-    FactoryGirl.build(:user, :first_name => "").should_not be_valid
-  end
   # xit "should allow user to respond to post" do
   # end
 
@@ -46,4 +36,4 @@ feature '/posts' do
   # end
 end
 end
-end
+

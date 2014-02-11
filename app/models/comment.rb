@@ -4,6 +4,8 @@ class Comment < ActiveRecord::Base
   has_many :votes, :as => :votable, :dependent => :destroy
 
   validates :body, presence: true
+  validates :post_id, presence: true
+  validates :user_id, presence: true
   default_scope order: 'comments.created_at DESC'
 
   scope :recent, ->{order(created_at: :desc)}
@@ -17,7 +19,8 @@ class Comment < ActiveRecord::Base
       :id => id,
       :body => body,
       :user_id => user_id,
-      :profile_pic => User.find(user_id).profile_pic
+      :profile_pic => User.find(user_id).profile_pic,
+      :post_id => post_id
     }
   end
 
@@ -25,7 +28,4 @@ class Comment < ActiveRecord::Base
     #when using votes add ":votes => get_votes," to as_json method
     self.votes.group(:value).count[1] || 0
   end
-
-
-
 end
