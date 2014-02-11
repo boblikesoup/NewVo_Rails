@@ -3,7 +3,8 @@ class Friendship < ActiveRecord::Base
   belongs_to :friend, class_name: "User"
 
   validates :user_id, presence: true
-  validates :user_id, uniqueness: true
+  #Why uniqueness true?
+ # validates :user_id, uniqueness: true
   validates :friend_id, presence: true
 
   # Should a friendship really have many posts?
