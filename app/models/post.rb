@@ -3,7 +3,8 @@ class Post < ActiveRecord::Base
   has_many :comments
   has_many :photos
   accepts_nested_attributes_for :photos,
-      reject_if: ->(attributes) {attributes[:photo].blank?}
+      reject_if: ->(attributes) {attributes[:photo].blank?},
+      limit: 2
 
   after_save :update_has_single_picture
 

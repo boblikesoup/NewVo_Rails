@@ -3,13 +3,15 @@ class API::V1::CommentsController < API::V1::ApplicationController
 
   def create
     @comment = Comment.new(body: params[:body], post_id: params[:post_id], user_id: @current_user.id)
-    response = {}
     if @comment.save
       CommentActivity.create!(notified_user_id: Post.find(params[:post_id]).user_id, other_user_id: @comment.user_id, comment_id: @comment.id)
+      response = {}
       response["success"] = true
       response["data"] = @comment
+      render json: response
+    else
+      invalid_comment_attempt
     end
-    render json: response
   end
 
   def edit
@@ -30,12 +32,9 @@ class API::V1::CommentsController < API::V1::ApplicationController
     end
   end
 
-
-  # private
-
-  # def comment_params
-  #   params.require(:comment)#.permit( :body )
-  # end
-
+  def invalid_comment_attempt(message="Seems like something ain't right with your comment")
+    render :json=> {:success=>false, :message=>message}, :status=>401
+    return
+  end
 
 end

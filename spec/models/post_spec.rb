@@ -1,7 +1,12 @@
 require 'spec_helper'
-#Need to update tests to validate Type
 
 describe Post do
+  it { should belong_to(:user) }
+  it { should have_many(:comments) }
+  it { should have_many(:photos) }
+  it { should validate_presence_of(:user_id) }
+  it { should validate_presence_of(:photos) }
+  it { should accept_nested_attributes_for(:photos) }
 
   it "has a valid factory for single_post" do
     FactoryGirl.create(:single_post)
@@ -18,4 +23,5 @@ describe Post do
   it "should not save without a user_id" do
       FactoryGirl.build(:single_post, :user_id => "").should_not be_valid
   end
+
 end

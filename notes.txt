@@ -1,19 +1,82 @@
-# To get app access token
-https://graph.facebook.com/oauth/access_token?grant_type=client_credentials&client_id=650360678349775&client_secret=f328dd02b38f0911c1fafa1ba2c09bce
-
 # App Access Token
 access_token=650360678349775|4AMi2eAfkGTyVd-t2SrWduEGfAU
 
 # Working mobile route with facebook User Access Token (these expire quickly)
 /auth/mobile?fbtoken=CAACEdEose0cBAAZAkj94W40FXo4ZCeZCZAcaMSnNdyrqyo1uTjboxTSwdHRZBlClYLIZAPuLROh6UZCYzzW1QPg9NBvxSweIhuWt2IJrn1wKVNTZASIEkdhclCZBkWFU0q9Frhj5UVYZANyZCm8gf5rNMJPXsHenvfGAp2CrJh3jsJLwLjKUOsTVNLClMuDfYLXaXYZD&device_id=device_id&time_zone=+0800&os_type=ios
 
-# Paperclip settings information for s3 photo storage
-http://rdoc.info/github/thoughtbot/paperclip/master/Paperclip/Storage/S3#s3_credentials-instance_method
+# Can use regex in validations!!!!
+class UserProfile < ActiveRecord::Base
+  validates_format_of :website_url, with: URI.regexp
+end
 
-# for binding.pry (similar to debugger)
-xit "should allow guest to view post", :js => true do
+Rspec:
+it { should allow_value('http://foo.com', 'http://bar.com/baz').for(:website_url) }
+it { should_not allow_value('asdfjkl').for(:website_url) }
 
-#Testing Notes:
+# Can also use ensures_inclusion_of in validations!!!!
+    validates_inclusion_of :severity,
+    in: %w(low medium high),
+    message: 'Severity must be low, medium, or high'
+
+  Rspec:
+  it do
+    should ensure_inclusion_of(:severity).
+    in_array(%w(low medium high)).
+    with_message('Severity must be low, medium, or high')
+  end
+
+# Can also validate length!!!!
+validates_length_of :bio, minimum: 15
+
+validates_length_of :secret_key, in: 15..100,
+    too_short: 'Secret key must be more than 15 characters',
+    too_long: 'Secret key cannot be more than 100 characters'
+
+Rspec:
+it { should ensure_length_of(:bio).is_at_least(15) }
+it do
+    should ensure_length_of(:secret_key).
+      is_at_least(15).
+      is_at_most(100).
+      with_short_message('Secret key must be more than 15 characters').
+      with_long_message('Secret key cannot be more than 100 characters')
+  end
+
+# Can also validate the acceptance of shit
+    validates_acceptance_of :terms_of_service,
+    message: 'You must accept the terms of service'
+
+    Rspec:
+    it do
+    should validate_acceptance_of(:terms_of_service).
+      with_message('You must accept the terms of service')
+  end
+
+# Can validate confirmation
+validates_confirmation_of :email
+
+Rspec:
+  it do
+    should validate_confirmation_of(:email)
+  end
+
+# The width and breadth of has_many associations in rspec (examples)
+  it { should have_many(:friends) }
+  it { should have_many(:acquaintances).through(:friends) }
+  it { should have_many(:job_offers).through(:friends).source(:opportunities) }
+  it { should have_many(:coins).conditions(condition: 'mint') }
+  it { should have_many(:shirts).order('color') }
+  it { should have_many(:hopes).class_name('Dream') }
+  it { should have_many(:worries).with_foreign_key('worrier_id') }
+  it { should have_many(:ideas).validate(false) }
+  it { should have_many(:distractions).counter_cache(true) }
+  it { should have_many(:topics_of_interest).touch(true) }
+  it { should have_many(:secret_documents).dependent(:destroy) }
+
+# Testing Notes Aaron:
+
+# attributes_for method generates a hash of attributes instead of a ruby object
+# record.reload variables must be reloaded from the database, attributes won't update unless
 
 require 'spec_helper'
 

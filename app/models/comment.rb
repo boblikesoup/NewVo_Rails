@@ -28,7 +28,4 @@ class Comment < ActiveRecord::Base
     #when using votes add ":votes => get_votes," to as_json method
     self.votes.group(:value).count[1] || 0
   end
-
-
-
 end
