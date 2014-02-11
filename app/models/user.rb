@@ -129,9 +129,9 @@ class User < ActiveRecord::Base
   end
 
   def relationship_status
-    if Friendship.where(user_id: User.current.id, friend_id: self.id).length > 0
+    if Friendship.exists?(user_id: User.current.id, friend_id: self.id)
       return "friend"
-    elsif Following.where(follower_id: User.current.id, followed_id: self.id).length > 0
+    elsif Following.exists?(follower_id: User.current.id, followed_id: self.id)
       return "following"
     elsif User.current.id == self.id
       return "self"
@@ -145,7 +145,6 @@ class User < ActiveRecord::Base
   # def full_name
   #   return self.first_name + " " + self.last_name
   # end
-
 
 #refactor these into 1 method
   def sort_followed (followed_users)
