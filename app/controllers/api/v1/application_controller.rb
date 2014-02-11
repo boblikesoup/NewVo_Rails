@@ -1,6 +1,7 @@
 class API::V1::ApplicationController < ActionController::Base
   before_action :authorize, unless: :sessions_controller?
   before_filter :signed_in?, unless: :sessions_controller?
+  before_filter :set_current_user, unless: :sessions_controller?
 
   respond_to :json
 
@@ -25,4 +26,7 @@ class API::V1::ApplicationController < ActionController::Base
     params[:controller] == "api/v1/sessions"
   end
 
+  def set_current_user
+    User.current = @current_user
+  end
 end

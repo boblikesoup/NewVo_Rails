@@ -114,9 +114,11 @@ class User < ActiveRecord::Base
       :followed_users => sort_followed(User.where(id: self.followed_users.pluck(:followed_id))),
       :following_users => sort_following(User.where(id: self.following_users.pluck(:follower_id))),
       :friends => sort_friends(self.friends),
+      :relationship => relationship_status,
       :posts => posts.recent.limit(6)
     }
   end
+
 #called on like .assemble_user (refactor where search by id)
   def assemble_user
     user_hash = {}
@@ -126,11 +128,23 @@ class User < ActiveRecord::Base
     return user_hash
   end
 
+  def relationship_status
+    if Friendship.exists?(user_id: User.current.id, friend_id: self.id)
+      return "friend"
+    elsif Following.exists?(follower_id: User.current.id, followed_id: self.id)
+      return "following"
+    elsif User.current.id == self.id
+      return "self"
+    else
+      return "none"
+    end
+
+  end
+
 #using just first name for now
   # def full_name
   #   return self.first_name + " " + self.last_name
   # end
-
 
 #refactor these into 1 method
   def sort_followed (followed_users)
@@ -158,6 +172,16 @@ class User < ActiveRecord::Base
       user_array << user
     end
     return user_array
+  end
+
+  def self.current
+    Thread.current[:user]
+  end
+
+  def self.current=(user)
+    raise(ArgumentError,
+        "Invalid user. Expected an object of class 'User', got #{user.inspect}") unless user.is_a?(User)
+    Thread.current[:user] = user
   end
 
 end

@@ -46,9 +46,12 @@ class Post < ActiveRecord::Base
   private
 
   def user_voted
-    vote = Vote.find_by(user_id: self.user_id, post_id: self.id)
+    vote = Vote.find_by(user_id: User.current.id, post_id: self.id)
     if vote != nil
-      return true
+      hash = {}
+      hash[:photo_id] = vote.votable_id
+      hash[:value] = vote.value
+      return hash
     else
       return false
     end
