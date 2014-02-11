@@ -4,6 +4,9 @@ access_token=650360678349775|4AMi2eAfkGTyVd-t2SrWduEGfAU
 # Working mobile route with facebook User Access Token (these expire quickly)
 /auth/mobile?fbtoken=CAACEdEose0cBAAZAkj94W40FXo4ZCeZCZAcaMSnNdyrqyo1uTjboxTSwdHRZBlClYLIZAPuLROh6UZCYzzW1QPg9NBvxSweIhuWt2IJrn1wKVNTZASIEkdhclCZBkWFU0q9Frhj5UVYZANyZCm8gf5rNMJPXsHenvfGAp2CrJh3jsJLwLjKUOsTVNLClMuDfYLXaXYZD&device_id=device_id&time_zone=+0800&os_type=ios
 
+# Thoughtbot is brilliant:
+https://github.com/thoughtbot/shoulda-matchers
+
 # Can use regex in validations!!!!
 class UserProfile < ActiveRecord::Base
   validates_format_of :website_url, with: URI.regexp
@@ -72,6 +75,23 @@ Rspec:
   it { should have_many(:distractions).counter_cache(true) }
   it { should have_many(:topics_of_interest).touch(true) }
   it { should have_many(:secret_documents).dependent(:destroy) }
+
+# Render Matchers
+describe PostsController do
+  describe 'GET #show' do
+    before { get :show }
+
+    it { should render_template('show') }
+  end
+end
+
+# Rescue matchers
+describe ApplicationController do
+  it do
+    should rescue_from(ActiveRecord::RecordNotFound).
+      with(:handle_not_found)
+  end
+end
 
 # Testing Notes Aaron:
 
