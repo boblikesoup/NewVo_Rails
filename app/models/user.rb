@@ -114,9 +114,11 @@ class User < ActiveRecord::Base
       :followed_users => sort_followed(User.where(id: self.followed_users.pluck(:followed_id))),
       :following_users => sort_following(User.where(id: self.following_users.pluck(:follower_id))),
       :friends => sort_friends(self.friends),
+      :relationship => relationship_status,
       :posts => posts.recent.limit(6)
     }
   end
+
 #called on like .assemble_user (refactor where search by id)
   def assemble_user
     user_hash = {}
@@ -124,6 +126,19 @@ class User < ActiveRecord::Base
     user_hash["name"] = self.first_name
     user_hash["profile_pic"] = self.profile_pic
     return user_hash
+  end
+
+  def relationship_status
+    if Friendship.where(user_id: User.current.id, friend_id: self.id).length > 0
+      return "friend"
+    elsif Following.where(follower_id: User.current.id, followed_id: self.id).length > 0
+      return "following"
+    elsif User.current.id == self.id
+      return "self"
+    else
+      return "none"
+    end
+
   end
 
 #using just first name for now
