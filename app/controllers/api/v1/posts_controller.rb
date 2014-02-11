@@ -33,18 +33,6 @@ class API::V1::PostsController < API::V1::ApplicationController
     respond_with(response)
   end
 
-
-#Method that works taking params like used_post_ids = 1,2,3,4
-  # def search
-  #   if params[:used_post_ids].empty?
-  #     used_post_ids = []
-  #   else
-  #     used_post_ids = params[:used_post_ids].strip.split(',').map(&:strip).map(&:to_i)
-  #   end
-  #   @posts = post_retrieval(params[:query], used_post_ids)
-  #   respond_with(@posts)
-  # end
-
   def index
     @posts = Post.recent
     render json: @posts, :include => [:photos, :comments]
