@@ -4,8 +4,7 @@ class Vote < ActiveRecord::Base
   STATUS_PUBLISHED = 0
   STATUS_UNPUBLISHED = 1
 
-  # Should these not belong to posts as well?
-  # belongs_to :post
+  belongs_to :post
   belongs_to :user
   belongs_to :votable, polymorphic: true, counter_cache: true
 
