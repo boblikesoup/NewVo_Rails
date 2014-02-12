@@ -1,14 +1,10 @@
 class API::V1::ApplicationController < ActionController::Base
+  respond_to :json
   before_action :authorize, unless: :sessions_controller?
   before_action :signed_in?, unless: :sessions_controller?
   before_action :set_current_user, unless: :sessions_controller?
-
-  respond_to :json
-
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :null_session
-  helper_method :current_user, :signed_in?
+  protect_from_forgery with: :exception
+  skip_before_action :verify_authenticity_token, if: :json_request?
 
   def authorize
     @current_user =
@@ -28,5 +24,11 @@ class API::V1::ApplicationController < ActionController::Base
 
   def set_current_user
     User.current = @current_user
+  end
+
+  protected
+
+  def json_request?
+    request.format.json?
   end
 end
