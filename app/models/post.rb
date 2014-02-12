@@ -34,7 +34,7 @@ class Post < ActiveRecord::Base
     {
       :post_id => id,
       :user_id => user_id,
-      :user_name => User.find(user_id).first_name,
+      :user_name => User.find(user_id).facebook_username,
       :profile_pic => User.find(user_id).profile_pic,
       :description => description,
       :has_single_picture => has_single_picture,

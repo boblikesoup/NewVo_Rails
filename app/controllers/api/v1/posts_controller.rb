@@ -38,6 +38,9 @@ class API::V1::PostsController < API::V1::ApplicationController
     render json: @posts, :include => [:photos, :comments]
   end
 
+  # @post.photo = params[:Photo1] if params[:Photo1].present?
+  # @post.save if @post.valid?
+
   def create
     post = Post.new(post_params)
     @current_user.posts << post
