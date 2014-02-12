@@ -1,3 +1,5 @@
+curl https://newvo.herokuapp.com/api/v1/posts/3/comments?newvo_token=OLmeNSbGdgtZEr4nBnRZSYvgc7Hi1hHH&body=fuckeverythingman -H "Accept: application/json"
+
 # App Access Token
 access_token=650360678349775|4AMi2eAfkGTyVd-t2SrWduEGfAU
 
