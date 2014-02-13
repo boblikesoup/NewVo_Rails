@@ -2,7 +2,7 @@ class API::V1::PostsController < API::V1::ApplicationController
   respond_to :json
 
   # TODO
-  # tests using factory girl (possibly factories in factories creating posts and then testing search or something)
+  # test search
   # have each as own route (gets rid of if statement)
 
     def post_retrieval(query, used_post_ids)
@@ -58,7 +58,6 @@ class API::V1::PostsController < API::V1::ApplicationController
     response["data"] = @post
     respond_with(response)
   end
-
 
   def destroy
     post = Post.find(params[:id])

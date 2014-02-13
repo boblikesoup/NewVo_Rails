@@ -1,10 +1,6 @@
 Newvo::Application.routes.draw do
   root to: 'pages#home'
 
-  # For testing
-  # get '/auth/mobile', to: 'sessions#fb_sso'
-
-  # Real mobile auth route
   get '/auth/mobile', to: 'api/v1/sessions#create'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/signout', to: 'sessions#destroy', as: 'signout'
@@ -22,6 +18,7 @@ Newvo::Application.routes.draw do
     resources :users, only: [:index, :show]
     resources :activity_feed, only: :index
     get '/posts/search', to: 'posts#search'
+    post '/users/:id/describe', to: 'users#description'
     resources :posts, only: [:index, :create, :show, :destroy] do
       resources :comments, only: [:create, :update, :edit, :destroy]
     end
