@@ -21,7 +21,7 @@ class Comment < ActiveRecord::Base
       :user_id => user_id,
       :profile_pic => User.find(user_id).profile_pic,
       :post_id => post_id,
-      :user_name => User.find(user_id).facebook_username
+      :user_name => User.find(user_id).first_name
     }
   end
 
