@@ -6,6 +6,7 @@ class API::V1::FollowingsController < API::V1::ApplicationController
     if @current_user.both_following?(params[:followed_id])
       @current_user.create_friendship(params[:followed_id])
     end
+
   end
 
   def destroy
