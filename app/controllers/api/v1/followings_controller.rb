@@ -2,9 +2,14 @@ class API::V1::FollowingsController < API::V1::ApplicationController
   respond_to :json
 
   def create
-    @current_user.follow!(params[:followed_id])
+    if @current_user.follow!(params[:followed_id])
+      render json: {success: true}
+    else
+      render json: {success: false}
+    end
     if @current_user.both_following?(params[:followed_id])
       @current_user.create_friendship(params[:followed_id])
+      render json: {message: "friendship created"}
     end
   end
 
@@ -17,7 +22,6 @@ class API::V1::FollowingsController < API::V1::ApplicationController
       FollowingActivity.published.find_by(notified_user_id: @current_user.id, following_id: params[:id], followed_type: "follower").update_attributes(status: FollowingActivity::STATUS_UNPUBLISHED)
       FollowingActivity.published.find_by(notified_user_id: params[:id], following_id: @current_user.id, followed_type: "followed").update_attributes(status: FollowingActivity::STATUS_UNPUBLISHED)
     end
-
     following.destroy!
   end
 end
