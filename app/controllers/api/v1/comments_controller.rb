@@ -33,7 +33,7 @@ class API::V1::CommentsController < API::V1::ApplicationController
   end
 
   def invalid_comment_attempt(message="Seems like something ain't right with your comment")
-    render :json=> {:success=>false, :message=>message}, :status=>401
+    render :json=> {success: false, message: message}, status: 401
     return
   end
 

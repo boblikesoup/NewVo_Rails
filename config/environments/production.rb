@@ -55,7 +55,7 @@ Newvo::Application.configure do
   # config.force_ssl = true
 
   # Set to :debug to see everything in the log.
-  config.log_level = :info
+  config.log_level = :debug
 
   # might need later for invites
   # config.action_mailer.raise_delivery_errors = false

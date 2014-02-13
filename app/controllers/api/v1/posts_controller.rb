@@ -1,10 +1,51 @@
 class API::V1::PostsController < API::V1::ApplicationController
+  include ActionDispatch::TestProcess
   respond_to :json
 
-  # TODO
-  # tests using factory girl (possibly factories in factories creating posts and then testing search or something)
-  # have each as own route (gets rid of if statement)
+  # @post.photo = params[:Photo1] if params[:Photo1].present?
+  # @post.save if @post.valid?
 
+  def create
+    ######################
+    # functional test
+    # photo1 = Photo.create(photo: fixture_file_upload(Rails.root.join('spec', 'photos', 'test2.jpg'), 'image/jpg'))
+    # photo2 = Photo.create(photo: fixture_file_upload(Rails.root.join('spec', 'photos', 'test2.jpg'), 'image/jpg'))
+    # post = Post.new(photos: [photo1, photo2], description: params[:description], user_id: @current_user.id)
+    ######################
+    # for production
+    photo1 = Photo.create(photo: params[:photo1])
+    photo2 = Photo.create(photo: params[:photo2])
+    post = Post.new(description: params[:description], user_id: @current_user.id)
+    post.photos << photo1
+    if photo2 != nil
+      post.photos << photo2
+    end
+    #######################
+    if post.save
+      response = {}
+      response["success"] = true
+      response["data"] = post
+      render json: response
+    else
+      invalid_post_attempt
+    end
+  end
+
+  def show
+    @post = Post.find(params[:id])
+    response = {}
+    response["success"] = true
+    response["data"] = @post
+    respond_with(response)
+  end
+
+  def destroy
+    post = Post.find(params[:id])
+    #post.destroy!
+    post.update_attributes(status: Post::STATUS_UNPUBLISHED)
+  end
+
+    # Could this be in the model?
     def post_retrieval(query, used_post_ids)
       if query == "global"
         Post.not_seen(used_post_ids)
@@ -17,9 +58,12 @@ class API::V1::PostsController < API::V1::ApplicationController
       end
     end
 
+  # TODO
+  # test search in spec
+  # have each as own route (gets rid of if statement)
+
   # test with (Juke db token): curl -s "http://localhost:3000/api/v1/posts/search/?newvo_token=1L6zRtt5SJJ8iZuY0XZ3Xd6StdPOpDkk&used_post_ids=[1,2]&query=global" | json
   # online test (Juke's) token: newvo.herokuapp.com/api/v1/posts/search/?newvo_token=OLmeNSbGdgtZEr4nBnRZSYvgc7Hi1hHH&used_post_ids=[1,2]&query=global
-
   def search
     if params[:used_post_ids].strip == "[]" || params[:used_post_ids].strip == "" || params[:used_post_ids].blank?
       used_post_ids = []
@@ -38,38 +82,11 @@ class API::V1::PostsController < API::V1::ApplicationController
     render json: @posts, :include => [:photos, :comments]
   end
 
-  # @post.photo = params[:Photo1] if params[:Photo1].present?
-  # @post.save if @post.valid?
-
-  def create
-    post = Post.new(post_params)
-    @current_user.posts << post
-    post.save
-    respond_with post, :location => api_v1_posts_path
-    # TODO
-    # display errors and prevent cookie overflow when content type is not an image
-    # handle error when save is not successful
-  end
-
-  def show
-    @post = Post.find(params[:id])
-    response = {}
-    response["success"] = true
-    response["data"] = @post
-    respond_with(response)
-  end
-
-
-  def destroy
-    post = Post.find(params[:id])
-    #post.destroy!
-    post.update_attributes(status: Post::STATUS_UNPUBLISHED)
-  end
-
   private
-  #refactor this shit!
-  def post_params
-    params.require(:post).permit(:description, photos_attributes: [:id, :photo])
+
+  def invalid_post_attempt(message="Seems like something ain't right with your post")
+    render :json=> {success: false, message: message}, status: 401
+    return
   end
 
 end
