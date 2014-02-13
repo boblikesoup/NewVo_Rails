@@ -11,12 +11,6 @@ class User < ActiveRecord::Base
   has_many :friends, through: :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, through: :inverse_friendships, :source => :user
-
-  #What is the difference between these
-  has_many :followed_users
-  has_many :following_users
-
-  #and these???
   has_many :followed_users, :class_name => 'Following', :foreign_key => 'follower_id'
   has_many :following_users, :class_name => 'Following', :foreign_key => 'followed_id'
   #User.followed_users = users User is following
@@ -75,6 +69,7 @@ class User < ActiveRecord::Base
     Friendship.find_by(user_id: followed_id, friend_id: self.id).destroy
   end
 
+  #authentication
   def self.find_or_create_from_auth_hash auth_hash
     user = self.find_or_create_by(fb_uid: auth_hash["uid"])
     user.generate_newvo_token
@@ -119,7 +114,7 @@ class User < ActiveRecord::Base
     }
   end
 
-#called on like .assemble_user (refactor where search by id)
+  #called on like .assemble_user (refactor where search by id)
   def assemble_user
     user_hash = {}
     user_hash["id"] = self.id

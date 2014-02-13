@@ -34,7 +34,6 @@ class CommentsController < ApplicationController
     respond_with post
   end
 
-
   private
 
   def comment_params
