@@ -24,11 +24,10 @@ class API::V1::UsersController < API::V1::ApplicationController
     response = {}
     response["success"] = true
     response["new_description"] = @user.description
+    response["message"] = "You have successfully changed your description."
     render json: response
     else
     render json: {success: false, message: "You've tried to update your description with your current description. Try again, buddy."}
     end
   end
 end
-
-# /api/v1/users/1/describe?newvo_token=67lpujuyKv7jcJpj4x8iYJWKTDta5NwU&description=I am the god of hellfire

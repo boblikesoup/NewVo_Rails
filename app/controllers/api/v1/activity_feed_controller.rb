@@ -3,18 +3,6 @@ class API::V1::ActivityFeedController < API::V1::ApplicationController
 
   def index
     #destroy irrelevnt activities
-
-
-
-    def join_activity(model)
-      activity_queries = model.where("notified_user_id = ?", @current_user.id).where("created_at > ?", @two_weeks_ago).published
-      activities = []
-      activity_queries.each do |activity|
-        activities << activity.assemble_json
-      end
-      return activities
-    end
-
     @two_weeks_ago = Time.now - 2.weeks
     @activity = {}
     @activity["vote_activities"] = join_activity(VoteActivity)
@@ -25,6 +13,15 @@ class API::V1::ActivityFeedController < API::V1::ApplicationController
     response["success"] = true
     response["data"] = @activity
     respond_with(response)
+  end
+
+  def join_activity(model)
+      activity_queries = model.where("notified_user_id = ?", @current_user.id).where("created_at > ?", @two_weeks_ago).published
+      activities = []
+      activity_queries.each do |activity|
+        activities << activity.assemble_json
+      end
+    return activities
   end
 
 end
