@@ -73,4 +73,11 @@ FactoryGirl.define do
     friend_id 2
   end
 
+  factory :group do
+    id 1
+    creator_id 1
+    user_id 1
+    title "The Merry Pranksters"
+    description "This is a group of people who like to smile and look pretty"
+  end
 end

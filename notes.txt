@@ -24,21 +24,6 @@
     end
   end
 
-
-
-  class Trip < ActiveRecord::Base
-    belongs_to :user
-    belongs_to :traveldeal
-    has_many :groups
-
-    has_many :users, :through => :groups
-  end
-
-  class Group < ActiveRecord::Base
-    belongs_to :trip
-    belongs_to :user
-  end
-
 # Testing comments#create
 curl https://newvo.herokuapp.com/api/v1/posts/3/comments?newvo_token=OLmeNSbGdgtZEr4nBnRZSYvgc7Hi1hHH&body=fuckeverythingman -H "Accept: application/json"
 
