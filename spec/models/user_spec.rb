@@ -15,6 +15,7 @@ describe User do
   it { should have_many(:inverse_friends).through(:inverse_friendships).source(:user) }
   it { should have_many(:followed_users) }
   it { should have_many(:following_users) }
+  it { should have_and_belong_to_many(:groups) }
 
   it "should have valid factory" do
     FactoryGirl.build(:user).should be_valid

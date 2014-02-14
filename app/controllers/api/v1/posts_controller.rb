@@ -9,12 +9,13 @@ class API::V1::PostsController < API::V1::ApplicationController
     ######################
     # functional test
     # photo1 = Photo.create(photo: fixture_file_upload(Rails.root.join('spec', 'photos', 'test2.jpg'), 'image/jpg'))
+    # puts photo1
     # photo2 = Photo.create(photo: fixture_file_upload(Rails.root.join('spec', 'photos', 'test2.jpg'), 'image/jpg'))
     # post = Post.new(photos: [photo1, photo2], description: params[:description], user_id: @current_user.id)
     ######################
     # for production
-    photo1 = Photo.create(photo: params[:photo1])
-    photo2 = Photo.create(photo: params[:photo2])
+    photo1 = Photo.create(photo: StringIO.new(Base64.decode64(params[:photo1])))
+    photo2 = Photo.create(photo: StringIO.new(Base64.decode64(params[:photo2])))
     post = Post.new(description: params[:description], user_id: @current_user.id)
     post.photos << photo1
     if photo2 != nil

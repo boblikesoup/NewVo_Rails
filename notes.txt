@@ -1,3 +1,30 @@
+# Group functionality creation
+  def create
+    @trip = Trip.find(params[:trip_id])
+    @user = User.find(params[:user_id])
+    @group = Group.create(:user_id => @user.id, :trip_id => @trip.id)
+
+    if @group.save
+      flash[:success] = "Friend added to group."
+      redirect_to groups_path(:id => @trip.id)
+    else
+      flash[:error] = "Could not add friend."
+      redirect_to root_path
+    end
+  end
+
+  class User < ActiveRecord::Base
+    has_many :group_trips, :through => :groups,
+                         :class_name   => "Trip"
+    has_many :trips, :dependent => :destroy
+    has_many :groups
+
+    def all_trips
+      Trip.joins(:groups).where({:user_id => self.id} | {:groups => {:user_id => self.id}})
+    end
+  end
+
+# Testing comments#create
 curl https://newvo.herokuapp.com/api/v1/posts/3/comments?newvo_token=OLmeNSbGdgtZEr4nBnRZSYvgc7Hi1hHH&body=fuckeverythingman -H "Accept: application/json"
 
 # App Access Token
