@@ -18,7 +18,7 @@ Newvo::Application.routes.draw do
     resources :users, only: [:index, :show]
     resources :activity_feed, only: :index
     get '/posts/search', to: 'posts#search'
-    post '/users/:id/describe', to: 'users#description'
+    post '/users/describe', to: 'users#description'
     resources :posts, only: [:index, :create, :show, :destroy] do
       resources :comments, only: [:create, :update, :edit, :destroy]
     end
