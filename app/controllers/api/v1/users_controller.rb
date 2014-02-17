@@ -17,13 +17,12 @@ class API::V1::UsersController < API::V1::ApplicationController
   end
 
   def description
-    @user = User.find(params[:id])
-    if @user.description != params[:description]
-    @user.update_attributes(description: params[:description])
-    @user.save
+    if @current_user.description != params[:description]
+    @current_user.update_attributes(description: params[:description])
+    @current_user.save
     response = {}
     response["success"] = true
-    response["new_description"] = @user.description
+    response["new_description"] = @current_user.description
     response["message"] = "You have successfully changed your description."
     render json: response
     else

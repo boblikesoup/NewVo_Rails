@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140214071432) do
+ActiveRecord::Schema.define(version: 20140217060520) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -93,6 +93,14 @@ ActiveRecord::Schema.define(version: 20140214071432) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "groups_users", id: false, force: true do |t|
+    t.integer "user_id",  null: false
+    t.integer "group_id", null: false
+  end
+
+  add_index "groups_users", ["group_id", "user_id"], name: "index_groups_users_on_group_id_and_user_id"
+  add_index "groups_users", ["user_id", "group_id"], name: "index_groups_users_on_user_id_and_group_id"
 
   create_table "photos", force: true do |t|
     t.integer  "post_id"

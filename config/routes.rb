@@ -17,8 +17,9 @@ Newvo::Application.routes.draw do
    namespace :v1 do
     resources :users, only: [:index, :show]
     resources :activity_feed, only: :index
+    resources :groups, only: [:create, :show]
     get '/posts/search', to: 'posts#search'
-    post '/users/:id/describe', to: 'users#description'
+    post '/users/describe', to: 'users#description'
     resources :posts, only: [:index, :create, :show, :destroy] do
       resources :comments, only: [:create, :update, :edit, :destroy]
     end
