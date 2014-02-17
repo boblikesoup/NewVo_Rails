@@ -14,15 +14,21 @@ class API::V1::PostsController < API::V1::ApplicationController
     # post = Post.new(photos: [photo1, photo2], description: params[:description], user_id: @current_user.id)
     ######################
     # for production
-    binary1 = params[:photo1]
-    binary2 = params[:photo2]
-    puts binary1
-    stringio1 = StringIO.new(Base64.decode64(binary1))
-    stringio2 = StringIO.new(Base64.decode64(binary2))
-    puts stringio1
-    photo1 = Photo.create(photo: stringio1)
-    photo2 = Photo.create(photo: stringio2)
-    puts photo1
+    photo1 = Photo.create(photo: params[:photo1])
+    photo2 = Photo.create(photo: params[:photo2])
+
+    # photo1 = Photo.create(photo: StringIO.new(Base64.decode64(params[:photo1])))
+    # photo2 = Photo.create(photo: StringIO.new(Base64.decode64(params[:photo2])))
+
+    # binary1 = params[:photo1]
+    # binary2 = params[:photo2]
+    # puts binary1
+    # stringio1 = StringIO.new(Base64.decode64(binary1))
+    # stringio2 = StringIO.new(Base64.decode64(binary2))
+    # puts stringio1
+    # photo1 = Photo.create(photo: stringio1)
+    # photo2 = Photo.create(photo: stringio2)
+    # puts photo1
     post = Post.new(description: params[:description], user_id: @current_user.id)
     post.photos << photo1
     if photo2 != nil
