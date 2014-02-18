@@ -1,6 +1,6 @@
 class API::V1::PostsController < API::V1::ApplicationController
   include ActionDispatch::TestProcess
-  # respond_to :json
+  respond_to :json
 
   def create
     ######################
@@ -28,6 +28,10 @@ class API::V1::PostsController < API::V1::ApplicationController
       invalid_post_attempt
     end
   end
+
+  # def circuit_params
+#   params.require(:circuit).permit(:title, :id, viewable_tasks:[], ... )
+# end
 
   def show
     @post = Post.find(params[:id])
