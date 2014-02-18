@@ -4,7 +4,7 @@ class API::V1::ApplicationController < ActionController::Base
   before_action :signed_in?, unless: :sessions_controller?
   before_action :set_current_user, unless: :sessions_controller?
   protect_from_forgery with: :exception
-  skip_before_action :verify_authenticity_token, if: :json_request?
+  skip_before_action :verify_authenticity_token
 
   def authorize
     @current_user =
@@ -27,9 +27,4 @@ class API::V1::ApplicationController < ActionController::Base
     User.current = @current_user
   end
 
-  protected
-
-  def json_request?
-    request.format.json?
-  end
 end
