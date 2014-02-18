@@ -1,6 +1,6 @@
 class API::V1::PostsController < API::V1::ApplicationController
   include ActionDispatch::TestProcess
-  respond_to :json
+  # respond_to :json
 
   def create
     ######################
