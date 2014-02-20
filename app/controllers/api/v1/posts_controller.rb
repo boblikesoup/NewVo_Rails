@@ -11,14 +11,15 @@ class API::V1::PostsController < API::V1::ApplicationController
     # post = Post.new(photos: [photo1, photo2], description: params[:description], user_id: @current_user.id)
     ######################
     # for production
-    photo1 = Photo.create(photo: params[:photo1])
-    photo2 = Photo.create(photo: params[:photo2])
-    post = Post.new(description: params[:description], user_id: @current_user.id)
-    post.photos << photo1
-    if photo2.present?
-      post.photos << photo2
-    end
+    # photo1 = Photo.create(photo: params[:photo1])
+    # photo2 = Photo.create(photo: params[:photo2])
+    # post = Post.new(description: params[:description], user_id: @current_user.id)
+    # post.photos << photo1
+    # if photo2.present?
+    #   post.photos << photo2
+    # end
     #######################
+    post = post.new(post_params)
     if post.save
       response = {}
       response["success"] = true
@@ -89,6 +90,10 @@ class API::V1::PostsController < API::V1::ApplicationController
   def invalid_post_attempt(message="Seems like something ain't right with your post")
     render :json=> {success: false, message: message}, status: 401
     return
+  end
+
+  def post_params
+    params.require(:post).permit(:description, photos_attributes: [:id, :photo])
   end
 
 end
