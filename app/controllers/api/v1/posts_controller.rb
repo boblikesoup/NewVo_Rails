@@ -19,7 +19,7 @@ class API::V1::PostsController < API::V1::ApplicationController
     #   post.photos << photo2
     # end
     #######################
-    post = post.new(post_params)
+    post = Post.new(post_params)
     if post.save
       response = {}
       response["success"] = true
