@@ -19,7 +19,7 @@ class API::V1::PostsController < API::V1::ApplicationController
     #   post.photos << photo2
     # end
     #######################
-    post = Post.new(post_params)
+    post = Post.new(photos: [Photo.create(params[:photo1]), Photo.create(params[:photo2])], description: params[:description], user_id: @current_user.id)
     if post.save
       response = {}
       response["success"] = true
@@ -90,10 +90,6 @@ class API::V1::PostsController < API::V1::ApplicationController
   def invalid_post_attempt(message="Seems like something ain't right with your post")
     render :json=> {success: false, message: message}, status: 401
     return
-  end
-
-  def post_params
-    params.require(:post).permit(:description, photos_attributes: [:id, :photo])
   end
 
 end
