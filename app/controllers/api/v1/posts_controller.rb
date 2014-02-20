@@ -1,25 +1,18 @@
 class API::V1::PostsController < API::V1::ApplicationController
-  include ActionDispatch::TestProcess
   respond_to :json
 
   def create
     ######################
-    # functional test
-    # photo1 = Photo.create(photo: fixture_file_upload(Rails.root.join('spec', 'photos', 'test2.jpg'), 'image/jpg'))
-    # puts photo1
-    # photo2 = Photo.create(photo: fixture_file_upload(Rails.root.join('spec', 'photos', 'test2.jpg'), 'image/jpg'))
-    # post = Post.new(photos: [photo1, photo2], description: params[:description], user_id: @current_user.id)
-    ######################
-    # for production
-    # photo1 = Photo.create(photo: params[:photo1])
-    # photo2 = Photo.create(photo: params[:photo2])
-    # post = Post.new(description: params[:description], user_id: @current_user.id)
-    # post.photos << photo1
-    # if photo2.present?
-    #   post.photos << photo2
-    # end
+    # Nothing is showing up on amazon
+    photo1 = Photo.create(photo: params[:photo1])
+    post = Post.new(description: params[:description], user_id: @current_user.id)
+    post.photos << photo1
+    if params.has_key?(:photo2)
+      photo2 = Photo.create(photo: params[:photo2])
+      post.photos << photo2
+    end
     #######################
-    post = Post.new(photos: [Photo.create(photo: params[:photo1]), Photo.create(photo: params[:photo2])], description: params[:description], user_id: @current_user.id)
+    # post = Post.new(photos: [Photo.create(photo: params[:photo1]), Photo.create(photo: params[:photo2])], description: params[:description], user_id: @current_user.id)
     if post.save
       response = {}
       response["success"] = true

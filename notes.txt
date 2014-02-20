@@ -1,7 +1,7 @@
 #Amazon S3 Debug
 web- https://s3.amazonaws.com/newvo-assets1/photos/53/medium/Everest_kalapatthar_crop.jpg?1391132922
 web2 https://s3.amazonaws.com/newvo-assets1/photos/97/medium/Everest_kalapatthar_crop.jpg?1392903025
-api- https://s3.amazonaws.com/newvo-assets1/photos/96/original/Everest_kalapatthar_crop.jpg?1392901016
+api- https://s3.amazonaws.com/newvo-assets1//photos/96/original/Everest_kalapatthar_crop.jpg?1392901016
 
 # Testing comments#create
 curl https://newvo.herokuapp.com/api/v1/posts/3/comments?newvo_token=OLmeNSbGdgtZEr4nBnRZSYvgc7Hi1hHH&body=fuckeverythingman -H "Accept: application/json"
