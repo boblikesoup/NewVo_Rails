@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   validates_presence_of :last_name
   validates_presence_of :fb_uid
   validates_uniqueness_of :fb_uid
+  validates_presence_of :newvo_token
+  validates_uniqueness_of :newvo_token
 
   scope :published, ->{where(status: self::STATUS_PUBLISHED)}
 
@@ -70,10 +72,10 @@ class User < ActiveRecord::Base
     Friendship.find_by(user_id: followed_id, friend_id: self.id).destroy
   end
 
-  #authentication
-  def self.find_or_create_from_auth_hash auth_hash
+  def self.find_or_create_from_auth_hash (auth_hash)
     user = self.find_or_create_by(fb_uid: auth_hash["uid"])
     user.generate_newvo_token
+    user.save
     if user
       first_name = auth_hash["info"]["first_name"]
       last_name = auth_hash["info"]["last_name"]
@@ -87,6 +89,7 @@ class User < ActiveRecord::Base
   def self.find_or_create_from_user_info (user_info, picture_info)
       user = self.find_or_create_by(fb_uid: user_info["id"])
       user.generate_newvo_token
+      user.save
       if user
       first_name = user_info["first_name"]
       last_name = user_info["last_name"]
