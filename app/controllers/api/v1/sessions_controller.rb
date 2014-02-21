@@ -1,6 +1,13 @@
 class API::V1::SessionsController < API::V1::ApplicationController
   respond_to :json
 
+# Do we need this code at some point? Exchanges short term and long term tokens.
+# https://graph.facebook.com/oauth/access_token?
+#     client_id=APP_ID&
+#     client_secret=APP_SECRET&
+#     grant_type=fb_exchange_token&
+#     fb_exchange_token=EXISTING_ACCESS_TOKEN
+
   def create
     client = OAuth2::Client.new(
       ENV['FACEBOOK_APP_ID'],
@@ -32,8 +39,6 @@ class API::V1::SessionsController < API::V1::ApplicationController
   def auth_hash
     request.env['omniauth.auth']
   end
-
-  private
 
   def invalid_login_attempt(message="Seems like you've been trying to give our associates at facebook a fake name and password. Watch it, punk.")
     render :json=> {:success=>false, :message=>message}, :status=>401

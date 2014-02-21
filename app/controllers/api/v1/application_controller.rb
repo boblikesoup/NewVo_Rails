@@ -10,7 +10,6 @@ class API::V1::ApplicationController < ActionController::Base
     @current_user =
       User.find_by(newvo_token: params[:newvo_token]) ||
       authenticate_or_request_with_http_token do |newvo_token|
-        logger.info newvo_token
       User.find_by(newvo_token: newvo_token)
     end
   end

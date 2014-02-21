@@ -2,8 +2,6 @@ class API::V1::PostsController < API::V1::ApplicationController
   respond_to :json
 
   def create
-    ######################
-    # Nothing is showing up on amazon
     photo1 = Photo.create(photo: params[:photo1])
     post = Post.new(description: params[:description], user_id: @current_user.id)
     post.photos << photo1
@@ -11,10 +9,7 @@ class API::V1::PostsController < API::V1::ApplicationController
       photo2 = Photo.create(photo: params[:photo2])
       post.photos << photo2
     end
-    #######################
-    # post = Post.new(photos: [Photo.create(photo: params[:photo1]), Photo.create(photo: params[:photo2])], description: params[:description], user_id: @current_user.id)
     if post.save
-
       response = {}
       response["success"] = true
       response["data"] = post
@@ -23,10 +18,6 @@ class API::V1::PostsController < API::V1::ApplicationController
       invalid_post_attempt
     end
   end
-
-  # def circuit_params
-#   params.require(:circuit).permit(:title, :id, viewable_tasks:[], ... )
-# end
 
   def show
     @post = Post.find(params[:id])
