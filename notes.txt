@@ -3,16 +3,16 @@
 --Implement @current_user--
 
 VOTES--
-https://newvo.herokuapp.com/api/v1/votes?user_id=6&post_id=118
+https://newvo.herokuapp.com/api/v1/votes?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&user_id=6&post_id=118
 
 FOLLOWINGS--
-https://newvo.herokuapp.com/api/v1/followings?follower_id=6&followed_id=4
+https://newvo.herokuapp.com/api/v1/followings?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&follower_id=6&followed_id=4
 
 GROUPS--
-https://newvo.herokuapp.com/api/v1/groups?creator_id=6&user_id=4&title=cools group
+https://newvo.herokuapp.com/api/v1/groups?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&creator_id=6&user_id=4&title=cools group
 
 DESCRIPTION UPDATE--
-https://newvo.herokuapp.com/api/v1/users/describe?description=this is new as fuck and it's a description
+https://newvo.herokuapp.com/api/v1/users/describe?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&description=this is new as fuck and it's a description
 
 # Testing comments#create
 curl https://newvo.herokuapp.com/api/v1/posts/3/comments?newvo_token=OLmeNSbGdgtZEr4nBnRZSYvgc7Hi1hHH&body=fuckeverythingman -H "Accept: application/json"
