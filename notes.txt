@@ -2,16 +2,16 @@
 
 --Implement @current_user--
 
-VOTES--
-https://newvo.herokuapp.com/api/v1/votes?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&user_id=6&post_id=118
+VOTES-- create
+https://newvo.herokuapp.com/api/v1/votes?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&photo=213&value=1
 
-FOLLOWINGS--
+FOLLOWINGS-- create
 https://newvo.herokuapp.com/api/v1/followings?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&follower_id=6&followed_id=4
 
-GROUPS--
+GROUPS-- create
 https://newvo.herokuapp.com/api/v1/groups?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&creator_id=6&user_id=4&title=cools group
 
-DESCRIPTION UPDATE--
+DESCRIPTION UPDATE-- description POST
 https://newvo.herokuapp.com/api/v1/users/describe?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&description=this is new as fuck and it's a description
 
 # Testing comments#create
