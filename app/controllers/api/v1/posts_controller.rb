@@ -14,6 +14,7 @@ class API::V1::PostsController < API::V1::ApplicationController
     #######################
     # post = Post.new(photos: [Photo.create(photo: params[:photo1]), Photo.create(photo: params[:photo2])], description: params[:description], user_id: @current_user.id)
     if post.save
+
       response = {}
       response["success"] = true
       response["data"] = post
