@@ -1,7 +1,18 @@
-#Amazon S3 Debug
-web- https://s3.amazonaws.com/newvo-assets1/photos/53/medium/Everest_kalapatthar_crop.jpg?1391132922
-web2 https://s3.amazonaws.com/newvo-assets1/photos/97/medium/Everest_kalapatthar_crop.jpg?1392903025
-api- https://s3.amazonaws.com/newvo-assets1//photos/96/original/Everest_kalapatthar_crop.jpg?1392901016
+# API fixing etc..
+
+--Implement @current_user--
+
+VOTES-- create
+https://newvo.herokuapp.com/api/v1/votes?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&photo=213&value=1
+
+FOLLOWINGS-- create
+https://newvo.herokuapp.com/api/v1/followings?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&follower_id=6&followed_id=4
+
+GROUPS-- create
+https://newvo.herokuapp.com/api/v1/groups?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&creator_id=6&user_id=4&title=cools group
+
+DESCRIPTION UPDATE-- description POST
+https://newvo.herokuapp.com/api/v1/users/describe?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&description=this is new as fuck and it's a description
 
 # Testing comments#create
 curl https://newvo.herokuapp.com/api/v1/posts/3/comments?newvo_token=OLmeNSbGdgtZEr4nBnRZSYvgc7Hi1hHH&body=fuckeverythingman -H "Accept: application/json"
