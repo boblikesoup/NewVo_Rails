@@ -5,6 +5,8 @@
 VOTES-- create
 https://newvo.herokuapp.com/api/v1/votes?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&photo=213&value=1
 
+localhost:3000/api/v1/votes?newvo_token=67lpujuyKv7jcJpj4x8iYJWKTDta5NwU&photo=1&value=1
+
 FOLLOWINGS-- create
 https://newvo.herokuapp.com/api/v1/followings?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&follower_id=6&followed_id=4
 
