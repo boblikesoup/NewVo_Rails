@@ -3,7 +3,7 @@ class API::V1::FollowingsController < API::V1::ApplicationController
 
   def create
     if @current_user.follow!(params[:followed_id])
-      render json: {success: true}
+      render json: {success: true, message: "following created"}
     else
       render json: {success: false}
     end

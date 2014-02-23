@@ -23,3 +23,4 @@ class API::V1::FollowingsController < API::V1::ApplicationController
     response["data"] = @group
     respond_with(response)
   end
+end
