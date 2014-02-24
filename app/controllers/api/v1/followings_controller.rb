@@ -9,7 +9,6 @@ class API::V1::FollowingsController < API::V1::ApplicationController
   end
     if @current_user.both_following?(params[:followed_id])
       @current_user.create_friendship(params[:followed_id])
-      render json: {message: "friendship created"}
     end
   end
 
