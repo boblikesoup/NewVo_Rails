@@ -5,8 +5,6 @@ class API::V1::FollowingsController < API::V1::ApplicationController
   begin
     if @current_user.follow!(params[:followed_id])
       render json: {success: true, message: "following created", follower_id: @current_user.id, followed_id: params[:followed_id]}
-     rescue ActiveRecord::RecordNotUnique
-      render json: {success: false, message: "You have already followed this person!"}
     end
   end
     if @current_user.both_following?(params[:followed_id])

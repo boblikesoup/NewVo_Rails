@@ -36,12 +36,16 @@ class User < ActiveRecord::Base
   end
 
   def follow!(followed_id)
+    begin
     if following = Following.create!(follower_id: self.id, followed_id: followed_id)
       #You are now following
       FollowingActivity.create!(notified_user_id: self.id, other_user_id: followed_id, followed_type: "follower", following_id: following.id)
       #Now following you
       FollowingActivity.create!(notified_user_id: followed_id, other_user_id: self.id, followed_type: "followed", following_id: following.id)
+      rescue ActiveRecord::RecordNotUnique
+      render json: {success: false, message: "You have already followed this person!"}
     end
+  end
   end
 
 #friendships
