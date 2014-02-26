@@ -8,9 +8,7 @@ class API::V1::VotesController < API::V1::ApplicationController
        @vote = Vote.new(user_id: @current_user.id, value: params[:value], post_id: current_photo.post_id)
        @post = Post.find(current_photo.post_id)
        current_photo.votes << @vote
-       if @vote.save
-      VoteActivity.create!(notified_user_id: Post.find(@post).user_id, other_user_id: @vote.user_id, vote_id: @vote.id)
-       else
+       VoteActivity.create!(notified_user_id: Post.find(@post).user_id, other_user_id: @vote.user_id, vote_id: @vote.id)
        response = {}
        response["success"] = true
        response["data"] = @post
