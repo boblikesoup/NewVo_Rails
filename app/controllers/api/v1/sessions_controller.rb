@@ -26,6 +26,10 @@ class API::V1::SessionsController < API::V1::ApplicationController
     end
   end
 
+  def destroy
+
+  end
+
   private
 
   def auth_hash

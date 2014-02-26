@@ -1,9 +1,10 @@
 Newvo::Application.routes.draw do
   root to: 'pages#home'
 
-  get '/auth/mobile', to: 'api/v1/sessions#create'
   get '/auth/:provider/callback', to: 'sessions#create'
+  get '/auth/mobile', to: 'api/v1/sessions#create'
   get '/signout', to: 'sessions#destroy', as: 'signout'
+  get '/signout/mobile', to: 'api/v1/sessions#destroy', as: 'signout'
 
   resources :posts, only: [:index, :create, :show, :destroy] do
     resources :comments, only: [:create, :update, :edit, :destroy]
