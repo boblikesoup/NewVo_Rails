@@ -23,6 +23,8 @@ localhost:3000/api/v1/votes?newvo_token=67lpujuyKv7jcJpj4x8iYJWKTDta5NwU&photo=1
 FOLLOWINGS-- create
 https://newvo.herokuapp.com/api/v1/followings?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&follower_id=6&followed_id=4
 
+http://localhost:3000/api/v1/followings?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&follower_id=1&followed_id=2
+
 GROUPS-- create
 https://newvo.herokuapp.com/api/v1/groups?user_id[]=1&user_id[]=2&user_id[]=3&user_id[]=4&newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&creator_id=6&title=cools group
 
