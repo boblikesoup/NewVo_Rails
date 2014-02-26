@@ -31,6 +31,7 @@ class API::V1::PostsController < API::V1::ApplicationController
     post = Post.find(params[:id])
     #post.destroy!
     post.update_attributes(status: Post::STATUS_UNPUBLISHED)
+    render json: {success: true, message: "post has been unpublished and should not be displayed"}
   end
 
     # Could this be in the model?

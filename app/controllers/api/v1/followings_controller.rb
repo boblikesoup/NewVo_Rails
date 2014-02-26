@@ -5,6 +5,8 @@ class API::V1::FollowingsController < API::V1::ApplicationController
   begin
     if @current_user.follow!(params[:followed_id])
       render json: {success: true, message: "following created", follower_id: @current_user.id, followed_id: params[:followed_id]}
+      FollowingActivity.create!()
+       # CommentActivity.create!(notified_user_id: Post.find(params[:post_id]).user_id, other_user_id: @comment.user_id, comment_id: @comment.id)
     end
   end
     if @current_user.both_following?(params[:followed_id])
