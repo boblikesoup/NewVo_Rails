@@ -1,6 +1,8 @@
 class API::V1::GroupsController < API::V1::ApplicationController
+
   def create
     @group = Group.new(creator_id: @current_user.id, user_id: params[:user_id], title: params[:title], description: params[:description])
+    puts @group.inspect
     if @group.save
       response = {}
       response["success"] = true

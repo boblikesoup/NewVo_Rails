@@ -11,6 +11,8 @@ class API::V1::VotesController < API::V1::ApplicationController
        response = {}
        response["success"] = true
        response["data"] = @post
+    else
+      invalid_voting_attempt
     end
     render json: response
   end
