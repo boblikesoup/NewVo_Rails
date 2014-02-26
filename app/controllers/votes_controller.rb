@@ -5,10 +5,7 @@ class VotesController < ApplicationController
     if params[:photo]
       current_photo = Photo.find(params[:photo])
       vote = Vote.new(user_id: current_user.id, value: params[:value], post_id: current_photo.post_id)
-      puts vote.inspect
       post = Post.find(current_photo.post_id)
-      puts post.inspect
-      puts current_photo.votes.inspect
       current_photo.votes << vote
     end
     respond_with post, :location => posts_path

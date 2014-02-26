@@ -17,8 +17,6 @@ class Photo < ActiveRecord::Base
       :downvotes => downvotes
     }
   end
-  # TODO
-  # refactor into one method or use counter cache to speed up
 
   def upvotes
     self.votes.group(:value).count[1] || 0

@@ -13,7 +13,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(post_params)
+    @post = Post.new(post_params)
     current_user.posts << post
     post.save
     respond_with @post, :location => posts_path

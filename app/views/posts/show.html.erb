@@ -4,7 +4,9 @@
 <% end %>
 
 <% if signed_in? %>
-  <%= form_for @comment, url: post_comments_path(@post) do |f| %>
+<% puts @comment.inspect %>
+<% puts @post.inspect %>
+  <%= form_for([@post, Comment.new]) do |f| %>
     <%= f.label :body, 'Say something' %>
     <%= f.text_field :body %>
     <%= f.submit %>
@@ -17,9 +19,6 @@
         <%= link_to "Edit", edit_post_comment_path(@post, comment) %>
         <%= link_to "Delete", post_comment_path(@post, comment), method: :delete %>
       <% end %>
-      <%= link_to "Like", votes_path(:comment => comment.id, :value => 1), method: :post%>
-      <span> <%= comment.votes.sum(:value) %> </span>
-    </p>
     <% end %>
   <% end %>
 <% end %>

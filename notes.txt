@@ -1,5 +1,7 @@
 # API fixing etc..
 
+<%= form_for @comment, url: post_comments_path(@post) do |f| %>
+
 --Implement @current_user--
 
 VOTES-- create
