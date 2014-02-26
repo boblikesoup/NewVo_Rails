@@ -1,5 +1,16 @@
 # API fixing etc..
 
+# App Access Token
+https://graph.facebook.com/oauth/access_token?grant_type=client_credentials&client_id=650360678349775&client_secret=f328dd02b38f0911c1fafa1ba2c09bce
+# access_token=650360678349775|4AMi2eAfkGTyVd-t2SrWduEGfAU
+
+# Working mobile route with facebook User Access Token (these expire quickly)
+/auth/mobile?fbtoken=CAACEdEose0cBAAZAkj94W40FXo4ZCeZCZAcaMSnNdyrqyo1uTjboxTSwdHRZBlClYLIZAPuLROh6UZCYzzW1QPg9NBvxSweIhuWt2IJrn1wKVNTZASIEkdhclCZBkWFU0q9Frhj5UVYZANyZCm8gf5rNMJPXsHenvfGAp2CrJh3jsJLwLjKUOsTVNLClMuDfYLXaXYZD&device_id=device_id&time_zone=+0800&os_type=ios
+
+
+67lpujuyKv7jcJpj4x8iYJWKTDta5NwU
+pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT
+
 <%= form_for @comment, url: post_comments_path(@post) do |f| %>
 
 --Implement @current_user--
@@ -13,7 +24,7 @@ FOLLOWINGS-- create
 https://newvo.herokuapp.com/api/v1/followings?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&follower_id=6&followed_id=4
 
 GROUPS-- create
-https://newvo.herokuapp.com/api/v1/groups?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&creator_id=6&user_id=4&title=cools group
+https://newvo.herokuapp.com/api/v1/groups?user_id[]=1&user_id[]=2&user_id[]=3&user_id[]=4&newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&creator_id=6&title=cools group
 
 DESCRIPTION UPDATE-- description POST
 https://newvo.herokuapp.com/api/v1/users/describe?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&description=this is new as fuck and it's a description
