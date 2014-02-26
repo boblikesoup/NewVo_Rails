@@ -7,12 +7,13 @@ class API::V1::ActivityFeedController < API::V1::ApplicationController
     @activity = {}
     @activity["vote_activities"] = join_activity(VoteActivity)
     @activity["comment_activities"] = join_activity(CommentActivity)
-    @activity["following_activities"] = join_activity(FollowingActivity)
+    # response["following_activities"] = join_activity(FollowingActivity)
+    # puts response
     @activity["friendship_activities"] = join_activity(FriendshipActivity)
     response = {}
     response["success"] = true
     response["data"] = @activity
-    respond_with(response)
+    render json: response
   end
 
   def join_activity(model)
