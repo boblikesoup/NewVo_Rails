@@ -27,7 +27,8 @@ class API::V1::SessionsController < API::V1::ApplicationController
   end
 
   def destroy
-
+    @current_user = nil
+    render json: {success: true, message: "Signout was successful"}
   end
 
   private
