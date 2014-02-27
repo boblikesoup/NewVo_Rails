@@ -26,52 +26,6 @@ class User < ActiveRecord::Base
 
   scope :published, ->{where(status: self::STATUS_PUBLISHED)}
 
-  def following?(followed_id)
-    #tells whether current user is following user B
-    if Following.exists?(follower_id: self.id, followed_id: followed_id)
-      return true
-    else
-      return false
-    end
-  end
-
-  def follow!(followed_id)
-    if following = Following.create!(follower_id: self.id, followed_id: followed_id)
-      #You are now following
-      FollowingActivity.create!(notified_user_id: self.id, other_user_id: followed_id, followed_type: "follower", following_id: following.id)
-      #Now following you
-      FollowingActivity.create!(notified_user_id: followed_id, other_user_id: self.id, followed_type: "followed", following_id: following.id)
-    end
-  end
-
-#friendships
-  def both_following?(followed_id)
-    #tells whether two users are following each other
-    if User.find(followed_id).following?(self.id) && self.following?(followed_id)
-      return true
-    else
-      return false
-    end
-  end
-
-  def create_friendship(followed_id)
-    if friender = Friendship.create(user_id: self.id, friend_id: followed_id) && friended = Friendship.create(user_id: followed_id, friend_id: self.id)
-      FriendshipActivity.create!(notified_user_id: self.id, other_user_id: followed_id, friendship_id: friender.id)
-      FriendshipActivity.create!(notified_user_id: followed_id, other_user_id: self.id, friendship_id: friended.id)
-    end
-  end
-
-  def destroy_friendship(followed_id)
-    following = Following.find_by(follower_id: self.id, followed_id: followed_id)
-    FollowingActivity.find_by(notified_user_id: self.id, following_id: following.id, followed_type: "follower", status: FollowingActivity::STATUS_PUBLISHED).status = FollowingActivity::STATUS_UNPUBLISHED
-    FollowingActivity.find_by(notified_user_id: followed_id, following_id: following.id, followed_type: "followed", status: FollowingActivity::STATUS_PUBLISHED).status = FollowingActivity::STATUS_UNPUBLISHED
-    following.destroy
-    FriendshipActivity.published.find_by(notified_user_id: self.id, other_user_id: User.find(followed_id)).status = FriendshipActivity::STATUS_UNPUBLISHED
-    FriendshipActivity.published.find_by(notified_user_id: User.find(followed_id), other_user_id: self.id).status = FriendshipActivity::STATUS_UNPUBLISHED
-    Friendship.find_by(user_id: self.id, friend_id: followed_id).destroy
-    Friendship.find_by(user_id: followed_id, friend_id: self.id).destroy
-  end
-
   def self.find_or_create_from_auth_hash (auth_hash)
     user = self.find_or_create_by(fb_uid: auth_hash["uid"])
     user.generate_newvo_token

@@ -2,7 +2,6 @@ class API::V1::GroupsController < API::V1::ApplicationController
 
   def create
     @group = Group.new(creator_id: @current_user.id, user_id: params[:user_id], title: params[:title], description: params[:description])
-    puts @group.inspect
     if @group.save
       response = {}
       response["success"] = true
@@ -23,6 +22,13 @@ class API::V1::GroupsController < API::V1::ApplicationController
     response = {}
     response["success"] = true
     response["data"] = @group
-    respond_with(response)
+    render json: response
   end
+
+  def update
+  end
+
+  def destroy
+  end
+
 end

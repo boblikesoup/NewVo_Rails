@@ -14,17 +14,18 @@ class API::V1::CommentsController < API::V1::ApplicationController
     end
   end
 
+  # unfinished
   def edit
     comment = Comment.find(params[:id])
-    @post = Post.find(params[:post_id])
   end
 
+  # unfinished
   def update
     comment = Comment.find(params[:id])
-    post = Post.find(params[:post_id])
-    comment.update_attributes!(comment_params)
+    comment.update_attributes!()
   end
 
+  # unfinished
   def destroy
     comment = Comment.find(params[:id])
     if comment.update_attributes(status: Comment::STATUS_UNPUBLISHED)
@@ -32,9 +33,10 @@ class API::V1::CommentsController < API::V1::ApplicationController
     end
   end
 
+  private
+
   def invalid_comment_attempt(message="Seems like something ain't right with your comment")
     render :json=> {success: false, message: message}, status: 401
-    return
   end
 
 end
