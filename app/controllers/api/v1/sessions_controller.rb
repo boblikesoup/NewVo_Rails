@@ -8,6 +8,7 @@ class API::V1::SessionsController < API::V1::ApplicationController
 #     grant_type=fb_exchange_token&
 #     fb_exchange_token=EXISTING_ACCESS_TOKEN
 
+  # done
   def create
     client = OAuth2::Client.new(
       ENV['FACEBOOK_APP_ID'],
@@ -26,7 +27,11 @@ class API::V1::SessionsController < API::V1::ApplicationController
     end
   end
 
+  # done, token not deleting (problem for later)
   def destroy
+    # id = @current_user.id
+    # user = User.find(id)
+    # user.newvo_token = nil
     @current_user = nil
     render json: {success: true, message: "Signout was successful"}
   end
@@ -39,7 +44,6 @@ class API::V1::SessionsController < API::V1::ApplicationController
 
   def invalid_login_attempt(message="Seems like you've been trying to give our associates at facebook a fake name and password. Watch it, punk.")
     render :json=> {:success=>false, :message=>message}, :status=>401
-    return
   end
 
   def valid_login_attempt
@@ -52,7 +56,7 @@ class API::V1::SessionsController < API::V1::ApplicationController
      :facebook_username => @user.facebook_username,
      :profile_pic => @user.profile_pic,
      :facebook_id => @user.fb_uid
-      } and return
+      }
   end
 
 end

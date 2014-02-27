@@ -1,6 +1,7 @@
 class API::V1::PostsController < API::V1::ApplicationController
   respond_to :json
 
+  # done
   def create
     photo1 = Photo.create(photo: params[:photo1])
     post = Post.new(description: params[:description], user_id: @current_user.id)
@@ -19,14 +20,20 @@ class API::V1::PostsController < API::V1::ApplicationController
     end
   end
 
+  # done
   def show
     @post = Post.find(params[:id])
-    response = {}
-    response["success"] = true
-    response["data"] = @post
-    respond_with(response)
+    if @post.status == Post::STATUS_UNPUBLISHED
+      render json: {success: false, message: "This post has been deleted."}
+    else
+      response = {}
+      response["success"] = true
+      response["data"] = @post
+      render json: response
+    end
   end
 
+  # done
   def destroy
     post = Post.find(params[:id])
     #post.destroy!
@@ -34,7 +41,29 @@ class API::V1::PostsController < API::V1::ApplicationController
     render json: {success: true, message: "post has been unpublished and should not be displayed"}
   end
 
-    # Could this be in the model?
+  # done
+  def search
+    if params[:used_post_ids].strip == "[]" || params[:used_post_ids].strip == "" || params[:used_post_ids].blank?
+      used_post_ids = []
+    else
+      used_post_ids = params[:used_post_ids][1..-2].split(',').collect! {|n| n.to_i}
+    end
+    @posts = post_retrieval(params[:query], used_post_ids)
+    response = {}
+    response["success"] = true
+    response["data"] = @posts
+    render json: response
+  end
+
+  # done
+  def index
+    @posts = Post.recent
+    render json: @posts, :include => [:photos, :comments]
+  end
+
+  private
+
+  # Could this be in the model?
     def post_retrieval(query, used_post_ids)
       if query == "global"
         Post.not_seen(used_post_ids)
@@ -46,32 +75,6 @@ class API::V1::PostsController < API::V1::ApplicationController
         return "Invalid params or server error."
       end
     end
-
-  # TODO
-  # test search in spec
-  # have each as own route (gets rid of if statement)
-
-  # test with (Juke db token): curl -s "http://localhost:3000/api/v1/posts/search/?newvo_token=1L6zRtt5SJJ8iZuY0XZ3Xd6StdPOpDkk&used_post_ids=[1,2]&query=global" | json
-  # online test (Juke's) token: newvo.herokuapp.com/api/v1/posts/search/?newvo_token=OLmeNSbGdgtZEr4nBnRZSYvgc7Hi1hHH&used_post_ids=[1,2]&query=global
-  def search
-    if params[:used_post_ids].strip == "[]" || params[:used_post_ids].strip == "" || params[:used_post_ids].blank?
-      used_post_ids = []
-    else
-      used_post_ids = params[:used_post_ids][1..-2].split(',').collect! {|n| n.to_i}
-    end
-    @posts = post_retrieval(params[:query], used_post_ids)
-    response = {}
-    response["success"] = true
-    response["data"] = @posts
-    respond_with(response)
-  end
-
-  def index
-    @posts = Post.recent
-    render json: @posts, :include => [:photos, :comments]
-  end
-
-  private
 
   def invalid_post_attempt(message="Seems like something ain't right with your post")
     render :json=> {success: false, message: message}, status: 401

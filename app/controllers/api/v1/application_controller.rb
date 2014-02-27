@@ -61,7 +61,7 @@ class API::V1::ApplicationController < ActionController::Base
   end
 
   def sessions_controller?
-    params[:controller] == "api/v1/sessions"
+    params[:controller] == "api/v1/auth/mobile"
   end
 
   def set_current_user

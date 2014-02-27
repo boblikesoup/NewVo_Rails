@@ -1,41 +1,49 @@
-# API fixing etc..
+################################## Token Stuff ##############################################################
+
+# newvo_token- Brent (local)
+67lpujuyKv7jcJpj4x8iYJWKTDta5NwU
+
+# newvo_token- Gao (heroku)
+pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT
+
+# Amazon Information
+Amazon access— AKIAIFO4WUGAG7WBKHOA
+Amazon secret-- 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
+
+# App Facebook Access Token
+access_token=650360678349775|4AMi2eAfkGTyVd-t2SrWduEGfAU
+
+################################## API fixing etc.. #########################################################
 
 ACTIVITY FEED--
 http://localhost:3000/api/v1/activity_feed?newvo_token=67lpujuyKv7jcJpj4x8iYJWKTDta5NwU
 https://newvo.herokuapp.com/api/v1/activity_feed?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT
 
-67lpujuyKv7jcJpj4x8iYJWKTDta5NwU
-pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT
-
-<%= form_for @comment, url: post_comments_path(@post) do |f| %>
-
---Implement @current_user--
-
 VOTES-- create
 https://newvo.herokuapp.com/api/v1/votes?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&photo=213&value=1
-
 localhost:3000/api/v1/votes?newvo_token=67lpujuyKv7jcJpj4x8iYJWKTDta5NwU&photo=1&value=1
 
 FOLLOWINGS-- create
-https://newvo.herokuapp.com/api/v1/followings?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&follower_id=6&followed_id=4
-http://localhost:3000/api/v1/followings?newvo_token=67lpujuyKv7jcJpj4x8iYJWKTDta5NwU&follower_id=1&followed_id
-
-http://localhost:3000/api/v1/followings?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&follower_id=1&followed_id=2
+https://newvo.herokuapp.com/api/v1/followings?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&followed_id=4
+http://localhost:3000/api/v1/followings?newvo_token=67lpujuyKv7jcJpj4x8iYJWKTDta5NwU&followed_id=2
 
 GROUPS-- create
 https://newvo.herokuapp.com/api/v1/groups?user_id[]=1&user_id[]=2&user_id[]=3&user_id[]=4&newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&creator_id=6&title=cools group
 
-DESCRIPTION UPDATE-- description POST
+USER-- update description
 https://newvo.herokuapp.com/api/v1/users/describe?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&description=this is new as fuck and it's a description
 
-# Testing comments#create
-curl https://newvo.herokuapp.com/api/v1/posts/3/comments?newvo_token=OLmeNSbGdgtZEr4nBnRZSYvgc7Hi1hHH&body=fuckeverythingman -H "Accept: application/json"
+SESSIONS-- create
+https://newvo.herokuapp.com/auth/mobile?fbtoken=CAACEdEose0cBAAZAkj94W40FXo4ZCeZCZAcaMSnNdyrqyo1uTjboxTSwdHRZBlClYLIZAPuLROh6UZCYzzW1QPg9NBvxSweIhuWt2IJrn1wKVNTZASIEkdhclCZBkWFU0q9Frhj5UVYZANyZCm8gf5rNMJPXsHenvfGAp2CrJh3jsJLwLjKUOsTVNLClMuDfYLXaXYZD&device_id=device_id&time_zone=+0800&os_type=ios
 
-# App Access Token
-access_token=650360678349775|4AMi2eAfkGTyVd-t2SrWduEGfAU
+COMMENTS-- create
+https://newvo.herokuapp.com/api/v1/posts/3/comments?newvo_token=OLmeNSbGdgtZEr4nBnRZSYvgc7Hi1hHH&body=fuckeverythingman
 
-# Working mobile route with facebook User Access Token (these expire quickly)
-/auth/mobile?fbtoken=CAACEdEose0cBAAZAkj94W40FXo4ZCeZCZAcaMSnNdyrqyo1uTjboxTSwdHRZBlClYLIZAPuLROh6UZCYzzW1QPg9NBvxSweIhuWt2IJrn1wKVNTZASIEkdhclCZBkWFU0q9Frhj5UVYZANyZCm8gf5rNMJPXsHenvfGAp2CrJh3jsJLwLjKUOsTVNLClMuDfYLXaXYZD&device_id=device_id&time_zone=+0800&os_type=ios
+POSTS-- search
+https://newvo.herokuapp.com/api/v1/posts/search/?newvo_token=OLmeNSbGdgtZEr4nBnRZSYvgc7Hi1hHH&used_post_ids=[1,2]&query=global
+http://localhost:3000/api/v1/posts/search/?newvo_token=67lpujuyKv7jcJpj4x8iYJWKTDta5NwU&used_post_ids=[19,20,21]&query=global
+
+############################################ Notes on Shoulda Matchers #######################################
 
 # Thoughtbot is brilliant:
 https://github.com/thoughtbot/shoulda-matchers
@@ -126,7 +134,7 @@ describe ApplicationController do
   end
 end
 
-# Testing Notes Aaron:
+############################################ Testing Notes Aaron: ##########################################
 
 # attributes_for method generates a hash of attributes instead of a ruby object
 # record.reload variables must be reloaded from the database, attributes won't update unless
@@ -209,4 +217,13 @@ describe Api::V1::EmployeesController do
     end
   end
 end
+
+######################################### to comment on comments ##########################################
+
+    #   current_comment = Comment.find(params[:comment])
+    #   vote = Vote.new(user_id: current_user.id, value: params[:value], post_id: current_photo.post.id)
+    #   post = Post.find(current_comment.post_id)
+    #   current_comment.votes << vote
+
+################################################## end ####################################################
 

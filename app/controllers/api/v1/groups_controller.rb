@@ -1,5 +1,6 @@
 class API::V1::GroupsController < API::V1::ApplicationController
 
+  # done
   def create
     @group = Group.new(creator_id: @current_user.id, user_id: params[:user_id], title: params[:title], description: params[:description])
     if @group.save
@@ -12,11 +13,7 @@ class API::V1::GroupsController < API::V1::ApplicationController
     end
   end
 
-  # Not sure exactly how to take serialized params, WIP
-  # def circuit_params
-  #   params.require(:circuit).permit(:title, :id, viewable_tasks:[], ... )
-  # end
-
+  # done
   def show
     @group = Group.find(params[:id])
     response = {}
