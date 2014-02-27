@@ -1,13 +1,6 @@
 class API::V1::SessionsController < API::V1::ApplicationController
   respond_to :json
 
-# Do we need this code at some point? Exchanges short term and long term tokens.
-# https://graph.facebook.com/oauth/access_token?
-#     client_id=APP_ID&
-#     client_secret=APP_SECRET&
-#     grant_type=fb_exchange_token&
-#     fb_exchange_token=EXISTING_ACCESS_TOKEN
-
   # done
   def create
     client = OAuth2::Client.new(
@@ -27,7 +20,7 @@ class API::V1::SessionsController < API::V1::ApplicationController
     end
   end
 
-  # done, token not deleting (problem for later)
+  # done
   def destroy
     # id = @current_user.id
     # user = User.find(id)

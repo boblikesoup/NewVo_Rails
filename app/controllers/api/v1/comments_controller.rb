@@ -15,23 +15,29 @@ class API::V1::CommentsController < API::V1::ApplicationController
     end
   end
 
-  # unfinished
-  def edit
-    comment = Comment.find(params[:id])
-  end
-
-  # unfinished
+  # done
   def update
-    comment = Comment.find(params[:id])
-    comment.update_attributes!()
+    @comment = Comment.find(params[:id])
+    if @comment.body != params[:body]
+    @comment.update_attributes(body: params[:body])
+    @comment.save
+    response = {}
+    response["success"] = true
+    response["new_body"] = @comment.body
+    response["message"] = "You have successfully changed your comment."
+    render json: response
+    else
+    render json: {success: false, message: "You've tried to update your comment with your current comment. Try again, buddy."}
+    end
   end
 
-  # unfinished
+  # done
   def destroy
-    comment = Comment.find(params[:id])
-    if comment.update_attributes(status: Comment::STATUS_UNPUBLISHED)
-      CommentActivity.where(comment_id: params[:id]).update_attributes(status: CommentActivity::STATUS_UNPUBLISHED)
+    @comment = Comment.find(params[:id])
+    if @comment.update_attributes(status: Comment::STATUS_UNPUBLISHED)
+      CommentActivity.find_by(comment_id: @comment.id).update_attributes(status: CommentActivity::STATUS_UNPUBLISHED)
     end
+    render json: {success: true, message: "comment has been unpublished and should not be displayed"}
   end
 
   private
