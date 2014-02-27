@@ -1,8 +1,6 @@
 class API::V1::CommentsController < API::V1::ApplicationController
   respond_to :json
 
-  # Code to comment on comments available in Notes.txt
-
   # done
   def create
     @comment = Comment.new(body: params[:body], post_id: params[:post_id], user_id: @current_user.id)
