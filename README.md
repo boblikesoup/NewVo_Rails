@@ -1,22 +1,4 @@
 ##Newvo
-Add elevator pitch here.
+NewVo aims to be the heart of the $1.2 trillion world-wide fashion industry. We will achieve this by positioning ourselves as the nexus of the digital fashion/apparel world.
 
-### To Do
-- Add before filters sitewide..
-- Add better before save validations.
-- Ajaxify resources.
-##MVP 
-
-Features:
-
-- User can sign in with facebook.
-- User can create a post with a single picture.
-- User can respond to post.
-- User can upvote/downvote posts.
-- User can upvote/downvote comments.
-- User can sign-out.
-- Guest can see post.
-- Guest can see comments.
-- Guest needs to sign in to comments or post.
-- All routes spit out JSON ready for titanium.
 
