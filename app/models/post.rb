@@ -41,7 +41,8 @@ class Post < ActiveRecord::Base
       :photos => photos,
       :user_voted => user_voted,
       :comments => comments,
-      :created_at => created_at
+      :created_at => created_at,
+      :viewable_by => viewable_by
     }
   end
 
