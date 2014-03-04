@@ -2,7 +2,7 @@ class API::V1::GroupsController < API::V1::ApplicationController
 
   # done
   def create
-    @group = Group.new(creator_id: @current_user.id, user_id: params[:user_id], title: params[:title], description: params[:description])
+    @group = Group.new(user_id: @current_user.id, member_ids: params[:member_ids], title: params[:title], description: params[:description])
     if @group.save
       response = {}
       response["success"] = true
@@ -24,12 +24,14 @@ class API::V1::GroupsController < API::V1::ApplicationController
 
   # done
   def add_members
-    @group = Group.find(params[:id])
-    @group.user_id << params[:user_id]
+    @group = Group.find(params[:group_id])
+    puts @group.inspect
+    puts @group.member_ids.inspect
+    @group.member_ids.push(params[:member_ids])
     if @group.save
       response = {}
       response["success"] = true
-      response["Group Members"] = @group.user_id
+      response["Group Members"] = @group.member_ids
       response["message"] = "You have successfully added members to your group."
       render json: response
     else

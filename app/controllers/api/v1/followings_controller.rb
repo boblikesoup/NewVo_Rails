@@ -15,11 +15,12 @@ class API::V1::FollowingsController < API::V1::ApplicationController
   # params id = followed_id (the id of the followed user)
   def destroy
     following = Following.find_by(followed_id: params[:id], follower_id: @current_user.id)
+    puts following.inspect
     if both_following?(following.followed_id)
       destroy_friendship(following.followed_id)
     else
-      FollowingActivity.published.find_by(notified_user_id: @current_user.id, following_id: params[:id], followed_type: "follower").update_attributes(status: FollowingActivity::STATUS_UNPUBLISHED)
-      FollowingActivity.published.find_by(notified_user_id: params[:id], following_id: @current_user.id, followed_type: "followed").update_attributes(status: FollowingActivity::STATUS_UNPUBLISHED)
+      FollowingActivity.published.find_by(notified_user_id: @current_user.id, followed_type: "follower").update_attributes(status: FollowingActivity::STATUS_UNPUBLISHED)
+      FollowingActivity.published.find_by(notified_user_id: params[:id], followed_type: "followed").update_attributes(status: FollowingActivity::STATUS_UNPUBLISHED)
       following.destroy!
     end
     render json: {success: true, message: "following destroyed", follower_id: @current_user.id, followed_id: following.followed_id}

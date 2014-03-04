@@ -10,3 +10,4 @@ class CreateGroupTable < ActiveRecord::Migration
     end
   end
 end
+
