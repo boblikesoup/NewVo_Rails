@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217060520) do
+ActiveRecord::Schema.define(version: 20140304064344) do
 
   create_table "comment_activities", force: true do |t|
     t.integer  "notified_user_id"
