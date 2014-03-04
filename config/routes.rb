@@ -21,7 +21,12 @@ Newvo::Application.routes.draw do
     resources :groups, only: [:create, :show, :destroy]
     patch '/groups/:id/add', to: 'groups#add_members'
     get '/posts/search', to: 'posts#search'
-    patch '/users/:id/describe', to: 'users#description'
+    get '/posts/voted_on', to: 'posts#voted_on'
+    get '/posts/commented_on', to: 'posts#commented_on'
+    patch '/users/describe', to: 'users#description'
+    get '/pages/about', to: 'pages#about'
+    get '/pages/legal', to: 'pages#legal'
+    get '/pages/contact_us', to: 'pages#contact_us'
     resources :posts, only: [:index, :create, :show, :destroy] do
       resources :comments, only: [:create, :update, :edit, :destroy]
     end

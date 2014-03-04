@@ -61,6 +61,14 @@ class API::V1::PostsController < API::V1::ApplicationController
     render json: @posts, :include => [:photos, :comments]
   end
 
+  def voted_on
+    render json: {}
+  end
+
+  def commented_on
+    render json: {}
+  end
+
   private
 
   # Could this be in the model?
