@@ -21,7 +21,7 @@ describe "single post controller" do
       JSON.parse(response.body).size.should == 2
     end
 
-    it "should return success: true" do
+    it "should return success: true in the response body" do
       params = {}
       params['newvo_token'] = user.newvo_token
       get "/api/v1/posts/#{post.id}", params, :format => :json
@@ -56,7 +56,7 @@ describe "double post controller" do
       JSON.parse(response.body).size.should == 2
     end
 
-    it "should return success: true" do
+    it "should return success: true within the response body" do
       params = {}
       params['newvo_token'] = user.newvo_token
       get "/api/v1/posts/#{post.id}", params, :format => :json
@@ -71,11 +71,14 @@ describe "double post controller" do
   end
 end
 
+# All other routes
 describe API::V1::PostsController, type: :controller do
-describe "post create controller" do
+describe "post routes controller" do
   let(:user) {FactoryGirl.create(:user)}
   let(:photo) {fixture_file_upload(Rails.root.join('spec', 'photos', 'test.jpg'), 'image/jpg')}
+  let(:single_post) {FactoryGirl.create(:single_post)}
 
+    #Create
     it "should create a post" do
       params = {}
       params['newvo_token'] = user.newvo_token
@@ -83,6 +86,48 @@ describe "post create controller" do
       params['description'] = "dig this post mother fucker"
       post "/api/v1/posts", params, :format => :json
       expect(JSON.parse(response.body)["success"]).to eq(true)
+    end
+
+    #Index
+    it "should display an index of posts" do
+      params = {}
+      params['newvo_token'] = user.newvo_token
+      get "/api/v1/posts", params, :format => :json
+      response.should be_success
+    end
+
+    #Delete
+    it "should delete a post" do
+      params = {}
+      params['newvo_token'] = user.newvo_token
+      delete "/api/v1/posts/#{single_post.id}", params, :format => :json
+      expect(JSON.parse(response.body)["success"]).to eq(true)
+    end
+
+    #Search
+    it "should display search results" do
+      params = {}
+      params['query'] = "global"
+      params['used_post_ids'] = "1,2"
+      params['newvo_token'] = user.newvo_token
+      get "/api/v1/posts/search", params, :format => :json
+      response.should be_success
+    end
+
+    #Voted_on
+    it "should display posts voted on" do
+      params = {}
+      params['newvo_token'] = user.newvo_token
+      get "/api/v1/posts/voted_on", params, :format => :json
+      response.should be_success
+    end
+
+    #Commented_on
+    it "should display posts commented on" do
+      params = {}
+      params['newvo_token'] = user.newvo_token
+      get "/api/v1/posts/commented_on", params, :format => :json
+      response.should be_success
     end
   end
 end
