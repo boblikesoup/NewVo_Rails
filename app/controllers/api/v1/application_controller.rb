@@ -10,14 +10,14 @@ class API::V1::ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotUnique, :with => :not_unique
   rescue_from ActionController::MethodNotAllowed, :with => :method_not_allowed
   rescue_from OAuth2::Error, :with => :login_error
-  rescue_from NoMethodError, :with => :no_method_error
+  # rescue_from NoMethodError, :with => :no_method_error
   if (defined? ActiveRecord)
     rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   end
 
-  def no_method_error
-    handle_error('no method error', :status => :not_found)
-  end
+  # def no_method_error
+  #   handle_error('no method error', :status => :not_found)
+  # end
 
   def login_error
     handle_error('login failed', :status => :not_found)
