@@ -480,6 +480,35 @@ img {
 background-image: radial-gradient(50% 10%, ellipse contain, rgba(255, 255, 255, 0.4), #d9d9d9 50%)
 }
 
+/* comments */
+
+.nv-comment-box {
+  position: relative;
+  border: 2px solid red;
+  background-color: rgba(38, 153, 221, 0.4);
+  color: white;
+  border-radius: 0.5em;
+  margin: 2% auto;
+  padding: 2%;
+  width: 600px;
+  text-align: center;
+  position: relative;
+  border: 3px solid rgba(230, 245, 221, 0.5);
+}
+
+/*.nv-single-image {
+  background-color: rgba(38, 153, 221, 0.4);
+  color: white;
+  border-radius: 0.5em;
+  margin: 2% auto;
+  padding: 2%;
+  width: 600px;
+  text-align: center;
+  position: relative;
+  border: 3px solid rgba(230, 245, 221, 0.5);
+}*/
+
+
 /* media queries */
 
 @media only screen and (max-width: 480px) {
@@ -533,7 +562,7 @@ background-image: radial-gradient(50% 10%, ellipse contain, rgba(255, 255, 255, 
     height: 3.5em;
   }
 
-  .nv-single-image-holder, .nv-two-image-holder, .profile-box, .profile-left, .profile-right {
+  .nv-single-image-holder, .nv-two-image-holder, .profile-box, .profile-left, .profile-right, .nv-comment-box {
     width: auto;
     margin: 2%;
   }

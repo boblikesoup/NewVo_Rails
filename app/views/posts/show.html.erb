@@ -3,22 +3,26 @@
   <%= render partial: 'post', object: @post %>
 <% end %>
 
-<% if signed_in? %>
-<% puts @comment.inspect %>
-<% puts @post.inspect %>
-  <%= form_for([@post, Comment.new]) do |f| %>
-    <%= f.label :body, 'Say something' %>
-    <%= f.text_field :body %>
-    <%= f.submit %>
-  <% end %>
-  <% if @post.comments %>
-    <% @post.comments.each do |comment| %>
-    <p>
-      <%= comment.body %>
-      <% if current_user.id == comment.user_id %>
-        <%= link_to "Edit", edit_post_comment_path(@post, comment) %>
-        <%= link_to "Delete", post_comment_path(@post, comment), method: :delete %>
+<div class='nv-comment-box'>
+  <% if signed_in? %>
+  <%= params.inspect %>                 <!-- production code -->
+  <br>                                  <!-- production code -->
+  <%= @post.comments.length %>          <!-- production code -->
+  <% puts @post.inspect %>
+    <%= form_for([@post, Comment.new]) do |f| %>
+      <%= f.label :body, 'Say something' %>
+      <%= f.text_field :body %>
+      <%= f.submit %>
+    <% end %>
+    <% if @post.comments %>
+      <% @post.comments.each do |comment| %>
+      <p>
+        <%= comment.body %>
+        <% if current_user.id == comment.user_id %>
+          <%= link_to "Edit", edit_post_comment_path(@post, comment) %>
+          <%= link_to "Delete", post_comment_path(@post, comment), method: :delete %>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
-<% end %>
+</div>
