@@ -75,5 +75,5 @@ Newvo::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # Enable SSL for heroku in production
-  config.force_ssl = true
+  # config.force_ssl = true
 end
