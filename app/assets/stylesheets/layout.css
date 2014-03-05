@@ -18,28 +18,34 @@ header {
 
 body {
   font-family: 'Raleway', sans-serif;
+  color: #ecf0f1;
 }
 
 .page-content {
   overflow: hidden;
 }
 .background {
-  background: url(/assets/landing_page/bg1.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  z-index: -1;
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  overflow: hidden;
-  z-index: -1;
+  background: url(/assets/landing_page/bg1.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .overlay {
-
+  z-index: 0;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 
 .mobile {
@@ -52,13 +58,16 @@ body {
 }
 
 .description{
-  color: white;
-  text-align:center;
-  margin: 8% 3%;
+  font-size: 1.25em;
+  text-align: center;
+  text-shadow: 1px 1px 3px #3C3C3C;
+  margin: 1em 2em 2em 2em;
+  line-height: 28px;
 }
 
 .container {
   width: 960px;
+  height: 652px;
   margin: auto;
   display: block;
   padding: 1%;
@@ -104,9 +113,11 @@ body {
   color: white;
 }
 
+ /* sign up button */
 .subscribe {
-  border-color: #FD4646;
-  border-radius: 0.5em;
+  border-color: none;
+  background-color: #e74c3c;
+  border-radius: 0.1em;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
@@ -120,26 +131,32 @@ body {
   border: 15px solid transparent;
   float: left;
   margin: 12% 0;
-  opacity: 0.5;
+  opacity: .6;
   border-radius: .5em;
   text-align: center;
+  z-index: 2;
 }
 
 .info {
-  border-radius: .5em;
   width: 100%;
+}
+
+ /*LOGO */
+.info h2 {
+  font-size: 5em;
+  color: white;
+  text-shadow: 1px 1px 3px #000000;
+  font-weight: 100;
 }
 
 .text-box {
   height: 3em;
   padding: 10px 0 0 0;
   border-radius: .5em;
-  background-color: grey;
   margin-top: 1em;
 }
 
 .info-square {
-  background-color: grey;
   color: white;
   border-radius: .5em;
   text-align: center;
@@ -172,15 +189,6 @@ a {
 }
 
 .text-button {
-  text-decoration: none;
-}
-
-input[type=submit] {
-  background-color: #FD4646;
-  border-radius: 0.25em;
-  padding: 0 2%;
-  color: white;
-  font-size: 20px;
   text-decoration: none;
 }
 
@@ -223,7 +231,7 @@ input[type=submit] {
 .title {
   display: block;
   margin: auto;
-  border-radius: 0.5em;
+  border-radius: 0.1em;
 }
 
 /* future features */
@@ -390,17 +398,6 @@ img {
 
 /* icon buttons */
 
-/*.like_button {
-  background-color: #00CCFF;
-  width: 55%;
-  max-width: 75px;
-  height: auto;
-  border-radius: 1.5em;
-  border: 3px solid green;
-  padding: 3%;
-  margin: 5%;
-  display: inline-block;
-}*/
 
 .upvote_button, .downvote_button, .like_button,  {
   border-radius: 0.5em;
