@@ -105,22 +105,36 @@ body {
 /* MailChimp */
 
 #mc_embed_signup {
-  border-radius: 0.5em;
-  background: black;
+  width: 25em;
+  height: 8em;
+  padding-top: 1em;
+  border-radius: 0.1em;
+  background: rgba(139, 139, 139, 0.5);
   text-align: center;
   margin: 0 auto;
-  width: 75%;
   color: white;
+}
+
+#mc_embed_signup p{
+  font-size: 1.1em;
+  margin: 1em 0 1.3em 0git;
+}
+.email {
+  width: 20em;
+  height: 3em;
+  text-indent: 10px;
 }
 
  /* sign up button */
 .subscribe {
-  border-color: none;
-  background-color: #e74c3c;
+  width: 7em;
+  height: 2.5em;
+  border: none;
+  background-color: #CE8717;
   border-radius: 0.1em;
+  font-size: 1em;
+  color: #fbfcfc;
   cursor: pointer;
-  text-align: center;
-  text-decoration: none;
 }
 
 /* right side */
