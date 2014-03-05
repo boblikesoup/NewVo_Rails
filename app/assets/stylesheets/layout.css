@@ -373,19 +373,7 @@ img {
 
 /* icon buttons */
 
-/*.like_button {
-  background-color: #00CCFF;
-  width: 55%;
-  max-width: 75px;
-  height: auto;
-  border-radius: 1.5em;
-  border: 3px solid green;
-  padding: 3%;
-  margin: 5%;
-  display: inline-block;
-}*/
-
-.upvote_button, .downvote_button, .like_button,  {
+.upvote_button, .downvote_button, .like_button, .comment_button  {
   border-radius: 0.5em;
   background: light-grey;
   width: 25px;

@@ -12,7 +12,7 @@
     <%= form_for([@post, Comment.new]) do |f| %>
       <%= f.label :body, 'Say something' %>
       <%= f.text_field :body %>
-      <%= f.submit %>
+      <%= image_submit_tag("icons/chat.png", class: "comment_button") %>
     <% end %>
     <% if @post.comments %>
       <% @post.comments.each do |comment| %>
