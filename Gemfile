@@ -6,7 +6,7 @@ gem 'rails', '4.0.0'
 # Use pg as the database for production
 
 group :production do
-  gem 'pg'
+  # gem 'pg'
   gem 'rails_12factor'
 end
 
