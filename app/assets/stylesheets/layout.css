@@ -17,12 +17,29 @@ header {
 }
 
 body {
-  background: url(/assets/landing_page/bg1.jpg) no-repeat center center fixed;
   font-family: 'Raleway', sans-serif;
+}
+
+.page-content {
+  overflow: hidden;
+}
+.background {
+  background: url(/assets/landing_page/bg1.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.overlay {
+
 }
 
 .mobile {
