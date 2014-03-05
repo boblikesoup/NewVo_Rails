@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe Group do
   it { should have_and_belong_to_many(:users) }
-
+  it { should validate_presence_of(:user_id) }
+  it { should validate_presence_of(:member_ids) }
+  it { should validate_presence_of(:title) }
   it "should have valid factory" do
     FactoryGirl.build(:group).should be_valid
   end
