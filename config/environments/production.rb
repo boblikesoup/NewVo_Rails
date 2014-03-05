@@ -6,11 +6,12 @@ Newvo::Application.configure do
     :s3_credentials => {
       :bucket => ENV['S3_BUCKET_NAME'],
       :access_key_id => ENV['AWS+ACCESS_KEY_ID'],
-      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'],
-      :s3_permissions => :private,
-      :s3_protocol => "https",
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     },
-    :path => '/:attachment/:post_id/:style/:filename'
+    :s3_permissions => :authenticated_read,
+    :s3_protocol => "https",
+    :path => ':attachment/:style/:filename',
+    :url => ':attachment/:style/:filename'
   }
 
   # Code is not reloaded between requests.

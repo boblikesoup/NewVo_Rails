@@ -2,8 +2,8 @@ class Group < ActiveRecord::Base
   has_and_belongs_to_many :users
   has_many :posts
 
-  serialize :user_id
-  validates_presence_of :creator_id
+  serialize :member_ids, Array
   validates_presence_of :user_id
+  validates_presence_of :member_ids
   validates_presence_of :title
 end

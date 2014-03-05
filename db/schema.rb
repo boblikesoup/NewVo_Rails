@@ -11,24 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140214071432) do
-
-  create_table "activities", force: true do |t|
-    t.integer  "trackable_id"
-    t.string   "trackable_type"
-    t.integer  "owner_id"
-    t.string   "owner_type"
-    t.string   "key"
-    t.text     "parameters"
-    t.integer  "recipient_id"
-    t.string   "recipient_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type"
-  add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"
-  add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
+ActiveRecord::Schema.define(version: 20140304165305) do
 
   create_table "comment_activities", force: true do |t|
     t.integer  "notified_user_id"
@@ -86,13 +69,21 @@ ActiveRecord::Schema.define(version: 20140214071432) do
   end
 
   create_table "groups", force: true do |t|
-    t.integer  "creator_id"
-    t.integer  "user_id"
     t.string   "title"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "member_ids"
+    t.integer  "user_id"
   end
+
+  create_table "groups_users", id: false, force: true do |t|
+    t.integer "user_id",  null: false
+    t.integer "group_id", null: false
+  end
+
+  add_index "groups_users", ["group_id", "user_id"], name: "index_groups_users_on_group_id_and_user_id"
+  add_index "groups_users", ["user_id", "group_id"], name: "index_groups_users_on_user_id_and_group_id"
 
   create_table "photos", force: true do |t|
     t.integer  "post_id"
@@ -110,8 +101,8 @@ ActiveRecord::Schema.define(version: 20140214071432) do
     t.boolean  "has_single_picture", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "global",             default: false
     t.integer  "status",             default: 0
+    t.integer  "viewable_by",        default: 1
   end
 
   create_table "users", force: true do |t|
@@ -121,14 +112,10 @@ ActiveRecord::Schema.define(version: 20140214071432) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "description"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
     t.string   "profile_pic"
     t.string   "newvo_token"
     t.string   "facebook_username"
-    t.integer  "status",              default: 0
+    t.integer  "status",            default: 0
   end
 
   create_table "vote_activities", force: true do |t|

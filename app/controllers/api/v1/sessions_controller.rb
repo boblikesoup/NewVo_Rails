@@ -1,22 +1,15 @@
 class API::V1::SessionsController < API::V1::ApplicationController
   respond_to :json
 
+  # done
   def create
     client = OAuth2::Client.new(
       ENV['FACEBOOK_APP_ID'],
       ENV['FACEBOOK_APP_SECRET'],
       site: 'https://graph.facebook.com')
     facebook_token = OAuth2::AccessToken.new(client, params[:fbtoken])
-    begin
     user_info = ActiveSupport::JSON.decode(facebook_token.get('/me').body)
     picture_info = ActiveSupport::JSON.decode(facebook_token.get('/me?fields=picture').body)
-    rescue OAuth2::Error
-      invalid_login_attempt
-    rescue StandardError => e
-      invalid_login_attempt
-    rescue NoMethodError
-      invalid_login_attempt
-    end
     if user_info && picture_info
       @user = User.find_or_create_from_user_info(user_info, picture_info)
       if @user
@@ -27,17 +20,23 @@ class API::V1::SessionsController < API::V1::ApplicationController
     end
   end
 
+  # done
+  def destroy
+    # id = @current_user.id
+    # user = User.find(id)
+    # user.newvo_token = nil
+    @current_user = nil
+    render json: {success: true, message: "Signout was successful"}
+  end
+
   private
 
   def auth_hash
     request.env['omniauth.auth']
   end
 
-  private
-
   def invalid_login_attempt(message="Seems like you've been trying to give our associates at facebook a fake name and password. Watch it, punk.")
     render :json=> {:success=>false, :message=>message}, :status=>401
-    return
   end
 
   def valid_login_attempt
@@ -50,7 +49,7 @@ class API::V1::SessionsController < API::V1::ApplicationController
      :facebook_username => @user.facebook_username,
      :profile_pic => @user.profile_pic,
      :facebook_id => @user.fb_uid
-      } and return
+      }
   end
 
 end

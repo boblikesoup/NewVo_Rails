@@ -3,11 +3,11 @@ class CommentsController < ApplicationController
 
   def create
     post = Post.find(params[:post_id])
-    comment = Comment.new( comment_params )
-    post.comments << comment
-    current_user.comments << comment
-    if comment.save
-      CommentActivity.create!(notified_user_id: Post.find(params[:post_id]).user_id, other_user_id: comment.user_id, comment_id: comment.id)
+    @comment = Comment.new(body: nil, post_id: post.id, user_id: current_user.id)
+    post.comments << @comment
+    current_user.comments << @comment
+    if @comment.save
+      CommentActivity.create!(notified_user_id: Post.find(params[:post_id]).user_id, other_user_id: @comment.user_id, comment_id: @comment.id)
     end
     respond_with post
   end
@@ -33,12 +33,4 @@ class CommentsController < ApplicationController
     end
     respond_with post
   end
-
-  private
-
-  def comment_params
-    params.require( :comment ).permit( :body )
-  end
-
-
 end

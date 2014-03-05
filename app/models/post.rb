@@ -40,7 +40,9 @@ class Post < ActiveRecord::Base
       :has_single_picture => has_single_picture,
       :photos => photos,
       :user_voted => user_voted,
-      :comments => comments
+      :comments => comments,
+      :created_at => created_at,
+      :viewable_by => viewable_by
     }
   end
 

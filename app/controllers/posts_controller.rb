@@ -13,9 +13,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(post_params)
-    current_user.posts << post
-    post.save
+    @post = Post.new(post_params)
+    current_user.posts << @post
+    @post.save
     respond_with @post, :location => posts_path
       # TODO
       # display errors and prevent cookie overflow when content type is not an image

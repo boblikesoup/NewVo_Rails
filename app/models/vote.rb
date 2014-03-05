@@ -6,7 +6,7 @@ class Vote < ActiveRecord::Base
 
   belongs_to :post
   belongs_to :user
-  belongs_to :votable, polymorphic: true, counter_cache: true
+  belongs_to :votable, polymorphic: true
 
   validates_presence_of :user_id
   validates_presence_of :post_id

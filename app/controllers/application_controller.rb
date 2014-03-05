@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  skip_before_action :verify_authenticity_token, if: :json_request?
   helper_method :current_user, :signed_in?, :set_current_user
 
   def signed_in?
@@ -13,12 +12,6 @@ class ApplicationController < ActionController::Base
 
   def set_current_user
     User.current = current_user
-  end
-
-  protected
-
-  def json_request?
-    request.format.json?
   end
 
 end
