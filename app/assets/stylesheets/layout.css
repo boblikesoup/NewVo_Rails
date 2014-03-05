@@ -18,6 +18,7 @@ header {
 
 body {
   background: url(/assets/landing_page/bg1.jpg) no-repeat center center fixed;
+  font-family: 'Raleway', sans-serif;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
