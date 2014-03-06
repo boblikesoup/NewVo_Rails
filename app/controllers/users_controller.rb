@@ -12,4 +12,12 @@ respond_to :html, :json
     @posts_page = false
     respond_with(@user)
   end
+
+  def description
+    @user = User.find(params[:id])
+    if @user.description != params[:description]
+      @user.update_attributes(description: params[:description])
+      @user.save
+    end
+  end
 end
