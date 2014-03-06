@@ -368,7 +368,7 @@ img {
 
 .cells {
   border: 1px solid white;
-  padding: 5%;
+  padding: 3px;
 }
 
 /* icon buttons */
@@ -393,6 +393,7 @@ img {
 .button_holder {
   height: auto;
   width: 25px;
+  padding: 3px;
 }
 
 /* profile */

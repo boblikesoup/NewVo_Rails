@@ -51,8 +51,8 @@
     <%= image_tag photo.photo.url :medium %>
     <table class="vote-table">
       <tr>
-        <td><%= photo.upvotes %></td>
         <td><div class='button_holder'><%= link_to image_tag("icons/thumbs.png", class: "like_button"), votes_path(:photo => photo.id, :value => 1), method: :post %></div></td>
+        <td class='cells'><%= photo.upvotes %></td>
       </tr>
     </table>
   </div>
