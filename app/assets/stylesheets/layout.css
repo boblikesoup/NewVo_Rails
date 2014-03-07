@@ -368,24 +368,12 @@ img {
 
 .cells {
   border: 1px solid white;
-  padding: 5%;
+  padding: 3px;
 }
 
 /* icon buttons */
 
-/*.like_button {
-  background-color: #00CCFF;
-  width: 55%;
-  max-width: 75px;
-  height: auto;
-  border-radius: 1.5em;
-  border: 3px solid green;
-  padding: 3%;
-  margin: 5%;
-  display: inline-block;
-}*/
-
-.upvote_button, .downvote_button, .like_button,  {
+.upvote_button, .downvote_button, .like_button, .comment_button  {
   border-radius: 0.5em;
   background: light-grey;
   width: 25px;
@@ -405,6 +393,7 @@ img {
 .button_holder {
   height: auto;
   width: 25px;
+  padding: 3px;
 }
 
 /* profile */
@@ -480,6 +469,26 @@ img {
 background-image: radial-gradient(50% 10%, ellipse contain, rgba(255, 255, 255, 0.4), #d9d9d9 50%)
 }
 
+/* comments */
+
+.nv-comment-box {
+  position: relative;
+  border: 2px solid red;
+  background-color: rgba(38, 153, 221, 0.4);
+  color: white;
+  border-radius: 0.5em;
+  margin: 2% auto;
+  padding: 2%;
+  width: 600px;
+  text-align: center;
+  position: relative;
+  border: 3px solid rgba(230, 245, 221, 0.5);
+}
+
+.text_field_length {
+  width: 60%;
+}
+
 /* media queries */
 
 @media only screen and (max-width: 480px) {
@@ -533,7 +542,7 @@ background-image: radial-gradient(50% 10%, ellipse contain, rgba(255, 255, 255, 
     height: 3.5em;
   }
 
-  .nv-single-image-holder, .nv-two-image-holder, .profile-box, .profile-left, .profile-right {
+  .nv-single-image-holder, .nv-two-image-holder, .profile-box, .profile-left, .profile-right, .nv-comment-box {
     width: auto;
     margin: 2%;
   }
@@ -574,6 +583,10 @@ background-image: radial-gradient(50% 10%, ellipse contain, rgba(255, 255, 255, 
     width: 100%;
     text-align: center;
   }
+
+  .text_field_length {
+  width: 50%;
+}
 }
 
 @media only screen and (min-width: 481px) and (max-width: 1088px) {
