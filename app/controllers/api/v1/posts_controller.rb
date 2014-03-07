@@ -66,7 +66,11 @@ class API::V1::PostsController < API::V1::ApplicationController
   end
 
   def commented_on
-    render json: {}
+    @posts = @current_user.posts_with_comments
+    response = {}
+    response["success"] = true
+    response["data"] = @posts
+    render json: response
   end
 
   private

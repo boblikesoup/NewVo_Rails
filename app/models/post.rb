@@ -2,6 +2,8 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_many :comments
   has_many :photos
+  has_many :posts_with_comments, :through => :comments, :source => :post
+  has_many :posts_with_votes, :through => :photos, :source => :post
   accepts_nested_attributes_for :photos,
       reject_if: ->(attributes) {attributes[:photo].blank?},
       limit: 2
