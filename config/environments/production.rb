@@ -9,7 +9,7 @@ Newvo::Application.configure do
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     },
     :s3_permissions => :authenticated_read,
-    :s3_protocol => "https",
+    :s3_protocol => "http",
     :path => ':attachment/:style/:filename',
     :url => ':attachment/:style/:filename'
   }
