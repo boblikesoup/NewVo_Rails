@@ -30,6 +30,9 @@ class User < ActiveRecord::Base
     user = self.find_or_create_by(fb_uid: auth_hash["uid"])
     user.generate_newvo_token
     user.save
+    puts "****************************"
+    puts user.newvo_token
+    puts "****************************"
     if user
       first_name = auth_hash["info"]["first_name"]
       last_name = auth_hash["info"]["last_name"]
@@ -44,6 +47,9 @@ class User < ActiveRecord::Base
       user = self.find_or_create_by(fb_uid: user_info["id"])
       user.generate_newvo_token
       user.save
+      puts "****************************"
+      puts user.newvo_token
+      puts "****************************"
       if user
       first_name = user_info["first_name"]
       last_name = user_info["last_name"]
