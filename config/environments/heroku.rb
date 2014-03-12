@@ -5,11 +5,11 @@ Newvo::Application.configure do
     :storage => :s3,
     :s3_credentials => {
       :bucket => ENV['S3_BUCKET_NAME'],
-      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-      :secret_access_key => ENV['AWS_SECRET_KEY']
+      :access_key_id => ENV['AWS+ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     },
     :s3_permissions => :authenticated_read,
-    :s3_protocol => "http",
+    :s3_protocol => "https",
     :path => ':attachment/:style/:filename',
     :url => ':attachment/:style/:filename'
   }
@@ -75,5 +75,5 @@ Newvo::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # Enable SSL for heroku in production
-  # config.force_ssl = true
+  config.force_ssl = true
 end

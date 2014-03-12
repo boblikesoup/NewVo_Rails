@@ -12,7 +12,7 @@ FactoryGirl.define do
 
     factory :user2, class: 'user' do
       id 2
-      fb_uid "FACEBOOK7723"
+      fb_uid "1765376600"
       first_name "Brent"
       last_name "The Tent"
       newvo_token "67lpujuyKv7jcJpj4x8iYJWKTDta5NwU"

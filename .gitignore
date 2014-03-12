@@ -34,3 +34,4 @@
 
 # local photo uploads
 /public/system/photos/
+.elasticbeanstalk/

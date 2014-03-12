@@ -31,10 +31,6 @@ class API::V1::SessionsController < API::V1::ApplicationController
 
   private
 
-  def auth_hash
-    request.env['omniauth.auth']
-  end
-
   def invalid_login_attempt(message="Seems like you've been trying to give our associates at facebook a fake name and password. Watch it, punk.")
     render :json=> {:success=>false, :message=>message}, :status=>401
   end

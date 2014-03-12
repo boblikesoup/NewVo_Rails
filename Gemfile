@@ -5,9 +5,13 @@ gem 'rails', '4.0.0'
 
 # Use pg as the database for production
 
-group :production do
-  gem 'pg'
+group :heroku do
+#  gem 'pg'
   gem 'rails_12factor'
+end
+
+group :production do
+  gem 'mysql2'
 end
 
 
