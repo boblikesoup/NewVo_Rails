@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_many :inverse_friends, through: :inverse_friendships, :source => :user
   has_many :followed_users, :class_name => 'Following', :foreign_key => 'follower_id'
   has_many :following_users, :class_name => 'Following', :foreign_key => 'followed_id'
+  has_many :posts_with_comments, :through => :comments, :source => :post
+  has_many :posts_with_votes, :through => :votes, :source => :post
   has_and_belongs_to_many :groups
   #User.followed_users = users User is following
   #User.following_users = users following User
@@ -30,9 +32,6 @@ class User < ActiveRecord::Base
     user = self.find_or_create_by(fb_uid: auth_hash["uid"])
     user.generate_newvo_token
     user.save
-    puts "****************************"
-    puts user.newvo_token
-    puts "****************************"
     if user
       first_name = auth_hash["info"]["first_name"]
       last_name = auth_hash["info"]["last_name"]
@@ -47,9 +46,6 @@ class User < ActiveRecord::Base
       user = self.find_or_create_by(fb_uid: user_info["id"])
       user.generate_newvo_token
       user.save
-      puts "****************************"
-      puts user.newvo_token
-      puts "****************************"
       if user
       first_name = user_info["first_name"]
       last_name = user_info["last_name"]

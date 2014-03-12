@@ -62,14 +62,18 @@ class API::V1::PostsController < API::V1::ApplicationController
   end
 
   def voted_on
-    render json: {}
+    @posts_voted_on = @current_user.posts_with_votes
+    response = {}
+    response["success"] = true
+    response["posts"] = @posts_voted_on
+    render json: response
   end
 
   def commented_on
-    @posts = @current_user.posts_with_comments
+    @posts_commented_on = @current_user.posts_with_comments
     response = {}
     response["success"] = true
-    response["data"] = @posts
+    response["posts"] = @posts_commented_on
     render json: response
   end
 
