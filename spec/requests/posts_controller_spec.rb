@@ -131,11 +131,3 @@ describe "post routes controller" do
     end
   end
 end
-
-# api_v1_posts GET    /api/v1/posts(.:format)        api/v1/posts#index {:format=>:json}
-#              POST   /api/v1/posts(.:format)    api/v1/posts#create {:format=>:json}
-#  api_v1_post GET    /api/v1/posts/:id(.:format) api/v1/posts#show {:format=>:json}
-#             DELETE /api/v1/posts/:id(.:format)  api/v1/posts#destroy {:format=>:json}
-
-#/Users/apprentice/Documents/brent/newvo/spec/fixtures/Users/apprentice/Documents/brent/newvo/spec/photos/test.jpg
-
