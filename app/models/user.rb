@@ -51,8 +51,9 @@ class User < ActiveRecord::Base
       last_name = user_info["last_name"]
       username = user_info["username"]
       facebook_id = user_info["id"]
+      gender = user_info["gender"]
       profile_pic = picture_info["picture"]["data"]["url"]
-      user.update_attributes(first_name: first_name, last_name: last_name, fb_uid: facebook_id, profile_pic: profile_pic, facebook_username: username)
+      user.update_attributes(first_name: first_name, last_name: last_name, fb_uid: facebook_id, profile_pic: profile_pic, facebook_username: username, gender: gender)
     end
    user
   end
@@ -140,3 +141,5 @@ class User < ActiveRecord::Base
   end
 
 end
+
+# {"id"=>"1765376600", "name"=>"Brent Gaynor", "first_name"=>"Brent", "last_name"=>"Gaynor", "link"=>"https://www.facebook.com/brent.gaynor.1", "work"=>[{"employer"=>{"id"=>"1449626305255785", "name"=>"NewVo"}, "location"=>{"id"=>"114952118516947", "name"=>"San Francisco, California"}, "position"=>{"id"=>"106275566077710", "name"=>"Chief Technology Officer"}, "description"=>"Hustling and programming on a desperate search for the American Dream.  More specifically, jack of all trades at a fashion startup I founded. ", "start_date"=>"2013-12-31"}], "education"=>[{"school"=>{"id"=>"368411969885228", "name"=>"Dev Bootcamp"}, "type"=>"College"}], "gender"=>"male", "timezone"=>-7, "locale"=>"en_US", "verified"=>true, "updated_time"=>"2014-03-10T06:42:05+0000", "username"=>"brent.gaynor.1"}

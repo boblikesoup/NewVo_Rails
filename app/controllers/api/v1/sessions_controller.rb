@@ -44,7 +44,8 @@ class API::V1::SessionsController < API::V1::ApplicationController
      :last_name => @user.last_name,
      :facebook_username => @user.facebook_username,
      :profile_pic => @user.profile_pic,
-     :facebook_id => @user.fb_uid
+     :facebook_id => @user.fb_uid,
+     :gender => @user.gender
       }
   end
 
