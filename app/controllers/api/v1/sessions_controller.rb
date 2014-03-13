@@ -7,16 +7,11 @@ class API::V1::SessionsController < API::V1::ApplicationController
       ENV['FACEBOOK_APP_ID'],
       ENV['FACEBOOK_APP_SECRET'],
       site: 'https://graph.facebook.com')
-    puts "11111111111111111111111111111111111"
     facebook_token = OAuth2::AccessToken.new(client, params[:fbtoken])
-    puts "22222222222222222222222222222222222"
     user_info = ActiveSupport::JSON.decode(facebook_token.get('/me').body)
-    puts "33333333333333333333333333333333333"
     picture_info = ActiveSupport::JSON.decode(facebook_token.get('/me?fields=picture').body)
-    puts "44444444444444444444444444444444444"
     if user_info && picture_info
       @user = User.find_or_create_from_user_info(user_info, picture_info)
-      puts "666666666666666666666666666666666"
       if @user
         valid_login_attempt
       else

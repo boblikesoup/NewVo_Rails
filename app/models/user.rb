@@ -51,10 +51,9 @@ class User < ActiveRecord::Base
       last_name = user_info["last_name"]
       username = user_info["username"]
       facebook_id = user_info["id"]
-      puts "55555555555555555555555555"
-      gender = user_info["gender"]
+      #gender = user_info["gender"]
       profile_pic = picture_info["picture"]["data"]["url"]
-      user.update_attributes(first_name: first_name, last_name: last_name, fb_uid: facebook_id, profile_pic: profile_pic, facebook_username: username, gender: gender)
+      user.update_attributes(first_name: first_name, last_name: last_name, fb_uid: facebook_id, profile_pic: profile_pic, facebook_username: username) #, gender: gender)
     end
    user
   end
