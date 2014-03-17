@@ -25,8 +25,6 @@ class API::V1::GroupsController < API::V1::ApplicationController
   # done
   def add_members
     @group = Group.find(params[:group_id])
-    puts @group.inspect
-    puts @group.member_ids.inspect
     @group.member_ids.push(params[:member_ids])
     if @group.save
       response = {}

@@ -1,4 +1,5 @@
 class API::V1::ApplicationController < ActionController::Base
+
   respond_to :json
   before_action :authorize, unless: :sessions_controller?
   before_action :signed_in?, unless: :sessions_controller?
@@ -52,8 +53,8 @@ class API::V1::ApplicationController < ActionController::Base
     @current_user =
       User.find_by(newvo_token: params[:newvo_token]) ||
       authenticate_or_request_with_http_token do |newvo_token|
-      User.find_by(newvo_token: newvo_token)
-    end
+        User.find_by(newvo_token: newvo_token)
+      end
   end
 
   def signed_in?
