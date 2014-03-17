@@ -27,7 +27,7 @@ class Post < ActiveRecord::Base
 
   def self.not_seen_following(used_post_ids, user)
     followed_relationships = user.followed_users.pluck(:followed_id)
-    Post.recent.published.where.not(id: used_post_ids).where("user_id IN (?)", followed_user_ids).limit(6)
+    Post.recent.published.where.not(id: used_post_ids).where("user_id IN (?)", followed_relationships).limit(6)
   end
 
   def as_json(options={})
