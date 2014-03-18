@@ -11,7 +11,7 @@ class VoteActivity < ActiveRecord::Base
     vote_activity[:created_at] = self.created_at
     vote_activity[:other_user] = User.find(self.other_user_id).assemble_user
     vote_activity[:vote_info] = Vote.find(self.vote_id)
-    vote_activity[:picture_urls] =
+    vote_activity[:post] = Post.find(Vote.find(self.vote_id).post_id)
     return vote_activity
   end
 

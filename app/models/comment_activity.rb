@@ -10,7 +10,7 @@ class CommentActivity < ActiveRecord::Base
     comment_activity[:id] = self.id
     comment_activity[:created_at] = self.created_at
     comment_activity[:other_user] = User.find(self.other_user_id).assemble_user
-    comment_activity[:picture_urls] =
+    comment_activity[:post] = Post.find(Comment.find(self.comment_id).post_id)
     return comment_activity
   end
 
