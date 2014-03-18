@@ -88,7 +88,7 @@ class API::V1::PostsController < API::V1::ApplicationController
       elsif query == "following"
         Post.not_seen_following(used_post_ids, @current_user)
       else
-        return "Invalid params or server error."
+        render :json=> {success: false, message: "search failed"}, status: 401
       end
     end
 
