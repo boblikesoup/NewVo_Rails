@@ -36,6 +36,7 @@ class API::V1::SessionsController < API::V1::ApplicationController
   end
 
   def valid_login_attempt
+    puts @user.newvo_token
     render :json=> {
      :success=>true,
      :id=>@user.id,
