@@ -2,6 +2,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_many :comments
   has_many :photos
+  has_many :votes, through: :photos
   accepts_nested_attributes_for :photos,
       reject_if: ->(attributes) {attributes[:photo].blank?},
       limit: 2
@@ -39,22 +40,18 @@ class Post < ActiveRecord::Base
       :description => description,
       :has_single_picture => has_single_picture,
       :photos => photos,
-      :user_voted => user_voted,
+      :votes => votes,
+      :user_voted? => user_voted?,
       :comments => comments,
       :created_at => created_at,
       :viewable_by => viewable_by
     }
   end
 
-  private
-
-  def user_voted
+  def user_voted?
     vote = Vote.find_by(user_id: User.current.id, post_id: self.id)
     if vote != nil
-      hash = {}
-      hash[:photo_id] = vote.votable_id
-      hash[:value] = vote.value
-      return hash
+      return true
     else
       return false
     end

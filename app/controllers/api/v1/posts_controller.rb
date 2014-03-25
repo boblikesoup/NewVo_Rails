@@ -69,6 +69,20 @@ class API::V1::PostsController < API::V1::ApplicationController
     render json: response
   end
 
+  def not_voted_on
+    @posts_not_voted_on = []
+    @posts = Post.recent.published.limit(20)
+    @posts.each do |post|
+      if post.user_voted? == false
+        @posts_not_voted_on << post
+      end
+    end
+    response = {}
+    response["success"] = true
+    response["recent posts not voted on"] = @posts_not_voted_on
+    render json: response
+  end
+
   def commented_on
     @posts_commented_on = @current_user.posts_with_comments
     response = {}

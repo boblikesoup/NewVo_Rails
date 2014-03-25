@@ -22,6 +22,7 @@ Newvo::Application.routes.draw do
     patch '/groups/add', to: 'groups#add_members'
     get '/posts/search', to: 'posts#search'
     get '/posts/voted_on', to: 'posts#voted_on'
+    get '/posts/not_voted_on', to: 'posts#not_voted_on'
     get '/posts/commented_on', to: 'posts#commented_on'
     patch '/users/describe', to: 'users#description'
     get '/pages/about', to: 'pages#about'
