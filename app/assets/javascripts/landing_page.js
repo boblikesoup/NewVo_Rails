@@ -1,25 +1,16 @@
 window.onload=function(){
 
 
+(function cycle(index, el) {
+  var $el = el,
+      currentIndex = index % 3 + 1,
+      currentPhoto = 'assets/landing_page/iphone-' + currentIndex + '.jpg';
 
-var textArray = [
-  "Do these match?",
-  "First date.  Want to look sexy!!",
-  "Programming interview in SF, does this meet the casual/formal sweet spot?",
-  "Meeting my boyfriends parents. Help!",
-  "What do you think of my homemade outfit???",
-  "Is this appropriate for a funeral?"
-  ];
-
-(function cycle(index) {
-    var text = textArray[index];
-    $('.caption').empty().append(text);
-    delete textArray[index];
-    textArray.push(text);
-    setTimeout(function() {
-        cycle(index + 1);
-    }, 5000);
-})(0);
+  $el.attr('src', currentPhoto )
+  setTimeout(function() {
+      cycle(currentIndex, $el);
+  }, 5000);
+})(0, $('.iphone-image'));
 
   // Related to rotating pictures.  Need array of images.
 

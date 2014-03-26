@@ -89,9 +89,23 @@ body {
      zoom: 1;
   }
 
-.iphone-image {
-  height: 60%;
+.iphone {
+  position: relative;
+  float: left;
   width: 300px;
+  height: 628px;
+  background-image: url('/assets/iphone-white.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left top;
+}
+
+.iphone-image {
+  position: absolute;
+  top: 5.7em;
+  left: 1.5em;
+  width: 255px;
+  height: 449px;
 }
 
 .left {
@@ -119,6 +133,15 @@ body {
   font-size: 1.1em;
   margin: 1em 0 1.3em 0git;
 }
+
+.form-content {
+  padding-top: 1em;
+}
+
+.form-content > p {
+  margin-bottom: 1em;
+}
+
 .email {
   width: 20em;
   height: 3em;
@@ -531,6 +554,10 @@ background-image: radial-gradient(50% 10%, ellipse contain, rgba(255, 255, 255, 
 /* media queries */
 
 @media only screen and (max-width: 480px) {
+  .page-content {
+    position: relative;
+  }
+
   .container {
     width: auto;
     padding: 0;
@@ -567,6 +594,23 @@ background-image: radial-gradient(50% 10%, ellipse contain, rgba(255, 255, 255, 
 
   .left {
     margin: 2% 2.5%;
+  }
+
+  /*form */
+  #mc_embed_signup {
+    width: 20em;
+    height: 12em;
+    margin: 0 auto;
+  }
+
+  .email {
+    width: 25em;
+  }
+
+  .subscribe {
+    display: block;
+    width: 17.5em;
+    margin: 1em 0 0 1.2em;
   }
 
   .text-box {

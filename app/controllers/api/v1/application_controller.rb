@@ -62,7 +62,6 @@ class API::V1::ApplicationController < ActionController::Base
   end
 
   def sessions_controller?
-    puts params[:controller]
     params[:controller] == "api/v1/sessions"
   end
 
