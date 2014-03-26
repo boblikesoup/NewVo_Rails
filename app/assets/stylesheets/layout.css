@@ -133,6 +133,15 @@ body {
   font-size: 1.1em;
   margin: 1em 0 1.3em 0git;
 }
+
+.form-content {
+  padding-top: 1em;
+}
+
+.form-content > p {
+  margin-bottom: 1em;
+}
+
 .email {
   width: 20em;
   height: 3em;
