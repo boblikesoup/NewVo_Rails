@@ -554,6 +554,10 @@ background-image: radial-gradient(50% 10%, ellipse contain, rgba(255, 255, 255, 
 /* media queries */
 
 @media only screen and (max-width: 480px) {
+  .page-content {
+    position: relative;
+  }
+
   .container {
     width: auto;
     padding: 0;
@@ -590,6 +594,23 @@ background-image: radial-gradient(50% 10%, ellipse contain, rgba(255, 255, 255, 
 
   .left {
     margin: 2% 2.5%;
+  }
+
+  /*form */
+  #mc_embed_signup {
+    width: 20em;
+    height: 12em;
+    margin: 0 auto;
+  }
+
+  .email {
+    width: 25em;
+  }
+
+  .subscribe {
+    display: block;
+    width: 17.5em;
+    margin: 1em 0 0 1.2em;
   }
 
   .text-box {
