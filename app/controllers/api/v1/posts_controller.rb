@@ -71,16 +71,27 @@ class API::V1::PostsController < API::V1::ApplicationController
 
   def not_voted_on
     @posts_not_voted_on = []
-    @posts = Post.recent.published.limit(20)
-    @posts.each do |post|
-      if post.user_voted? == false
-        @posts_not_voted_on << post
+    @posts = Post.all.recent.published
+    @counter = 0
+      until @posts_not_voted_on.count == 20 || @counter == @posts.count do
+        @posts.each do |post|
+          if post.user_voted? == false
+            @posts_not_voted_on << post
+          end
+          @counter += 1
+        end
       end
-    end
-    response = {}
-    response["success"] = true
-    response["recent posts not voted on"] = @posts_not_voted_on
-    render json: response
+      if @posts_not_voted_on.count == 0
+        response = {}
+        response["success"] = false
+        response["message"] = "This user has voted on all of the posts in our DB"
+        render json: response
+      else
+        response = {}
+        response["success"] = true
+        response["recent posts not voted on"] = @posts_not_voted_on
+        render json: response
+      end
   end
 
   def commented_on
