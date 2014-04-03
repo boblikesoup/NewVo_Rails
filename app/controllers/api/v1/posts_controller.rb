@@ -3,8 +3,11 @@ class API::V1::PostsController < API::V1::ApplicationController
 
   # done
   def create
+    puts "11111111111111111111"
     photo1 = Photo.create(photo: params[:photo1])
+    puts "22222222222222222222"
     post = Post.new(description: params[:description], user_id: @current_user.id, viewable_by: params[:viewable_by])
+    puts "33333333333333333333"
     post.photos << photo1
     if params.has_key?(:photo2)
       photo2 = Photo.create(photo: params[:photo2])

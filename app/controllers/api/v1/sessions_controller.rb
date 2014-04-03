@@ -25,7 +25,7 @@ class API::V1::SessionsController < API::V1::ApplicationController
     # id = @current_user.id
     # user = User.find(id)
     # user.newvo_token = nil
-    @current_user = nil
+    # @current_user = nil
     render json: {success: true, message: "Signout was successful"}
   end
 
