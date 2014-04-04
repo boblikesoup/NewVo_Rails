@@ -1,16 +1,22 @@
 window.onload=function(){
 
 
-(function cycle(index, el) {
-  var $el = el,
+(function cycle(index, iphoneImg, bg) {
+  var $iphoneImg = iphoneImg,
+      $bg = bg,
       currentIndex = index % 3 + 1,
-      currentPhoto = 'assets/landing_page/iphone-' + currentIndex + '.jpg';
+      currentPhoto = 'assets/landing_page/iphone-' + currentIndex + '.jpg',
+      localhost = 'url(http://localhost:3000/assets/landing_page/background-',
+      production = 'url(https://newvo.me/assets/landing_page/background-',
+      currentBackground = production + currentIndex + '.jpg)';
 
-  $el.attr('src', currentPhoto )
+  $iphoneImg.attr('src', currentPhoto );
+  $bg.css('background-image', currentBackground )
+  console.log(currentBackground)
   setTimeout(function() {
-      cycle(currentIndex, $el);
+      cycle(currentIndex, $iphoneImg, $bg);
   }, 5000);
-})(0, $('.iphone-image'));
+})(0, $('.iphone-image'), $('.background'));
 
   // Related to rotating pictures.  Need array of images.
 
