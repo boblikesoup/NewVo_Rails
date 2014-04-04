@@ -21,7 +21,7 @@ Newvo::Application.routes.draw do
     resources :groups, only: [:create, :show, :destroy]
     patch '/groups/add', to: 'groups#add_members'
     get '/posts/search', to: 'posts#search'
-    get '/posts/voted_on', to: 'posts#voted_on'
+    get '/posts/voted_on', to: 'posts#voted_on', as: 'posts_voted_on'
     get '/posts/not_voted_on', to: 'posts#not_voted_on'
     get '/posts/commented_on', to: 'posts#commented_on'
     patch '/users/describe', to: 'users#description'
