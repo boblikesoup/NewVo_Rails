@@ -10,8 +10,8 @@ Newvo::Application.configure do
     },
     :s3_permissions => :authenticated_read,
     :s3_protocol => "https",
-    :path => ':attachment/:style/:id/:filename',
-    :url => ':attachment/:style/:id/:filename'
+    :path => ':attachment/:id/:style/:filename',
+    :url => ':attachment/:id/:style/:filename'
   }
 
   # Code is not reloaded between requests.
