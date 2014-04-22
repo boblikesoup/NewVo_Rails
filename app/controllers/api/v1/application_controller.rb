@@ -1,9 +1,9 @@
 class API::V1::ApplicationController < ActionController::Base
 
   respond_to :json
-  # before_action :authorize, unless: :sessions_controller?
-  # before_action :signed_in?, unless: :sessions_controller?
-  # before_action :set_current_user, unless: :sessions_controller?
+  before_action :authorize, unless: :sessions_controller?
+  before_action :signed_in?, unless: :sessions_controller?
+  before_action :set_current_user, unless: :sessions_controller?
   # protect_from_forgery with: :exception
   skip_before_action :verify_authenticity_token
 
