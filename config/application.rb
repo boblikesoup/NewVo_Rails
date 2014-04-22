@@ -13,5 +13,6 @@ Bundler.require(:default, Rails.env)
 
 module Newvo
   class Application < Rails::Application
+    config.i18n.enforce_available_locales = false
   end
 end

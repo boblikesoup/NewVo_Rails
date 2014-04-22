@@ -7,7 +7,7 @@ class Photo < ActiveRecord::Base
 
   validates_attachment :photo, :presence => true,
       :content_type => { :content_type => %w(image/jpg image/png image/jpeg)},
-      :size => { :in => 0..500.kilobytes}
+      :size => { :in => 0..5.megabytes}
 
   def as_json(options={})
     {
