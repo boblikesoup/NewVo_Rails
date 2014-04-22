@@ -4,7 +4,7 @@ class API::V1::PostsController < API::V1::ApplicationController
   # done
   def create
     photo1 = Photo.create(photo: params[:photo1])
-    post = Post.new(description: params[:description], user_id: @current_user.id, viewable_by: params[:viewable_by])
+    post = Post.new(description: params[:description], user_id: 1)#, viewable_by: params[:viewable_by])
     post.photos << photo1
     if params.has_key?(:photo2)
       photo2 = Photo.create(photo: params[:photo2])
