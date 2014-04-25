@@ -15,14 +15,6 @@
 /log/*.log
 /tmp
 
-# Ignore notes.txt
-/notes.txt
-
-# Ignore .env files
-/.env.development
-/.env.test
-/.env
-
 # Ignore precompiled assets
 /public/assets/*
 
