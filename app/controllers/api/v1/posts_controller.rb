@@ -95,8 +95,7 @@ class API::V1::PostsController < API::V1::ApplicationController
   end
 
   def commented_on
-    @posts_commented_on = @current_user.posts_with_comments
-    puts @posts_commented_on.inspect
+    @posts_commented_on = @current_user.posts_with_comments.uniq
     response = {}
     response["success"] = true
     response["posts"] = @posts_commented_on
@@ -105,7 +104,6 @@ class API::V1::PostsController < API::V1::ApplicationController
 
   private
 
-  # Could this be in the model?
     def post_retrieval(query, used_post_ids)
       if query == "global"
         Post.not_seen(used_post_ids)
