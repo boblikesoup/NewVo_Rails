@@ -96,6 +96,7 @@ class API::V1::PostsController < API::V1::ApplicationController
 
   def commented_on
     @posts_commented_on = @current_user.posts_with_comments
+    puts @posts_commented_on.inspect
     response = {}
     response["success"] = true
     response["posts"] = @posts_commented_on

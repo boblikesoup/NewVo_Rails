@@ -19,7 +19,7 @@ Newvo::Application.routes.draw do
   get '/pages/contact_us', to: 'pages#contact_us'
 
   resources :posts, only: [:index, :create, :show, :destroy] do
-    resources :comments, only: [:create, :update, :edit, :destroy]
+    resources :comments, only: [:create, :update, :destroy]
   end
   resources :activity_feed, only: :index
   resources :votes, only: :create
@@ -32,10 +32,6 @@ Newvo::Application.routes.draw do
     resources :users, only: [:index, :show]
     resources :activity_feed, only: :index
     resources :groups, only: [:create, :show, :destroy]
-    resources :posts, only: [:index, :create, :show, :destroy] do
-    resources :comments, only: [:create, :update, :destroy]
-    end
-    #api
     patch '/groups/add', to: 'groups#add_members'
     get '/posts/search', to: 'posts#search'
     get '/posts/voted_on', to: 'posts#voted_on', as: 'posts_voted_on'
@@ -45,6 +41,9 @@ Newvo::Application.routes.draw do
     get '/pages/about', to: 'pages#about'
     get '/pages/legal', to: 'pages#legal'
     get '/pages/contact_us', to: 'pages#contact_us'
+    resources :posts, only: [:index, :create, :show, :destroy] do
+      resources :comments, only: [:create, :update, :destroy]
+    end
     resources :votes, only: :create
     resources :followings, only: [:create, :destroy]
     end
