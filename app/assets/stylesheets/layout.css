@@ -23,6 +23,7 @@ body {
 
 .page-content {
   overflow: hidden;
+  height: 100vh;
 }
 .background {
   z-index: -1;
@@ -78,8 +79,8 @@ body {
 .container {
   width: 960px;
   height: 652px;
-  margin: auto;
   display: block;
+  margin: 0 auto;
   padding: 1%;
   text-align: center;
 }
@@ -566,6 +567,7 @@ background-image: radial-gradient(50% 10%, ellipse contain, rgba(255, 255, 255, 
 @media only screen and (max-width: 480px) {
   .page-content {
     position: relative;
+    height: 100%;
   }
 
   .container {
