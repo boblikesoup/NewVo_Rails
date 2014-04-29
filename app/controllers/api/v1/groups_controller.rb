@@ -1,6 +1,6 @@
 class API::V1::GroupsController < API::V1::ApplicationController
+  respond_to :json
 
-  # done
   def create
     @group = Group.new(user_id: @current_user.id, member_ids: params[:member_ids], title: params[:title], description: params[:description])
     if @group.save
@@ -13,7 +13,6 @@ class API::V1::GroupsController < API::V1::ApplicationController
     end
   end
 
-  # done
   def show
     @group = Group.find(params[:id])
     response = {}
@@ -22,7 +21,6 @@ class API::V1::GroupsController < API::V1::ApplicationController
     render json: response
   end
 
-  # done
   def add_members
     @group = Group.find(params[:group_id])
     @group.member_ids.push(params[:member_ids])
@@ -37,7 +35,6 @@ class API::V1::GroupsController < API::V1::ApplicationController
     end
   end
 
-  # done
   def destroy
     if @group = Group.find(params[:id])
       @group.destroy!

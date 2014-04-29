@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
+  respond_to :html, :json
   protect_from_forgery with: :exception
   helper_method :current_user, :signed_in?, :set_current_user
+
+  #exception handling?
 
   def signed_in?
     !current_user.nil?

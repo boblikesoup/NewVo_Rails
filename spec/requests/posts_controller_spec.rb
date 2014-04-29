@@ -104,21 +104,19 @@ describe "post routes controller" do
       expect(JSON.parse(response.body)["success"]).to eq(true)
     end
 
-    #Search
-    it "should display search results" do
-      params = {}
-      params['query'] = "global"
-      params['used_post_ids'] = "1,2"
-      params['newvo_token'] = user.newvo_token
-      get "/api/v1/posts/search", params, :format => :json
-      response.should be_success
-    end
-
     #Voted_on
     it "should display posts voted on" do
       params = {}
       params['newvo_token'] = user.newvo_token
       get "/api/v1/posts/voted_on", params, :format => :json
+      response.should be_success
+    end
+
+    #Not_voted_on
+    it "should display posts voted on" do
+      params = {}
+      params['newvo_token'] = user.newvo_token
+      get "/api/v1/posts/not_voted_on", params, :format => :json
       response.should be_success
     end
 

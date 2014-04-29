@@ -17,20 +17,6 @@ class Post < ActiveRecord::Base
   STATUS_PUBLISHED = 0
   STATUS_UNPUBLISHED = 1
 
-  def self.not_seen(used_post_ids)
-    Post.recent.published.where.not(id: used_post_ids).limit(6)
-  end
-
-  def self.not_seen_friends(used_post_ids, user)
-    friend_ids = user.friends.pluck(:id)
-    Post.recent.published.where.not(id: used_post_ids).where("user_id IN (?)", friend_ids).limit(6)
-  end
-
-  def self.not_seen_following(used_post_ids, user)
-    followed_relationships = user.followed_users.pluck(:followed_id)
-    Post.recent.published.where.not(id: used_post_ids).where("user_id IN (?)", followed_relationships).limit(6)
-  end
-
   def as_json(options={})
     {
       :post_id => id,

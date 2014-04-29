@@ -3,13 +3,10 @@ Newvo::Application.routes.draw do
 
   #sessions
   get '/auth/:provider/callback', to: 'sessions#create'
-  get '/auth/mobile', to: 'api/v1/sessions#create'
   get '/signout', to: 'sessions#destroy', as: 'signout'
-  get '/signout/mobile', to: 'api/v1/sessions#destroy'
 
   #web
   patch '/groups/add', to: 'groups#add_members'
-  get '/posts/search', to: 'posts#search'
   get '/posts/voted_on', to: 'posts#voted_on', as: 'posts_voted_on'
   get '/posts/not_voted_on', to: 'posts#not_voted_on'
   get '/posts/commented_on', to: 'posts#commented_on'
@@ -32,8 +29,9 @@ Newvo::Application.routes.draw do
     resources :users, only: [:index, :show]
     resources :activity_feed, only: :index
     resources :groups, only: [:create, :show, :destroy]
+    get '/auth/mobile', to: 'sessions#create'
+    get '/signout/mobile', to: 'sessions#destroy'
     patch '/groups/add', to: 'groups#add_members'
-    get '/posts/search', to: 'posts#search'
     get '/posts/voted_on', to: 'posts#voted_on', as: 'posts_voted_on'
     get '/posts/not_voted_on', to: 'posts#not_voted_on'
     get '/posts/commented_on', to: 'posts#commented_on'

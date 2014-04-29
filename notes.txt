@@ -55,19 +55,13 @@ https://newvo.herokuapp.com/api/v1/users/describe?newvo_token=pDIMHb7DTRzK9dWzQU
 http://localhost:3000/api/v1/users/describe?newvo_token=67lpujuyKv7jcJpj4x8iYJWKTDta5NwU&description=Worn out country joe about to retire from a hotel bed all alone
 
 SESSIONS-- create
-https://newvo.herokuapp.com/auth/mobile?fbtoken=CAACEdEose0cBAG0mSfYMMF6gwvszsOZBYJnZCvKvF6gZBksGRglZAdbDkCB7OPw6RsuoEKao1ZA3LYjghJKeAwhCxFGZAt26aPbMaQjsMrCMWoZCHckpxPZBFTFGEi0SHzUXPS7Mgbq3Ug2XeLynSTSf9zo0aeSQRxWtURMrtNvMZBLptAJcfvalEfcFsflrzSPnH8w0HVZBQZBQgZDZD&device_id=device_id&time_zone=+0800&os_type=ios
+https://newvo.herokuapp.com/api/v1/auth/mobile?fbtoken=CAACEdEose0cBAG0mSfYMMF6gwvszsOZBYJnZCvKvF6gZBksGRglZAdbDkCB7OPw6RsuoEKao1ZA3LYjghJKeAwhCxFGZAt26aPbMaQjsMrCMWoZCHckpxPZBFTFGEi0SHzUXPS7Mgbq3Ug2XeLynSTSf9zo0aeSQRxWtURMrtNvMZBLptAJcfvalEfcFsflrzSPnH8w0HVZBQZBQgZDZD&device_id=device_id&time_zone=+0800&os_type=ios
 
 SESSIONS-- destroy
 http://localhost:3000/signout/mobile?newvo_token=67lpujuyKv7jcJpj4x8iYJWKTDta5NwU
 
 COMMENTS-- create
 https://newvo.herokuapp.com/api/v1/posts/3/comments?newvo_token=OLmeNSbGdgtZEr4nBnRZSYvgc7Hi1hHH&body=fuckeverythingman
-
-POSTS-- search
-https://newvo.herokuapp.com/api/v1/posts/search/?newvo_token=XE51YTRrfv7cwf3diLrClEvAs63DiAG3&query=following&used_post_ids=0
-
-https://newvo.herokuapp.com/api/v1/posts/search/?newvo_token=OLmeNSbGdgtZEr4nBnRZSYvgc7Hi1hHH&used_post_ids=[1,2]&query=global
-http://localhost:3000/api/v1/posts/search/?newvo_token=67lpujuyKv7jcJpj4x8iYJWKTDta5NwU&used_post_ids=[19,20,21]&query=global
 
 ######################################### Obscure Files  ##################################################
 
@@ -78,7 +72,7 @@ http://localhost:3000/api/v1/posts/search/?newvo_token=67lpujuyKv7jcJpj4x8iYJWKT
 # app/controllers/api/v1/application_controller -- We created our own api application controller for handling JSON requests.  It functions wholly independently of the regular application controller and has methods for checking a user's newvo token as they navigate the app.  It also has relatively extensive exception handling.  This is relatively self-explanatory.  This line skip_before_action :verify_authenticity_token
 is also critical because rails will 401 any request unless told to skip over csrf protection.
 
-# see api document for information on other routes/controllers.  All are functional at this time, we have not been using search though.  Logout only specifies that a user has logged out via JSON.  It doesn't actually do anything.  If you wanted to change the token upon logout, logic goes there.
+# see api document for information on other routes/controllers.  Logout only specifies that a user has logged out via JSON.  It doesn't actually do anything.  If you wanted to change the token upon logout, logic goes there.
 
 # In the models, Activity Objects (such as CommentActivity) are created when a comment is created.  This is for use with the activity feed.  Activity Feed controller essentially finds the relevant activites to a certain user and returns them in JSON.
 
