@@ -10,12 +10,14 @@ window.onload=function(){
       production = 'url(https://newvo.me/assets/landing_page/background-',
       currentBackground = production + currentIndex + '.jpg)';
 
-  $iphoneImg.attr('src', currentPhoto );
+  $iphoneImg.fadeTo('fast', 0.7, function(){
+    $(this).attr('src', currentPhoto ).fadeTo('slow', 1);
+  });
   $bg.css('background-image', currentBackground )
   console.log(currentBackground)
   setTimeout(function() {
       cycle(currentIndex, $iphoneImg, $bg);
-  }, 5000);
+  }, 7000);
 })(0, $('.iphone-image'), $('.background'));
 
   // Related to rotating pictures.  Need array of images.

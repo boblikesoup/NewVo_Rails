@@ -31,12 +31,22 @@ body {
   height: 100%;
   top: 0;
   left: 0;
-  background: url(/assets/landing_page/background-1.jpg) no-repeat center center fixed;
+  -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+
+
+  background-image: url(/assets/landing_page/background-1.jpg) no-repeat;
+  -webkit-transition: background-image 0.7s ease-in-out;
+  -moz-transition: background-image 0.7s ease-in-out;
+  -ms-transition: background-image 0.7s ease-in-out;
+  -o-transition: background-image 0.7s ease-in-out;
+  transition: background-image 0.7s ease-in-out;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
+
 
 .overlay {
   z-index: 0;
