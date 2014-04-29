@@ -20,7 +20,7 @@ class API::V1::SessionsController < API::V1::ApplicationController
     end
   end
 
-  # done
+  # TODO implement a better logout
   def destroy
     # id = @current_user.id
     # user = User.find(id)

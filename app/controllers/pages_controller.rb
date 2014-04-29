@@ -1,5 +1,13 @@
 class PagesController < ApplicationController
 
-  def home
+  #incomplete
+  def legal
   end
+
+  def about
+  end
+
+  def contact_us
+  end
+
 end

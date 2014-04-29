@@ -7,7 +7,7 @@ describe "Sessions Controller" do
     #create (can't find way to get facebook user access token for testing)
     # it "should create a following" do
     #   params = {}
-    #   get "/auth/mobile", params, :format => :json
+    #   get "api/v1/auth/mobile", params, :format => :json
     #   expect(JSON.parse(response.body)["success"]).to eq(true)
     # end
 
@@ -15,7 +15,7 @@ describe "Sessions Controller" do
     it "should delete a session" do
       params = {}
       params['newvo_token'] = user1.newvo_token
-      get "/signout/mobile", params, :format => :json
+      get "api/v1/signout/mobile", params, :format => :json
       expect(JSON.parse(response.body)["success"]).to eq(true)
     end
   end

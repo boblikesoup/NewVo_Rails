@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
-
 respond_to :html, :json
 
+  #needs test
   def index
     respond_with(current_user)
   end
 
+  #needs test
   def show
     @user = User.find(params[:id])
     @profile = true
@@ -13,6 +14,7 @@ respond_to :html, :json
     respond_with(@user)
   end
 
+  #needs flash, test
   def description
     @user = User.find(params[:id])
     if @user.description != params[:description]

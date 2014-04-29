@@ -42,20 +42,6 @@ class API::V1::PostsController < API::V1::ApplicationController
   end
 
   # done
-  def search
-    if params[:used_post_ids].strip == "[]" || params[:used_post_ids].strip == "" || params[:used_post_ids].blank?
-      used_post_ids = []
-    else
-      used_post_ids = params[:used_post_ids][1..-2].split(',').collect! {|n| n.to_i}
-    end
-    @posts = post_retrieval(params[:query], used_post_ids)
-    response = {}
-    response["success"] = true
-    response["data"] = @posts
-    render json: response
-  end
-
-  # done
   def index
     @posts = Post.recent
     render json: @posts, :include => [:photos, :comments]
@@ -95,7 +81,7 @@ class API::V1::PostsController < API::V1::ApplicationController
   end
 
   def commented_on
-    @posts_commented_on = @current_user.posts_with_comments
+    @posts_commented_on = @current_user.posts_with_comments.uniq
     response = {}
     response["success"] = true
     response["posts"] = @posts_commented_on
@@ -103,19 +89,6 @@ class API::V1::PostsController < API::V1::ApplicationController
   end
 
   private
-
-  # Could this be in the model?
-    def post_retrieval(query, used_post_ids)
-      if query == "global"
-        Post.not_seen(used_post_ids)
-      elsif query == "friends"
-        Post.not_seen_friends(used_post_ids, @current_user)
-      elsif query == "following"
-        Post.not_seen_following(used_post_ids, @current_user)
-      else
-        render :json=> {success: false, message: "search failed"}, status: 401
-      end
-    end
 
   def invalid_post_attempt(message="Seems like something ain't right with your post")
     render :json=> {success: false, message: message}, status: 401

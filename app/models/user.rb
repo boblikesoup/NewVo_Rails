@@ -75,7 +75,6 @@ class User < ActiveRecord::Base
     }
   end
 
-  #called on like .assemble_user (refactor where search by id)
   def assemble_user
     user_hash = {}
     user_hash["id"] = self.id
@@ -94,13 +93,7 @@ class User < ActiveRecord::Base
     else
       return "none"
     end
-
   end
-
-#using just first name for now
-  # def full_name
-  #   return self.first_name + " " + self.last_name
-  # end
 
 #refactor these into 1 method
   def sort_followed (followed_users)
@@ -142,4 +135,3 @@ class User < ActiveRecord::Base
 
 end
 
-# {"id"=>"1765376600", "name"=>"Brent Gaynor", "first_name"=>"Brent", "last_name"=>"Gaynor", "link"=>"https://www.facebook.com/brent.gaynor.1", "work"=>[{"employer"=>{"id"=>"1449626305255785", "name"=>"NewVo"}, "location"=>{"id"=>"114952118516947", "name"=>"San Francisco, California"}, "position"=>{"id"=>"106275566077710", "name"=>"Chief Technology Officer"}, "description"=>"Hustling and programming on a desperate search for the American Dream.  More specifically, jack of all trades at a fashion startup I founded. ", "start_date"=>"2013-12-31"}], "education"=>[{"school"=>{"id"=>"368411969885228", "name"=>"Dev Bootcamp"}, "type"=>"College"}], "gender"=>"male", "timezone"=>-7, "locale"=>"en_US", "verified"=>true, "updated_time"=>"2014-03-10T06:42:05+0000", "username"=>"brent.gaynor.1"}

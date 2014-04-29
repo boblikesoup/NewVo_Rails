@@ -1,0 +1,103 @@
+################################## Token Stuff ##############################################################
+Hello possible other developers!  My name is Brent and I built all of this.  I am going to try to document all of the relevant information here so that your life is infinitely easier if/when you look at this.
+
+# Amazon Information
+Amazon access— AKIAIFO4WUGAG7WBKHOA
+Amazon secret-- bvECw5pI92YWIlqLGFcvFR+X49uLpZdInUTtBcby
+RDS DB master password-- newvome123
+
+# To push to newvo-production amazon server, download eb command line interface and use git aws.push command
+
+# App Facebook Access Token
+App ID
+760522837298852
+App Secret
+b2dcbc8c6537a561869a302a05348cce
+
+# Mailchimp
+username- newvome
+password- newvome123
+
+################################## namecheap support ########################################################
+
+This message serves as confirmation that you are now successfully registered in our support center.
+
+Registered Email: johnuke@gmail.com
+Password: p56jhliiej
+
+You can visit the Support Desk at any time by going to https://support.namecheap.com/
+
+Please do let us know if you have any questions.
+
+################################## API testing etc.. #########################################################
+
+ACTIVITY FEED--
+http://localhost:3000/api/v1/activity_feed?newvo_token=Hz3DP2i0pSLi5yJnyY2DbsJC06i5wWUV
+https://newvo.herokuapp.com/api/v1/activity_feed?newvo_token=67lpujuyKv7jcJpj4x8iYJWKTDta5NwU
+
+VOTES-- create
+https://newvo.herokuapp.com/api/v1/votes?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&photo=213&value=1
+localhost:3000/api/v1/votes?newvo_token=67lpujuyKv7jcJpj4x8iYJWKTDta5NwU&photo=1&value=1
+
+FOLLOWINGS-- create
+https://newvo.herokuapp.com/api/v1/followings?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&followed_id=4
+http://localhost:3000/api/v1/followings?newvo_token=67lpujuyKv7jcJpj4x8iYJWKTDta5NwU&followed_id=2
+
+GROUPS-- create
+https://newvo.herokuapp.com/api/v1/groups?user_id[]=1&user_id[]=2&user_id[]=3&user_id[]=4&newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&creator_id=6&title=cools group
+http://localhost:3000/api/v1/groups?user_id[]=1&user_id[]=2&user_id[]=3&user_id[]=4&newvo_token=67lpujuyKv7jcJpj4x8iYJWKTDta5NwU&creator_id=1&title=cools group
+
+GROUPS-- add_members
+http://localhost:3000/api/v1/groups/add?newvo_token=67lpujuyKv7jcJpj4x8iYJWKTDta5NwU&user_id[]=5&id=4
+
+USER-- update description
+https://newvo.herokuapp.com/api/v1/users/describe?newvo_token=pDIMHb7DTRzK9dWzQUhuRHCxJevNiolT&description=this is new as fuck and it's a description
+http://localhost:3000/api/v1/users/describe?newvo_token=67lpujuyKv7jcJpj4x8iYJWKTDta5NwU&description=Worn out country joe about to retire from a hotel bed all alone
+
+SESSIONS-- create
+https://newvo.herokuapp.com/api/v1/auth/mobile?fbtoken=CAACEdEose0cBAG0mSfYMMF6gwvszsOZBYJnZCvKvF6gZBksGRglZAdbDkCB7OPw6RsuoEKao1ZA3LYjghJKeAwhCxFGZAt26aPbMaQjsMrCMWoZCHckpxPZBFTFGEi0SHzUXPS7Mgbq3Ug2XeLynSTSf9zo0aeSQRxWtURMrtNvMZBLptAJcfvalEfcFsflrzSPnH8w0HVZBQZBQgZDZD&device_id=device_id&time_zone=+0800&os_type=ios
+
+SESSIONS-- destroy
+http://localhost:3000/signout/mobile?newvo_token=67lpujuyKv7jcJpj4x8iYJWKTDta5NwU
+
+COMMENTS-- create
+https://newvo.herokuapp.com/api/v1/posts/3/comments?newvo_token=OLmeNSbGdgtZEr4nBnRZSYvgc7Hi1hHH&body=fuckeverythingman
+
+######################################### Obscure Files  ##################################################
+
+# config/environments/ -- In the Heroku or Production Environment (production is for amazon servers), one may modify the paperclip settings for posting images including the URL that shows up in Amazon s3.
+
+# /.ebextensions and /.elasticbeanstalk are full of settings.  Many of these settings may also be modified on the amazon EB console.  It took a long time to configure them so that everything worked, so I would suggest doing some research before modifiying these.
+
+# app/controllers/api/v1/application_controller -- We created our own api application controller for handling JSON requests.  It functions wholly independently of the regular application controller and has methods for checking a user's newvo token as they navigate the app.  It also has relatively extensive exception handling.  This is relatively self-explanatory.  This line skip_before_action :verify_authenticity_token
+is also critical because rails will 401 any request unless told to skip over csrf protection.
+
+# see api document for information on other routes/controllers.  Logout only specifies that a user has logged out via JSON.  It doesn't actually do anything.  If you wanted to change the token upon logout, logic goes there.
+
+# In the models, Activity Objects (such as CommentActivity) are created when a comment is created.  This is for use with the activity feed.  Activity Feed controller essentially finds the relevant activites to a certain user and returns them in JSON.
+
+# A post is composted of one or more photos attached to a photo object (an object basically just for attaching photos to) and these photo objects are attached to the post.  Inside of the photo.rb model, there are settings for validating attachment of the image.  If an image simply will not work, check here to see if it is too large or to change the size limits.
+
+# The groups model has a serialized attribue: member ids.  This is an array of the ids of all members.  A user has many and belongs to many groups.
+
+# A friendship is created when two users are following each other.
+
+# Config/initializers/omniauth.rb is where you would go to modify the information given/taken from Omniauth to Facebook.  For instance, if you wanted to collect all of the friends of the users, you would specify this here.
+
+# in the database.yml file, you can specify which SQL technology should be used by which environment.  Development is using sqlite3, Heroku is using PostgreSQL, and all amazon environments are using MySql.
+
+# Facebook app tokens are in the .env file.
+
+# We have built a relatively extensive test suite that is coupled with a multitude of helpful gems in the development environment in the gemfile.  Testing posts such as those in NewVo was not an easy task and one might be careful and observe how it was done in factorygirl before trying to replicate.
+
+# SSL is forced in Production and Heroku environments
+
+# If a web app was ever to be built, the controllers for that can't be trusted like the API controllers.  The Web App controllers have not been fully built out and would require some serious work.
+
+# The Advanced Rest Client Chrome app was used to test the api controllers for their appropriate JSON responses.  It proved invaluable.
+
+# For any further questions, email me at Bjgaynor@gmail.com
+
+# Good luck
+
+################################################## end ####################################################
